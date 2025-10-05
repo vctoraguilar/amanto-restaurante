@@ -1,0 +1,93 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="fixed top-0 w-full z-50 glass">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <h1 class="text-2xl font-bold gradient-text">Amanto</h1>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class={`nav-link ${currentPath === '/' ? 'text-primary' : 'text-foreground/80 hover:text-primary transition-colors'}`}>
+          Inicio
+        </a>
+        <a href="/nosotros" class={`nav-link ${currentPath === '/nosotros' ? 'text-primary' : 'text-foreground/80 hover:text-primary transition-colors'}`}>
+          Nosotros
+        </a>
+        <a href="/carta" class={`nav-link ${currentPath === '/carta' ? 'text-primary' : 'text-foreground/80 hover:text-primary transition-colors'}`}>
+          Carta
+        </a>
+        <button class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+          Reservar Mesa
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-foreground" id="mobile-menu-button">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden mt-4 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-4 py-4">
+        <a href="/" class={`nav-link ${currentPath === '/' ? 'text-primary' : 'text-foreground/80 hover:text-primary transition-colors'}`}>
+          Inicio
+        </a>
+        <a href="/nosotros" class={`nav-link ${currentPath === '/nosotros' ? 'text-primary' : 'text-foreground/80 hover:text-primary transition-colors'}`}>
+          Nosotros
+        </a>
+        <a href="/carta" class={`nav-link ${currentPath === '/carta' ? 'text-primary' : 'text-foreground/80 hover:text-primary transition-colors'}`}>
+          Carta
+        </a>
+        <button class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors w-full">
+          Reservar Mesa
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>
+
+<style>
+  .nav-link {
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.text-primary::after {
+    width: 100%;
+  }
+</style>

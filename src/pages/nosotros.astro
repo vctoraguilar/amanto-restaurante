@@ -1,0 +1,280 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
+import { Spotlight } from '../components/ui/Spotlight.tsx';
+import { FocusCard, FocusCardContainer } from '../components/ui/FocusCards.tsx';
+import { TextHoverEffect, TextHoverEffectContainer, WordPullUp } from '../components/ui/TextHoverEffect.tsx';
+import { FlipWords } from '../components/ui/FlipWords.tsx';
+import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
+import { LayoutGrid, GridItem } from '../components/ui/LayoutGrid.tsx';
+---
+
+<Layout title="Nosotros - Amanto Restaurante" description="Conoce la historia y filosofía del restaurante Amanto">
+  <Navigation />
+  
+  <AuroraBackground>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative pt-20">
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+      
+      <div class="text-center max-w-4xl mx-auto px-4">
+        <TextHoverEffectContainer>
+          <div class="space-y-6">
+            <div class="mb-8">
+              <TextHoverEffect 
+                text="Nuestra Historia" 
+                duration={0.5}
+                className="text-6xl md:text-8xl font-bold"
+                client:visible
+              />
+            </div>
+            
+            <div class="text-2xl md:text-3xl mb-8">
+              <span class="text-foreground/80">Más que un restaurante, una </span>
+              <FlipWords 
+                words={['pasión', 'tradición', 'innovación', 'experiencia']} 
+                className="gradient-text font-bold"
+              />
+            </div>
+            
+            <p class="text-xl text-foreground/70 max-w-3xl mx-auto">
+              Desde 2015, Amanto ha sido el hogar de la gastronomía de autor, 
+              combinando tradición culinaria con innovación constante para crear 
+              experiencias únicas que perduran en la memoria.
+            </p>
+          </div>
+        </TextHoverEffectContainer>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Nuestra Historia
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Un viaje culinario que comenzó con un sueño
+          </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+          <BackgroundGradient className="p-12">
+            <div class="space-y-8">
+              <div class="space-y-8">
+                <div>
+                  <h3 class="text-3xl font-bold mb-4 gradient-text">Los Inicios</h3>
+                  <p class="text-foreground/80 text-lg leading-relaxed">
+                    Amanto nació del sueño de crear un espacio donde la gastronomía 
+                    fuera arte y cada plato contara una historia. Fundado por el chef 
+                    ejecutivo Carlos Mendoza, nuestro restaurante combina técnicas 
+                    tradicionales con innovación moderna.
+                  </p>
+                </div>
+                <div class="relative h-64 rounded-2xl overflow-hidden">
+                  <img 
+                    src="/images/historia1.jpg" 
+                    alt="Chef Carlos Mendoza"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              
+              <div class="space-y-8">
+                <div>
+                  <h3 class="text-3xl font-bold mb-4 gradient-text">Nuestra Filosofía</h3>
+                  <p class="text-foreground/80 text-lg leading-relaxed">
+                    Creemos que cada ingrediente tiene una historia que contar. 
+                    Trabajamos directamente con productores locales para garantizar 
+                    la frescura y calidad de nuestros platos, siempre respetando 
+                    la tradición culinaria.
+                  </p>
+                </div>
+                <div class="relative h-64 rounded-2xl overflow-hidden">
+                  <img 
+                    src="/images/historia2.jpg" 
+                    alt="Cocina de Amanto"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </BackgroundGradient>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Nuestro Equipo
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Los talentos detrás de cada experiencia memorable
+          </p>
+        </div>
+        
+        <FocusCardContainer>
+          <FocusCard 
+            title="Carlos Mendoza"
+            description="Chef Ejecutivo y Fundador"
+            icon="👨‍🍳"
+          >
+            <p class="text-foreground/70">
+              Con más de 15 años de experiencia en cocinas de renombre internacional, 
+              Carlos lidera nuestro equipo culinario con pasión y creatividad.
+            </p>
+          </FocusCard>
+          
+          <FocusCard 
+            title="Ana Rodríguez"
+            description="Sommelier Principal"
+            icon="🍷"
+          >
+            <p class="text-foreground/70">
+              Especialista en vinos con certificaciones internacionales, Ana selecciona 
+              cuidadosamente cada botella para complementar nuestros platos.
+            </p>
+          </FocusCard>
+          
+          <FocusCard 
+            title="Miguel Torres"
+            description="Jefe de Sala"
+            icon="🤵"
+          >
+            <p class="text-foreground/70">
+              Con una trayectoria de excelencia en servicio, Miguel asegura que cada 
+              visita sea una experiencia impecable y memorable.
+            </p>
+          </FocusCard>
+        </FocusCardContainer>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Nuestros Valores
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Los principios que guían cada decisión en Amanto
+          </p>
+        </div>
+        
+        <LayoutGrid>
+          <GridItem 
+            title="Calidad"
+            description="Ingredientes premium y técnicas culinarias excepcionales"
+          >
+            <div class="text-4xl mb-4">⭐</div>
+            <p class="text-foreground/70">
+              Trabajamos únicamente con proveedores certificados y productos 
+              de la más alta calidad para garantizar la excelencia en cada plato.
+            </p>
+          </GridItem>
+          
+          <GridItem 
+            title="Innovación"
+            description="Creatividad culinaria que sorprende y deleita"
+          >
+            <div class="text-4xl mb-4">💡</div>
+            <p class="text-foreground/70">
+              Nuestro equipo constantemente explora nuevas técnicas y combinaciones 
+              para crear experiencias gastronómicas únicas e inolvidables.
+            </p>
+          </GridItem>
+          
+          <GridItem 
+            title="Sostenibilidad"
+            description="Compromiso con el medio ambiente y la comunidad local"
+          >
+            <div class="text-4xl mb-4">🌱</div>
+            <p class="text-foreground/70">
+              Promovemos prácticas sostenibles, desde el abastecimiento responsable 
+              hasta la gestión eficiente de recursos en nuestras operaciones.
+            </p>
+          </GridItem>
+          
+          <GridItem 
+            title="Tradición"
+            description="Respeto por las técnicas culinarias tradicionales"
+          >
+            <div class="text-4xl mb-4">🏛️</div>
+            <p class="text-foreground/70">
+              Honramos las tradiciones culinarias mientras las reinventamos para 
+              crear platos contemporáneos que mantienen la esencia de la cocina clásica.
+            </p>
+          </GridItem>
+          
+          <GridItem 
+            title="Experiencia"
+            description="Cada detalle diseñado para crear momentos únicos"
+          >
+            <div class="text-4xl mb-4">✨</div>
+            <p class="text-foreground/70">
+              Desde el ambiente hasta el servicio, cada elemento está cuidadosamente 
+              diseñado para crear una experiencia gastronómica completa y memorable.
+            </p>
+          </GridItem>
+          
+          <GridItem 
+            title="Pasión"
+            description="Amor por la gastronomía en cada creación"
+          >
+            <div class="text-4xl mb-4">❤️</div>
+            <p class="text-foreground/70">
+              La pasión por la cocina es el motor que impulsa a todo nuestro equipo 
+              a superarse constantemente y crear experiencias excepcionales.
+            </p>
+          </GridItem>
+        </LayoutGrid>
+      </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Reconocimientos
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Premios y certificaciones que respaldan nuestra excelencia
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
+          <BackgroundGradient className="text-center p-8">
+            <div class="text-5xl mb-4">🏆</div>
+            <h3 class="text-xl font-bold mb-2 gradient-text">Mejor Restaurante</h3>
+            <p class="text-foreground/70">Guía Gastronómica 2023</p>
+          </BackgroundGradient>
+          
+          <BackgroundGradient className="text-center p-8">
+            <div class="text-5xl mb-4">⭐</div>
+            <h3 class="text-xl font-bold mb-2 gradient-text">5 Estrellas</h3>
+            <p class="text-foreground/70">TripAdvisor 2023</p>
+          </BackgroundGradient>
+          
+          <BackgroundGradient className="text-center p-8">
+            <div class="text-5xl mb-4">🍽️</div>
+            <h3 class="text-xl font-bold mb-2 gradient-text">Innovación Culinaria</h3>
+            <p class="text-foreground/70">Premio Gastronómico 2022</p>
+          </BackgroundGradient>
+          
+          <BackgroundGradient className="text-center p-8">
+            <div class="text-5xl mb-4">🥇</div>
+            <h3 class="text-xl font-bold mb-2 gradient-text">Excelencia</h3>
+            <p class="text-foreground/70">Certificación Internacional</p>
+          </BackgroundGradient>
+        </div>
+      </div>
+    </section>
+  </AuroraBackground>
+</Layout>

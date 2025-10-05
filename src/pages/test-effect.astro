@@ -1,0 +1,40 @@
+
+---
+import Layout from '../layouts/Layout.astro';
+import { TextHoverEffectContainer, WordPullUp } from '../components/ui/TextHoverEffect.tsx';
+
+const texto = "AMANTO".split("");
+
+// PRUEBA 1: Veremos esto en la terminal donde ejecutas 'npm run dev'
+console.log("--- PRUEBA 1 ---");
+console.log("Valor de 'texto' DENTRO del frontmatter:", texto);
+console.log("Tipo de 'texto':", typeof texto, Array.isArray(texto) ? "(Es un Array)" : "(NO es un Array)");
+console.log("--------------------");
+---
+
+<Layout title="Prueba Efecto Hover" description="Probando el efecto de texto de Aceternity UI">
+  
+  <div class="h-screen w-full flex items-center justify-center">
+
+    {/* PRUEBA 2: Esto también aparecerá en tu terminal */}
+    {console.log("--- PRUEBA 2 ---")}
+    {console.log("Valor de 'texto' JUSTO ANTES del .map():", texto)}
+    {console.log("Tipo de 'texto':", typeof texto, Array.isArray(texto) ? "(Es un Array)" : "(NO es un Array)")}
+    {console.log("--------------------")}
+    
+    <TextHoverEffectContainer client:visible>
+      <div class="text-6xl md:text-8xl font-bold text-white text-center cursor-pointer">
+        {
+          texto.map((letra) => (
+            <div class="inline-block overflow-hidden">
+               <WordPullUp client:visible>
+                {letra}
+              </WordPullUp>
+            </div>
+          ))
+        }
+      </div>
+    </TextHoverEffectContainer>
+    
+  </div>
+</Layout>

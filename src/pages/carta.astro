@@ -1,0 +1,390 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
+import { Spotlight } from '../components/ui/Spotlight.tsx';
+import { DraggableCard, DragCard } from '../components/ui/DraggableCard.tsx';
+import { ImagesSlider } from '../components/ui/ImagesSlider.tsx';
+import { TextHoverEffect, TextHoverEffectContainer, WordPullUp } from '../components/ui/TextHoverEffect.tsx';
+import { FlipWords } from '../components/ui/FlipWords.tsx';
+import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
+import { LayoutGrid, GridItem } from '../components/ui/LayoutGrid.tsx';
+---
+
+<Layout title="Carta - Amanto Restaurante" description="Descubre nuestra exquisita carta con platos de autor y selección de vinos">
+  <Navigation />
+  
+  <AuroraBackground>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center relative pt-20">
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+      
+      <div class="text-center max-w-4xl mx-auto px-4">
+        <TextHoverEffectContainer>
+          <div class="space-y-6">
+            <div class="mb-8">
+              <TextHoverEffect 
+                text="Nuestra Carta" 
+                duration={0.5}
+                className="text-6xl md:text-8xl font-bold"
+                client:visible
+              />
+            </div>
+            
+            <div class="text-2xl md:text-3xl mb-8">
+              <span class="text-foreground/80">Una experiencia </span>
+              <FlipWords 
+                words={['gastronómica', 'sensorial', 'única', 'excepcional']} 
+                className="gradient-text font-bold"
+              />
+              <span class="text-foreground/80"> te espera</span>
+            </div>
+            
+            <p class="text-xl text-foreground/70 max-w-3xl mx-auto">
+              Cada plato es una obra de arte culinaria, cuidadosamente elaborado 
+              con ingredientes frescos y técnicas innovadoras para despertar tus sentidos.
+            </p>
+          </div>
+        </TextHoverEffectContainer>
+      </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Categorías
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Explora nuestra selección de platos cuidadosamente categorizados
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
+          <DraggableCard className="cursor-pointer">
+            <BackgroundGradient className="text-center p-8 h-48">
+              <div class="text-5xl mb-4">🦪</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Entradas</h3>
+              <p class="text-foreground/70">Aperitivos y primeros platos</p>
+            </BackgroundGradient>
+          </DraggableCard>
+          
+          <DraggableCard className="cursor-pointer">
+            <BackgroundGradient className="text-center p-8 h-48">
+              <div class="text-5xl mb-4">🥩</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Carnes</h3>
+              <p class="text-foreground/70">Cortes premium y guisos</p>
+            </BackgroundGradient>
+          </DraggableCard>
+          
+          <DraggableCard className="cursor-pointer">
+            <BackgroundGradient className="text-center p-8 h-48">
+              <div class="text-5xl mb-4">🐟</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Pescados</h3>
+              <p class="text-foreground/70">Del mar a tu mesa</p>
+            </BackgroundGradient>
+          </DraggableCard>
+          
+          <DraggableCard className="cursor-pointer">
+            <BackgroundGradient className="text-center p-8 h-48">
+              <div class="text-5xl mb-4">🍰</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Postres</h3>
+              <p class="text-foreground/70">Dulces creaciones</p>
+            </BackgroundGradient>
+          </DraggableCard>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Dishes -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Platos Estrella
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Nuestras creaciones más emblemáticas
+          </p>
+        </div>
+        
+        <div class="max-w-6xl mx-auto mb-16">
+          <ImagesSlider 
+            images={[
+              '/images/plato-estrella-1.jpg',
+              '/images/plato-estrella-2.jpg',
+              '/images/plato-estrella-3.jpg',
+              '/images/plato-estrella-4.jpg'
+            ]}
+            className="h-96 md:h-[500px]"
+          />
+        </div>
+        
+        <LayoutGrid>
+          <DraggableCard>
+            <DragCard 
+              title="Tartar de Atún Rojo"
+              description="Atún fresco con aguacate, jengibre confitado y salsa ponzu"
+            >
+              <div class="space-y-4">
+                <p class="text-foreground/70">
+                  Un plato que combina la frescura del atún rojo con la cremosidad 
+                  del aguacate y el toque picante del jengibre.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-2xl font-bold gradient-text">€28</span>
+                  <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                    Pedir
+                  </button>
+                </div>
+              </div>
+            </DragCard>
+          </DraggableCard>
+          
+          <DraggableCard>
+            <DragCard 
+              title="Wagyu a la Plancha"
+              description="Carne wagyu con puré de trufa negra y espárragos verdes"
+            >
+              <div class="space-y-4">
+                <p class="text-foreground/70">
+                  Cortes premium de wagyu cocinados a la perfección, acompañados 
+                  de un puré de trufa negra que realza su sabor.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-2xl font-bold gradient-text">€65</span>
+                  <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                    Pedir
+                  </button>
+                </div>
+              </div>
+            </DragCard>
+          </DraggableCard>
+          
+          <DraggableCard>
+            <DragCard 
+              title="Risotto de Hongos Porcini"
+              description="Arroz carnaroli con porcini, parmesano y trufa blanca"
+            >
+              <div class="space-y-4">
+                <p class="text-foreground/70">
+                  Un risotto cremoso con hongos porcini frescos y el toque 
+                  inconfundible de la trufa blanca.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-2xl font-bold gradient-text">€32</span>
+                  <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                    Pedir
+                  </button>
+                </div>
+              </div>
+            </DragCard>
+          </DraggableCard>
+          
+          <DraggableCard>
+            <DragCard 
+              title="Lubina a la Sal"
+              description="Lubina entera cocinada en costra de sal marina con hierbas"
+            >
+              <div class="space-y-4">
+                <p class="text-foreground/70">
+                  Lubina fresca cocinada en costra de sal marina con hierbas 
+                  aromáticas, una técnica tradicional que realza su sabor natural.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-2xl font-bold gradient-text">€38</span>
+                  <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                    Pedir
+                  </button>
+                </div>
+              </div>
+            </DragCard>
+          </DraggableCard>
+          
+          <DraggableCard>
+            <DragCard 
+              title="Cordero Lechal Asado"
+              description="Pierna de cordero lechal con romero, ajo y patatas confitadas"
+            >
+              <div class="space-y-4">
+                <p class="text-foreground/70">
+                  Cordero lechal de temporada asado lentamente con romero fresco, 
+                  ajo y acompañado de patatas confitadas.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-2xl font-bold gradient-text">€42</span>
+                  <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                    Pedir
+                  </button>
+                </div>
+              </div>
+            </DragCard>
+          </DraggableCard>
+          
+          <DraggableCard>
+            <DragCard 
+              title="Tiramisú de la Casa"
+              description="Postre italiano con mascarpone, café y cacao amargo"
+            >
+              <div class="space-y-4">
+                <p class="text-foreground/70">
+                  Nuestra versión del clásico italiano con mascarpone cremoso, 
+                  café espresso y cacao amargo de alta calidad.
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-2xl font-bold gradient-text">€12</span>
+                  <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                    Pedir
+                  </button>
+                </div>
+              </div>
+            </DragCard>
+          </DraggableCard>
+        </LayoutGrid>
+      </div>
+    </section>
+
+    <!-- Wine Selection -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Selección de Vinos
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Vinos cuidadosamente seleccionados para complementar nuestros platos
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
+          <BackgroundGradient className="p-8">
+            <div class="text-center">
+              <div class="text-4xl mb-4">🍷</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Vinos Tintos</h3>
+              <p class="text-foreground/70 mb-4">
+                Selección de tintos nacionales e internacionales
+              </p>
+              <ul class="text-left space-y-2">
+                <li class="flex justify-between">
+                  <span>Ribera del Duero Reserva 2018</span>
+                  <span class="font-bold">€45</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Bordeaux Grand Cru 2016</span>
+                  <span class="font-bold">€78</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Rioja Gran Reserva 2015</span>
+                  <span class="font-bold">€52</span>
+                </li>
+              </ul>
+            </div>
+          </BackgroundGradient>
+          
+          <BackgroundGradient className="p-8">
+            <div class="text-center">
+              <div class="text-4xl mb-4">🥂</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Vinos Blancos</h3>
+              <p class="text-foreground/70 mb-4">
+                Blancos frescos y elegantes
+              </p>
+              <ul class="text-left space-y-2">
+                <li class="flex justify-between">
+                  <span>Albariño Rías Baixas 2022</span>
+                  <span class="font-bold">€28</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Chardonnay Bourgogne 2021</span>
+                  <span class="font-bold">€42</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Verdejo Rueda 2022</span>
+                  <span class="font-bold">€24</span>
+                </li>
+              </ul>
+            </div>
+          </BackgroundGradient>
+          
+          <BackgroundGradient className="p-8">
+            <div class="text-center">
+              <div class="text-4xl mb-4">🍾</div>
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Cavas y Espumosos</h3>
+              <p class="text-foreground/70 mb-4">
+                Para celebrar momentos especiales
+              </p>
+              <ul class="text-left space-y-2">
+                <li class="flex justify-between">
+                  <span>Cava Reserva Brut Nature</span>
+                  <span class="font-bold">€32</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Champagne Brut Premier Cru</span>
+                  <span class="font-bold">€85</span>
+                </li>
+                <li class="flex justify-between">
+                  <span>Prosecco DOCG Extra Dry</span>
+                  <span class="font-bold">€26</span>
+                </li>
+              </ul>
+            </div>
+          </BackgroundGradient>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chef's Special Menu -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+            Menú del Chef
+          </h2>
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+            Una experiencia gastronómica única con degustación de 7 platos
+          </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+          <BackgroundGradient className="p-12">
+            <div class="text-center mb-8">
+              <h3 class="text-3xl font-bold mb-4 gradient-text">Menú Degustación</h3>
+              <p class="text-lg text-foreground/70 mb-6">
+                Una selección de nuestros mejores platos presentados como una experiencia completa
+              </p>
+              <div class="text-4xl font-bold gradient-text mb-6">€95 por persona</div>
+              <button class="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors text-lg font-semibold">
+                Reservar Menú del Chef
+              </button>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6">
+              <div class="space-y-4">
+                <h4 class="text-xl font-bold gradient-text">Incluye:</h4>
+                <ul class="space-y-2 text-foreground/70">
+                  <li>• Amuse-bouche de bienvenida</li>
+                  <li>• Entrada de temporada</li>
+                  <li>• Pescado del día</li>
+                  <li>• Carne premium</li>
+                  <li>• Postre artesanal</li>
+                  <li>• Petit fours</li>
+                  <li>• Selección de vinos (opcional +€35)</li>
+                </ul>
+              </div>
+              <div class="space-y-4">
+                <h4 class="text-xl font-bold gradient-text">Información:</h4>
+                <ul class="space-y-2 text-foreground/70">
+                  <li>• Duración: 2.5-3 horas</li>
+                  <li>• Reserva previa obligatoria</li>
+                  <li>• Disponible de jueves a sábado</li>
+                  <li>• Máximo 8 personas por mesa</li>
+                  <li>• Se requiere aviso de alergias</li>
+                </ul>
+              </div>
+            </div>
+          </BackgroundGradient>
+        </div>
+      </div>
+    </section>
+  </AuroraBackground>
+</Layout>

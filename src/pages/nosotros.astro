@@ -4,13 +4,13 @@ import Navigation from '../components/Navigation.astro';
 import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
 import { Spotlight } from '../components/ui/Spotlight.tsx';
 import { FocusCard, FocusCardContainer } from '../components/ui/FocusCards.tsx';
-import { TextHoverEffect, TextHoverEffectContainer, WordPullUp } from '../components/ui/TextHoverEffect.tsx';
+import { TextHoverEffect } from '../components/ui/TextHoverEffect.tsx';
 import { FlipWords } from '../components/ui/FlipWords.tsx';
 import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
 import { LayoutGrid, GridItem } from '../components/ui/LayoutGrid.tsx';
 ---
 
-<Layout title="Nosotros - Amanto Restaurante" description="Conoce la historia y filosofía del restaurante Amanto">
+<Layout title="Nosotros - Amanto" description="Conoce la historia y filosofía del restaurante Amanto">
   <Navigation />
   
   <AuroraBackground>
@@ -19,13 +19,12 @@ import { LayoutGrid, GridItem } from '../components/ui/LayoutGrid.tsx';
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
       
       <div class="text-center max-w-4xl mx-auto px-4">
-        <TextHoverEffectContainer>
+        
           <div class="space-y-6">
             <div class="mb-8">
               <TextHoverEffect 
-                text="Nuestra Historia" 
+                text="Nosotros" 
                 duration={0.5}
-                className="text-6xl md:text-8xl font-bold"
                 client:visible
               />
             </div>
@@ -44,7 +43,7 @@ import { LayoutGrid, GridItem } from '../components/ui/LayoutGrid.tsx';
               experiencias únicas que perduran en la memoria.
             </p>
           </div>
-        </TextHoverEffectContainer>
+        
       </div>
     </section>
 

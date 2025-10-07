@@ -7,7 +7,7 @@ import { CarouselWrapper } from '../components/CarouselWrapper.tsx';
 import { FlipWords } from '../components/ui/FlipWords.tsx';
 import { HoverBorderGradient } from '../components/ui/HoverBorderGradient.tsx';
 import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
-import { TextHoverEffect } from '@/components/ui/text-hover-effect';
+import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
 ---
 
 <Layout title="Amanto - Restaurante de Lujo">
@@ -17,29 +17,57 @@ import { TextHoverEffect } from '@/components/ui/text-hover-effect';
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative pt-20">
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+    
+      <div class="absolute inset-0 z-10 [mask-image:linear-gradient(to_top,black_20%,transparent_70%)]">
+        <img 
+          src="/images/interior1.jpg" 
+          alt="Interior del restaurante Amanto"
+          class="w-full h-full object-cover"
+        />
+      </div>
       
-      <div class="text-center max-w-4xl mx-auto px-4">
-        <div class="text-center max-w-4xl mx-auto px-4">
-          <div class="space-y-6">
+      <div class="text-center max-w-4xl mx-auto px-4 relative z-20">
+        <div class="space-y-6">
+          
+          <div class="w-full max-w-3xl h-32 md:h-40 mx-auto mb-8">
+            <TextHoverEffect 
+              text="Amanto" 
+              duration={0.8}
+              client:load 
+            />
+          </div>
+          
+          <div class="text-2xl md:text-3xl mb-8">
+            <span class="text-foreground/80">Donde la </span>
+            <FlipWords 
+              words={['gastronomía', ' experiencia ', '  elegancia  ', '  tradición  ']} 
+              className="gradient-text font-bold"
+              client:visible
+            />
+            <span class="text-foreground/80"> se encuentran.</span>
+          </div>
+          
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto mb-12">
+            Descubre una experiencia culinaria única que combina ingredientes frescos, 
+            técnicas innovadoras y un ambiente sofisticado para crear momentos inolvidables.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <HoverBorderGradient
+              containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
+              as="button"
+              className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+            >
+              Ver Carta
+            </HoverBorderGradient>
             
-            <div class="w-full max-w-3xl h-32 md:h-40 mx-auto mb-8">
-              <TextHoverEffect 
-                text="Amanto" 
-                duration={0.8}
-                client:load 
-              />
-            </div>
-            
-            {/* ... resto del contenido (FlipWords, párrafo, botones) ... */}
-            <div class="text-2xl md:text-3xl mb-8">
-                ...
-            </div>
-            <p class="text-xl ...">
-                ...
-            </p>
-            <div class="flex ...">
-                ...
-            </div>
+            <HoverBorderGradient
+              containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
+              as="button"
+              className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+            >
+              Reservar Mesa
+            </HoverBorderGradient>
           </div>
         </div>
       </div>

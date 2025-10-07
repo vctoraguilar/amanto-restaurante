@@ -25,9 +25,9 @@ export const AuroraBackground = ({
             showRadialGradient ? "bg-[radial-gradient(ellipse_at_center,var(--yellow-500,transparent)_0%,transparent_70%)]" : ""
           }`}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-600 opacity-20 blur-3xl animate-pulse" />
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 opacity-20 blur-3xl animate-pulse [animation-delay:2s]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-600 opacity-20 blur-3xl animate-pulse [animation-delay:4s]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-600 opacity-20 blur-3xl animate-gentle-glow" />
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-600 opacity-20 blur-3xl animate-gentle-glow [animation-delay:20s]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-yellow-600 opacity-20 blur-3xl animate-gentle-glow [animation-delay:40s]" />
         </div>
 
         <div className="relative z-20 w-full">

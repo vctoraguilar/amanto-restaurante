@@ -4,12 +4,12 @@ import { HoverBorderGradient } from './ui/HoverBorderGradient.tsx';
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="fixed top-0 w-full z-50 glass">
+<nav class="fixed top-0 w-full z-50 transition-all duration-300" id="main-nav">
   <div class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center space-x-2">
-        <h1 class="text-2xl font-bold gradient-text">Amanto</h1>
+        <img src="/images/logo.svg" alt="Amanto" class="w-20 h-20" />
       </div>
 
       <!-- Desktop Navigation -->
@@ -23,7 +23,9 @@ const currentPath = Astro.url.pathname;
         <a href="/carta" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/carta' ? 'active' : ''}`}>
           <span data-translate="nav.menu">Carta</span>
         </a>
-        <LanguageSelector client:load />
+        <div class="flex justify-center">
+          <LanguageSelector client:load />
+        </div>
         <a href="mailto:reservas@amantorestaurante.com">
           <HoverBorderGradient
             containerClassName="rounded-full"
@@ -79,12 +81,31 @@ const currentPath = Astro.url.pathname;
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mainNav = document.getElementById('main-nav');
     
     if (mobileMenuButton && mobileMenu) {
       mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
       });
     }
+
+    // Scroll effect for navbar
+    let lastScroll = 0;
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (mainNav) {
+        if (currentScroll > 50) {
+          mainNav.classList.add('scrolled');
+        } else {
+          mainNav.classList.remove('scrolled');
+        }
+      }
+      
+      lastScroll = currentScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Traducir elementos
     const updateTranslations = () => {
@@ -111,6 +132,17 @@ const currentPath = Astro.url.pathname;
 </script>
 
 <style>
+  #main-nav {
+    background-color: transparent;
+  }
+
+  #main-nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
   .nav-link {
     position: relative;
     padding: 0.5rem 0;

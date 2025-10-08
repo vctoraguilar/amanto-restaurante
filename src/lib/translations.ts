@@ -27,16 +27,16 @@ export const translations = {
       winesDesc: 'Selección cuidadosa de vinos nacionales e internacionales',
       ambiance: 'Ambiente',
       ambianceDesc: 'Diseño elegante que crea una atmósfera única e inolvidable',
-      ctaTitle: '¿Listo para una experiencia única?',
-      ctaDescription: 'Reserva tu mesa y déjate sorprender por nuestra propuesta culinaria',
-      reserveNow: 'Reservar Ahora',
+      ctaTitle: 'Únete a la experiencia Amanto',
+      ctaDescription: 'Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía',
+      reserveNow: 'Reservar Mesa',
       viewMenuBtn: 'Ver Menú',
     },
     
     // About Page
     about: {
       title: 'Nosotros',
-      subtitle: 'Donde',
+      subtitle: 'Creamos',
       subtitleWords: ['llegamos a tus sentidos', 'creamos experiencias', 'buscamos innovación', 'servimos con felicidad'],
       description: 'En Amanto, cada plato es una interpretación única de la cocina peruana, elaborada con ingredientes locales del Valle Sagrado para crear experiencias culinarias que llegan directamente a tus sentidos.',
       essenceTitle: 'Nuestra Esencia',
@@ -55,6 +55,10 @@ export const translations = {
       philosophyText1: 'Amanto elabora su propia interpretación de los platos peruanos y su cocina está basada en especias locales: verduras cultivadas como la quinua, papa andina; trucha de río y carne de res autóctona.',
       philosophyText2: 'Nuestra cocina ofrece a los comensales una interpretación de los productos en su estado óptimo, aprovechando al máximo el sabor y respetando la verdadera naturaleza del ingrediente.',
       philosophyText3: 'La base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.',
+      ctaTitle: 'Únete a la experiencia Amanto',
+      ctaDescription: 'Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía',
+      reserveNow: 'Reservar Mesa',
+      viewMenu: 'Ver Carta',
     },
     
     // Menu Page
@@ -256,7 +260,7 @@ export const translations = {
     // About Page
     about: {
       title: 'About Us',
-      subtitle: 'Where',
+      subtitle: 'We create',
       subtitleWords: ['we reach your senses', 'we create experiences', 'we seek innovation', 'we serve with happiness'],
       description: 'At Amanto, each dish is a unique interpretation of Peruvian cuisine, made with local ingredients from the Sacred Valley to create culinary experiences that reach directly to your senses.',
       essenceTitle: 'Our Essence',
@@ -275,6 +279,10 @@ export const translations = {
       philosophyText1: 'Amanto creates its own interpretation of Peruvian dishes and our cuisine is based on local spices: cultivated vegetables such as quinoa, Andean potatoes; river trout and native beef.',
       philosophyText2: 'Our cuisine offers diners an interpretation of products in their optimal state, maximizing flavor and respecting the true nature of the ingredient.',
       philosophyText3: 'The foundation of our menu is an extensive collection of spices from the entire Sacred Valley, which we have carefully selected to create unique and unforgettable experiences.',
+      ctaTitle: 'Join the Amanto experience',
+      ctaDescription: 'Discover why we are unique and let us surprise you with our passion for gastronomy',
+      reserveNow: 'Reserve Table',
+      viewMenu: 'View Menu',
     },
     
     // Menu Page

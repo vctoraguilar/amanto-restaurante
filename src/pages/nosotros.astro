@@ -8,6 +8,9 @@ import { Spotlight } from '../components/ui/Spotlight.tsx';
 import { TextHoverEffect } from '../components/ui/TextHoverEffect.tsx';
 import { FlipWords } from '../components/ui/FlipWords.tsx';
 import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
+import { HoverBorderGradient } from '../components/ui/HoverBorderGradient.tsx';
+import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
+import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
 ---
 
 <Layout title="Nosotros - Amanto" description="Conoce la historia y filosofía del restaurante Amanto">
@@ -30,9 +33,9 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
             </div>
             
             <div class="text-2xl md:text-3xl mb-8 flex flex-wrap justify-center items-center gap-2">
-              <span class="text-foreground/80" data-translate="about.subtitle">Donde</span>
+              <span class="text-foreground/80" data-translate="about.subtitle">Creamos</span>
               <FlipWords 
-                words={['llegamos a tus sentidos', 'creamos experiencias', 'buscamos innovación', 'servimos con felicidad']} 
+                words={['experiencias', 'sabores', 'alianzas', 'tradición']} 
                 duration={3000}
                 className="text-white font-bold"
                 client:visible
@@ -157,6 +160,109 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Historia del Nombre / Story Behind Our Name -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto">
+          <div class="space-y-8">
+            <h2 class="text-3xl md:text-5xl font-bold gradient-text text-center mb-12" data-translate="menu.storyTitle">
+              ¿Qué hay detrás de nuestro nombre?
+            </h2>
+            
+            <div class="space-y-6">
+              <TextGenerateEffect 
+                words="A estas alturas de tu viaje ya has conocido el lado material y palpable de nuestro pueblo de Ollantaytambo; canchas inkas, terrazas y construcciones de piedra esculpidas por nuestros ancestros. Pero, ¿Qué hay del lado inmaterial de nuestros antepasados, el trabajo arduo, las tristezas, las fiestas o los amoríos?"
+                className="text-base md:text-lg"
+                duration={0.8}
+                client:visible
+              />
+              
+              <TextGenerateEffect 
+                words="Amoríos incluso prohibidos, vamos! ¿quién no ha tenido un amor prohibido en sus vidas?, pero del que les queremos hablar fue uno que dividió estas tierras en dos frentes, todo por el amor de Cusi Qoyllor, princesa Inka, hija del último Inka Pachacuteq, y amor prohibido de su general de guerra, Ollantay."
+                className="text-base md:text-lg"
+                duration={0.8}
+                client:visible
+              />
+              
+              <TextGenerateEffect 
+                words="Esté, era un romance imposible por la diferencia de clases de la época Inka, teniendo que verse cual amantes, a escondidas, hasta que fueron separados, iniciándose una guerra sin treguas, a morir."
+                className="text-base md:text-lg"
+                duration={0.8}
+                client:visible
+              />
+              
+              <TextGenerateEffect 
+                words="Por ello, cuando recorras nuestras calles, sabrás que ahí se luchó por el amor, amores prohibidos que aun se tejen en nuestro pueblo, amores que fueron casi imposibles, pero fueron triunfantes como el de Juan y Elsa o Raúl y Raquel, nuestros padres, o como el de nosotros, Carmen y Alonso."
+                className="text-base md:text-lg"
+                duration={0.8}
+                client:visible
+              />
+              
+              <div class="pt-6">
+                <TextGenerateEffect 
+                  words="Este amor ahora se materializa en nuestra comida sagrada. Bienvenido a Amanto."
+                  className="text-xl md:text-2xl font-semibold gradient-text text-center"
+                  duration={0.8}
+                  client:visible
+                />
+              </div>
+            </div>
+
+            <div class="relative h-80 rounded-2xl overflow-hidden mt-12">
+              <img 
+                src="/images/nosotros.jpg" 
+                alt="Historia de Amanto"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto text-center">
+        <GlowingEffect 
+          className="max-w-4xl mx-auto rounded-3xl"
+          blur={10}
+          spread={20}
+          borderWidth={2}
+          variant="default"
+          client:load
+        >
+          <BackgroundGradient className="p-12 rounded-3xl">
+            <h2 class="text-2xl md:text-3xl font-bold mr-12 gradient-text" data-translate="about.ctaTitle">
+              Únete a la experiencia Amanto
+            </h2>
+            <p class="text-xl text-foreground/70 mr-8 max-w-2xl mx-auto" data-translate="about.ctaDescription"></p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="mailto:reservas@amantorestaurante.com">
+                <HoverBorderGradient
+                  containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
+                  as="button"
+                  className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+                >
+                  <span data-translate="about.reserveNow">Reservar Mesa</span>
+                </HoverBorderGradient>
+              </a>
+              
+              <a href="/carta">
+                <HoverBorderGradient
+                  containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
+                  as="button"
+                  className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+                >
+                  <span data-translate="about.viewMenu">Ver Carta</span>
+                </HoverBorderGradient>
+              </a>
+            </div>
+          </BackgroundGradient>
+        </GlowingEffect>
       </div>
     </section>
   </AuroraBackground>

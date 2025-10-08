@@ -83,7 +83,11 @@ export default {
             spotlight: 'spotlight 2s ease .75s 1 forwards',
 			'gentle-glow': 'gentle-glow 10s ease-in-out infinite',
             // --- FIN DE AÑADIDOS ---
-        }
+        },
+        fontFamily: {
+            'sans': ['Figtree', 'sans-serif'],      // Para Títulos
+            'body': ['Questrial', 'sans-serif'],    // Para Párrafos
+        },
     }
   },
   plugins: [require("tailwindcss-animate")],

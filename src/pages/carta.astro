@@ -6,6 +6,8 @@ import TranslationScript from '../components/TranslationScript.astro';
 import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
 import { Spotlight } from '../components/ui/Spotlight.tsx';
 import { TextHoverEffect } from '../components/ui/TextHoverEffect.tsx';
+import { TracingBeam } from '../components/ui/TracingBeam.tsx';
+import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
 import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
 ---
 
@@ -18,15 +20,15 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
       
       <div class="text-center max-w-4xl mx-auto px-4">
-          <div class="space-y-6">
-            <div class="mb-8">
-              <TextHoverEffect 
-                text="Nuestra Carta" 
-                duration={0.5}
-                client:visible
-              />
-            </div>
-            
+        <div class="space-y-6">
+          <div class="mb-8">
+            <TextHoverEffect 
+              text="Carta" 
+              duration={0.5}
+              client:visible
+            />
+          </div>
+          
           <p class="text-xl text-foreground/70 max-w-3xl mx-auto" data-translate="menu.description">
             Una experiencia culinaria que cuenta historias de amor, tradición y pasión
           </p>
@@ -34,1023 +36,595 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
       </div>
     </section>
 
-    <!-- Historia del Nombre / Story Behind Our Name -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="max-w-4xl mx-auto">
-          <!-- Esta es una sección importante, mantiene la card -->
-          <BackgroundGradient className="p-12">
-            <div class="space-y-6">
-              <h2 class="text-3xl md:text-4xl font-bold gradient-text text-center" data-translate="menu.storyTitle">
-                ¿Qué hay detrás de nuestro nombre?
-              </h2>
-              <div class="text-foreground/80 leading-relaxed space-y-4">
-                <p data-translate="menu.storyText1">
-                  A estas alturas de tu viaje ya has conocido el lado material y palpable de nuestro pueblo 
-                  de Ollantaytambo; canchas inkas, terrazas y construcciones de piedra esculpidas por nuestros 
-                  ancestros. Pero, ¿Qué hay del lado inmaterial de nuestros antepasados, el trabajo arduo, las 
-                  tristezas, las fiestas o los amoríos?
-                </p>
-                <p data-translate="menu.storyText2">
-                  Amoríos incluso prohibidos, vamos! ¿quién no ha tenido un amor prohibido en sus vidas?, pero 
-                  del que les queremos hablar fue uno que dividió estas tierras en dos frentes, todo por el amor 
-                  de Cusi Qoyllor, princesa Inka, hija del último Inka Pachacuteq, y amor prohibido de su general 
-                  de guerra, Ollantay.
-                </p>
-                <p data-translate="menu.storyText3">
-                  Esté, era un romance imposible por la diferencia de clases de la época Inka, teniendo que verse 
-                  cual amantes, a escondidas, hasta que fueron separados, iniciándose una guerra sin treguas, a morir.
-                </p>
-                <p data-translate="menu.storyText4">
-                  Por ello, cuando recorras nuestras calles, sabrás que ahí se luchó por el amor, amores prohibidos 
-                  que aun se tejen en nuestro pueblo, amores que fueron casi imposibles, pero fueron triunfantes como 
-                  el de Juan y Elsa o Raúl y Raquel, nuestros padres, o como el de nosotros, Carmen y Alonso.
-                </p>
-                <p class="text-xl font-semibold gradient-text" data-translate="menu.storyConclusion">
-                  Este amor ahora se materializa en nuestra comida sagrada. Bienvenido a Amanto.
-                </p>
-              </div>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Aperitivos / Appetizers -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.appetizers">
-            Aperitivos
-          </h2>
-        </div>
-        
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">TIRADITO DE ALPACA</h3>
-                  <p class="text-sm text-foreground/60 mt-1">ALPACA'S CARPACCIO</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 40.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Finos trozos de alpaca bañadas con leche de tigre de castañas, acompañadas de chalaquita, 
-                llullucha, trozos de camote, choclo desgranado.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Finely sliced alpaca steak with avocado and acevichada sauce, sesame seeds, and parmesan cheese. 
-                Accompanied with pink Maras salt and a light salad with balsamic reduction.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">BERENJENA EMPANIZADA</h3>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 26.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Berenjena empanizada en una capa de panko, bañadas en salsa de pesto de tomate, acompañadas con Kallampas.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">ENSALADA AMANTO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">AMANTO SALAD</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 32.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Una mezcla de hojas del valle acompañadas de trozos de manzana, tomate cherry, palta, palmito, 
-                espárragos, flor de trucha y vinagreta de la casa.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                A bed of mixed greens from the Sacred Valley topped with apple slices, cherry tomatoes, avocado, 
-                hearts of palm, asparagus, and a thin slice of trout in the shape of a flower. Served with house vinaigrette.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">LANGOSTINOS ANDINOS</h3>
-                  <p class="text-sm text-foreground/60 mt-1">ANDEAN SHRIMP</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 34.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Langostinos empanizados en una fina capa de quinua acompañados de boli camotes rellenos de queso, 
-                chalaquita de quinua y una dulce mermelada de ají amarillo.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Shrimp breaded in a thin layer of quinoa, accompanied by sweet potato boli stuffed with cheese, 
-                quinoa chalaquita, and sweet yellow chili marmalade.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">CAUSA DE LANGOSTINOS</h3>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 40.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Langostinos en salsa golf, palta, masa de causa, huevo de codorniz, tomate cherry, todo acompañado 
-                con salsa de tumbo o maracuyá.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">TIRADITO DE TRUCHA</h3>
-                  <p class="text-sm text-foreground/60 mt-1">TROUT TIRADITO</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 35.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Trout slices in leche de tigre (a spicy lime and pepper sauce), served Amanto style. 
-                Accompanied with corn, crispy sweet potato and chulpi (half popped corn kernels).
-              </p>
-            </div>
-            </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sopas / Soups -->
-    <section class="py-20 px-4 bg-black/10">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.soups">
-            Sopas
-          </h2>
-        </div>
-        
-        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">CREMA DE MAÍZ</h3>
-                  <p class="text-sm text-foreground/60 mt-1">ANCESTRAL CORN SOUP</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 28.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Receta ancestral de nuestros abuelos basada en el uso del grano del maíz acompañada de habas, 
-                olluco, queso, zanahoria, huevo.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Ancestral recipe from our grandparents from Ollantaytambo based on corn with beans, olluco, 
-                andean cheese, carrot, and an egg.
-              </p>
-            </div>
-            </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">SOPA DE POLLO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">CHICKEN SOUP</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 26.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Ligero consomé de pechuga de pollo, vegetales de temporada, cabello de ángel y lascas de pollo.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Chicken breast, seasonal vegetables, and angel hair pasta in a light chicken broth.
-              </p>
-            </div>
-            </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">CHUPE DE QUINUA</h3>
-                  <p class="text-sm text-foreground/60 mt-1">QUINUA SOUP</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 26.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Mix de quinuas sumergidos con vegetales de temporada, haba, papa, leche y queso.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                A creamy quinoa stew with seasonal vegetables from Sacred Valley, beans, potatoes, milk and cheese.
-              </p>
-            </div>
-            </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Fondos / Main Courses -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.mainCourses">
-            Fondos
-          </h2>
-        </div>
-        
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">TRUCHA EN SALSA ORIENTAL Y CAPCHI DE HABAS</h3>
-                  <p class="text-sm text-foreground/60 mt-1">TROUT IN ORIENTAL SAUCE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 39.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Trucha empanizada en mix de quinua y chia acompañado de vegetales orientales y un cremoso 
-                capchi de habas andinas en escama de espinaca.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Trout breaded in a mix of quinoa and chia seeds accompanied by oriental vegetables and creamy 
-                "capchi" Andean beans with spinach flakes.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">LOMO DE ALPACA EN SALSA TRES PIMIENTAS</h3>
-                  <p class="text-sm text-foreground/60 mt-1">BEEF TENDERLOIN ON THREE-PEPPER SAUCE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 54.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Fino lomo de res sobre quinoto verde en un espejo de salsa tres pimientas acompañada de una 
-                ligera ensalada.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Fine beef tenderloin served quinoa risotto with pesto sauce surrounded by a three-pepper sauce, 
-                served with a light salad.
-              </p>
-        </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">ENROLLADO DE POLLO CON FETTUCCINI</h3>
-                  <p class="text-sm text-foreground/60 mt-1">CHICKEN WRAP WITH FETTUCCINI</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 44.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Pollo y jamón envueltos y mezclados con queso andino, espinaca y albahaca, sobre fettuccini 
-                cubiertos por una deliciosa salsa huancaína.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Chicken and ham wrapped in Andean cheese, spinach and basil, served on fettuccini. Accompanied 
-                by a delicious "Huancaina" peruvian sauce.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">HUATIA CON CUY</h3>
-                  <p class="text-sm text-foreground/60 mt-1">SACRED VALLEY GUINEA PIG</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 58.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Cuy al estilo amanto con un acompañamiento de papas al mortero con rocoto, sobre un espejo de 
-                glasé de sauco y ensalada criolla.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Peru's famous Cuy, served Amanto style. Accompanied with mortared potatoes topped with an elderberry 
-                glaze, and creole salad.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">PURÉ RÚSTICO CON CORDERO CONFITADO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">LAMB CONFIT WITH POTATO PIE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 55.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Tierno costillar de cordero con vegetales grillados acompañado de pastel rústico de papas andinas, 
-                todo, sobre un espejo de salsa demi-glace.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Tender rack of lamb served with grilled vegetables and a rustic andean potato pie, topped with 
-                a demi-glace sauce.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">LOMO SALTADO AMANTO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">LOMO SALTADO AMANTO'S STYLE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 55.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Nuestro patriótico lomo de res, cebolla, tomate cherry, ají amarillo, trozos de plata bizcochito, 
-                papas y arroz.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Peru's national dish of beef tenderloin, onion, tomato, yellow pepper, native potatoes and rice.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">CAUSA ACEVICHADA AL ESTILO AMANTO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">CAUSA ACEVICHADA AMANTO'S STYLE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 45.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Nuestro abanderado ceviche carretillero sobre dos torres de causa rellena de palta, envuelta en 
-                una doble textura (suave y crocante) empanizada con mix de quinua.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Our signature dish: ceviche served on top of two towers of "causa" stuffed with avocado and wrapped 
-                in a soft and crispy quinoa mix.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">ENVOLTINI DE PAPA</h3>
-                  <p class="text-sm text-foreground/60 mt-1">POTATO WRAPS</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 30.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Papa peruanita rellena de palta cubierta en una escama de espinaca, vegetales salteados y 
-                reducción balsámica.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Peruvian potato stuffed with avocado covered in a spinach flake, sautéed vegetables and balsamic reduction.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">SALTADO DE VERDURAS</h3>
-                  <p class="text-sm text-foreground/60 mt-1">SAUTÉED VEGETABLES</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 40.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Una selección de frescos vegetales del Valle Sagrado acompañados de arroz y papas fritas.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                A selection of fresh vegetables from the Sacred Valley accompanied by rice and French fries.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">FETTUCCINI CON ZETA</h3>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 38.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Tallarines fettuccini en salsa de zetas y un mix de verduras del huerto.
-              </p>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Postres / Desserts -->
-    <section class="py-20 px-4 bg-black/10">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.desserts">
-            Postres
-          </h2>
-        </div>
-        
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">TARTALETA DE SAUCO Y AIRAMPO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">POSE 69</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 28.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Bizcotela de canela rellena de frosting de ajíes peruanos, acompañado de frutos rojos del valle 
-                caramelizados con toques de sal rosada de Maras.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Cinnamon cake filled with peruvian chili frosting, accompanied by caramelized red berries from 
-                the valley, with touches of pink salt from Maras.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">BOMBA DE CHOCOLATE</h3>
-                  <p class="text-sm text-foreground/60 mt-1">CHOCOLATE BOMB</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 34.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Un globo de chocolate hecho con cacao quillabambino, relleno de mousse de lúcuma y galletas de coco.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                A chocolate "bomb" made with cocoa from Quillabamba, filled with lucuma mousse and served with 
-                coconut cookies.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">TORTA DE CHOCOLATE</h3>
-                  <p class="text-sm text-foreground/60 mt-1">CHOCOLATE CAKE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 28.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Deliciosa torta húmeda de chocolate con glace de chocolate destellante acompañado de un afrodisíaco 
-                helado de copatazú (fruta de la selva) o helado de temporada.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Delicious rich chocolate cake with sparkling chocolate glaze accompanied by a stimulating copatzu 
-                ice cream (with fruit from the jungle) or seasonal ice cream.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">QUESO HELADO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">AGUAYMANTO'S CHEESECAKE</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 31.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Cramble de castañas encima de manzanas laminadas y caramelizadas acompañado de un queso helado.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Cheesecake made from andean cheese and aguaymanto fruit, covered with a chicha morada coulis 
-                accompanied by a red fruit ice cream.
-              </p>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Para Compartir / To Share -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.toShare">
-            Para Compartir
-          </h2>
-          <p class="text-lg text-foreground/60" data-translate="menu.toShareNote">
-            Pide tu piqueo con papas nativas o ensalada de la casa
-          </p>
-        </div>
-        
-        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">HAMBURGUESA DE RES</h3>
-                  <p class="text-sm text-foreground/60 mt-1">BEEF HAMBURGER</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 38.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Fino lomo de res, lechuga, tocino, tomate, cebolla, queso edan, pickles.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Fine beef tenderloin, lettuce, bacon, tomato, onion, edan cheese, and pickles.
-              </p>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">HAMBURGUESA DE ALPACA</h3>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 38.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Fino lomo de alpaca, lechuga, tocino, tomate, cebolla, queso edan, pickles.
-              </p>
-            </div>
-          </BackgroundGradient>
+    <!-- Menu Section with TracingBeam -->
+    <section class="py-20 px-4" id="menu-section">
+      <div class="container mx-auto max-w-7xl">
+        <div class="lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
           
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">HAMBURGUESA VEGETARIANA</h3>
-                  <p class="text-sm text-foreground/60 mt-1">VEGETARIAN HAMBURGER</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 32.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Menestras, espinaca, tomate, palta.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Bean patty, spinach, tomato, avocado.
-              </p>
-            </div>
-          </BackgroundGradient>
-          
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold gradient-text">DEDITOS DE POLLO</h3>
-                  <p class="text-sm text-foreground/60 mt-1">CHICKEN FINGERS</p>
-                </div>
-                <span class="text-xl font-bold gradient-text">S/. 29.00</span>
-              </div>
-              <p class="text-foreground/70 text-sm">
-                Deditos de pollo empanizado en quinua remojado en salsa ponzu.
-              </p>
-              <p class="text-foreground/60 text-sm italic">
-                Chicken fingers breaded in quinoa soaked in ponzu sauce.
-              </p>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cócteles de Autor -->
-    <section class="py-20 px-4 bg-black/10">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.authorCocktails">
-            Cócteles de Autor
-          </h2>
-        </div>
-        
-        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <BackgroundGradient className="p-6">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold gradient-text">CHOQUEQUILCA</h3>
-                <p class="text-sm text-foreground/70 mt-2">
-                  Jack Daniel's, licor de cacao, jarabe de granadina y cordial de uva
-                </p>
-              </div>
-              <span class="text-lg font-bold gradient-text ml-4">S/. 30.00</span>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-6">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold gradient-text">AMANTO</h3>
-                <p class="text-sm text-foreground/70 mt-2">
-                  Gin, concentrado de contreu, cordial de granadina
-                </p>
-              </div>
-              <span class="text-lg font-bold gradient-text ml-4">S/. 27.00</span>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-6">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold gradient-text">DRAMA</h3>
-                <p class="text-sm text-foreground/70 mt-2">
-                  Vodka, frangélico, curacao, crema de coco
-                </p>
-              </div>
-              <span class="text-lg font-bold gradient-text ml-4">S/. 27.00</span>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-6">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold gradient-text">ROMANCE</h3>
-                <p class="text-sm text-foreground/70 mt-2">
-                  Ron oscuro, zumo de naranja y campari
-                </p>
-              </div>
-              <span class="text-lg font-bold gradient-text ml-4">S/. 25.00</span>
-            </div>
-          </BackgroundGradient>
-
-          <BackgroundGradient className="p-6">
-            <div class="flex justify-between items-start">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold gradient-text">AMOR PROHIBIDO</h3>
-                <p class="text-sm text-foreground/70 mt-2">
-                  Pisco quebranta, maracuyá, bermout rosso, cordial de manzanilla
-                </p>
-              </div>
-              <span class="text-lg font-bold gradient-text ml-4">S/. 30.00</span>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cócteles Clásicos -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.mixedDrinks">
-            Cócteles
-          </h2>
-        </div>
-        
-        <div class="max-w-6xl mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">PISCO SOUR</h3>
-                <p class="text-sm text-foreground/70">Pisco, limón, jarabe de goma</p>
-                <p class="text-lg font-bold gradient-text">S/. 27.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">MARACUYÁ SOUR</h3>
-                <p class="text-sm text-foreground/70">Pisco, maracuyá, jarabe de goma</p>
-                <p class="text-lg font-bold gradient-text">S/. 27.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">CHICHA SOUR</h3>
-                <p class="text-sm text-foreground/70">Pisco, chicha, jarabe de goma</p>
-                <p class="text-lg font-bold gradient-text">S/. 27.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">AGUAYMANTO SOUR</h3>
-                <p class="text-sm text-foreground/70">Pisco, aguaymanto, jarabe de goma</p>
-                <p class="text-lg font-bold gradient-text">S/. 27.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">PISCO MULE</h3>
-                <p class="text-sm text-foreground/70">Pisco, hierba buena, muña, zumo de limón y ginger beer</p>
-                <p class="text-lg font-bold gradient-text">S/. 30.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">MOSCOW MULE</h3>
-                <p class="text-sm text-foreground/70">Vodka, zumo de limón y ginger beer</p>
-                <p class="text-lg font-bold gradient-text">S/. 30.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">CHILCANO</h3>
-                <p class="text-sm text-foreground/70">Pisco, zumo de limón, amargo de angostura y ginger ale</p>
-                <p class="text-lg font-bold gradient-text">S/. 25.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">MOJITO</h3>
-                <p class="text-sm text-foreground/70">Ron blanco, hierba buena, zumo de limón y jarabe</p>
-                <p class="text-lg font-bold gradient-text">S/. 20.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">PIÑA COLADA</h3>
-                <p class="text-sm text-foreground/70">Ron blanco, crema de coco, jugo de piña y leche</p>
-                <p class="text-lg font-bold gradient-text">S/. 20.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">APEROL SPRITZ</h3>
-                <p class="text-sm text-foreground/70">Aperol y prosecco</p>
-                <p class="text-lg font-bold gradient-text">S/. 25.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">CHICHA INKA</h3>
-                <p class="text-sm text-foreground/70">Pisco, piña, triple sec, chicha morada</p>
-                <p class="text-lg font-bold gradient-text">S/. 35.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">NEGRONI</h3>
-                <p class="text-sm text-foreground/70">Gin, campari y bermout rosso</p>
-                <p class="text-lg font-bold gradient-text">S/. 30.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">MAI TAI</h3>
-                <p class="text-sm text-foreground/70">Ron blanco, ron rubio, granadina, amaretto, triple sec, piña</p>
-                <p class="text-lg font-bold gradient-text">S/. 35.00</p>
-              </div>
-            </BackgroundGradient>
+          <!-- Left Column - Categories Navigation (Fixed) -->
+          <div class="lg:relative">
+            <aside class="categories-sidebar mb-8 lg:mb-0">
+              <h3 class="text-sm font-semibold text-foreground/50 uppercase tracking-wider mb-6">Categorías</h3>
+              <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide">
+                <a href="#aperitivos" class="menu-category-link whitespace-nowrap" data-category="aperitivos">
+                  <span data-translate="menu.appetizers">Aperitivos</span>
+                </a>
+                <a href="#sopas" class="menu-category-link whitespace-nowrap" data-category="sopas">
+                  <span data-translate="menu.soups">Sopas</span>
+                </a>
+                <a href="#fondos" class="menu-category-link whitespace-nowrap" data-category="fondos">
+                  <span data-translate="menu.mainCourses">Fondos</span>
+                </a>
+                <a href="#postres" class="menu-category-link whitespace-nowrap" data-category="postres">
+                  <span data-translate="menu.desserts">Postres</span>
+                </a>
+                <a href="#compartir" class="menu-category-link whitespace-nowrap" data-category="compartir">
+                  <span data-translate="menu.toShare">Para Compartir</span>
+                </a>
+                <a href="#cocteles" class="menu-category-link whitespace-nowrap" data-category="cocteles">
+                  <span data-translate="menu.cocktails">Cócteles</span>
+                </a>
+                <a href="#vinos" class="menu-category-link whitespace-nowrap" data-category="vinos">
+                  <span data-translate="menu.wines">Vinos</span>
+                </a>
+                <a href="#bebidas" class="menu-category-link whitespace-nowrap" data-category="bebidas">
+                  <span data-translate="menu.refreshing">Refrescantes</span>
+                </a>
+              </nav>
+            </aside>
           </div>
-        </div>
 
-        <!-- Bebidas Calientes -->
-        <div class="mt-16">
-          <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold gradient-text" data-translate="menu.forWinter">Para el Frío</h3>
+          <!-- Right Column - Menu Content with Tracing Beam -->
+          <div>
+            <TracingBeam client:load>
+              <div class="space-y-20">
+
+                <!-- Aperitivos -->
+                <div id="aperitivos" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/plato1.jpg" 
+                      alt="Aperitivos Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.appetizers">
+                        Aperitivos
+                      </h2>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-1 gap-6">
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.tiradito_alpaca">TIRADITO DE ALPACA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 40</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.tiradito_alpaca_desc">
+                        Finos trozos de alpaca bañadas con leche de tigre de castañas, acompañadas de chalaquita, llullucha, trozos de camote, choclo desgranado.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.berenjena">BERENJENA EMPANIZADA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 30</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.berenjena_desc">
+                        Berenjena empanizada en una capa de panko, bañadas en salsa de pesto de tomate, acompañadas con Kallampas.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.ensalada_amanto">ENSALADA AMANTO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 35</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.ensalada_amanto_desc">
+                        Una mezcla de hojas del valle acompañadas de trozos de manzana, tomate cherry, palta, palmito, espárragos, flor de trucha y vinagreta de la casa.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.langostinos_andinos">LANGOSTINOS ANDINOS</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 45</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.langostinos_andinos_desc">
+                        Langostinos empanizados en una fina capa de quinua acompañados de boli camotes rellenos de queso, chalaquita de quinua y una dulce mermelada de ají amarillo.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.causa_langostinos">CAUSA DE LANGOSTINOS</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 42</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.causa_langostinos_desc">
+                        Langostinos en salsa golf, palta, masa de causa, huevo de codorniz, tomate cherry, todo acompañado con salsa de tumbo o maracuyá.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.tiradito_trucha">TIRADITO DE TRUCHA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 38</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.tiradito_trucha_desc">
+                        Láminas de trucha en leche de tigre estilo Amanto. Acompañado de choclo, camote crocante y chulpi.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Sopas -->
+                <div id="sopas" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/plato2.jpg" 
+                      alt="Sopas Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.soups">
+                        Sopas
+                      </h2>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-1 gap-6">
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.crema_maiz">CREMA DE MAÍZ</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 25</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.crema_maiz_desc">
+                        Receta ancestral de nuestros abuelos basada en el uso del grano del maíz acompañada de habas, olluco, queso, zanahoria, huevo.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.sopa_pollo">SOPA DE POLLO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 22</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.sopa_pollo_desc">
+                        Ligero consomé de pechuga de pollo, vegetales de temporada, cabello de ángel y lascas de pollo.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.chupe_quinua">CHUPE DE QUINUA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 28</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.chupe_quinua_desc">
+                        Mix de quinuas sumergidos con vegetales de temporada, haba, papa, leche y queso.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Fondos -->
+                <div id="fondos" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/plato3.jpg" 
+                      alt="Fondos Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.mainCourses">
+                        Fondos
+                      </h2>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-1 gap-6">
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.trucha_oriental">TRUCHA EN SALSA ORIENTAL Y CAPCHI DE HABAS</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 50</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.trucha_oriental_desc">
+                        Trucha empanizada en mix de quinua y chia acompañado de vegetales orientales y un cremoso capchi de habas andinas en escama de espinaca.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.lomo_alpaca">LOMO DE ALPACA EN SALSA TRES PIMIENTAS</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 65</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.lomo_alpaca_desc">
+                        Fino lomo de res sobre quinoto verde en un espejo de salsa tres pimientas acompañada de una ligera ensalada.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.enrollado_pollo">ENROLLADO DE POLLO CON FETTUCCINI</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 45</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.enrollado_pollo_desc">
+                        Pollo y jamón envueltos y mezclados con queso andino, espinaca y albahaca, sobre fettuccini cubiertos por una deliciosa salsa huancaína.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.huatia_cuy">HUATIA CON CUY</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 70</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.huatia_cuy_desc">
+                        Cuy al estilo amanto con un acompañamiento de papas al mortero con rocoto, sobre un espejo de glasé de sauco y ensalada criolla.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.cordero_confitado">PURÉ RÚSTICO CON CORDERO CONFITADO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 75</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.cordero_confitado_desc">
+                        Tierno costillar de cordero con vegetales grillados acompañado de pastel rústico de papas andinas, todo, sobre un espejo de salsa demi-glace.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.lomo_saltado">LOMO SALTADO AMANTO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 48</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.lomo_saltado_desc">
+                        Nuestro patriótico lomo de res, cebolla, tomate cherry, ají amarillo, trozos de plata bizcochito, papas y arroz.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.causa_acevichada">CAUSA ACEVICHADA AL ESTILO AMANTO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 55</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.causa_acevichada_desc">
+                        Nuestro abanderado ceviche carretillero sobre dos torres de causa rellena de palta, envuelta en una doble textura (suave y crocante) empanizada con mix de quinua.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.envoltini_papa">ENVOLTINI DE PAPA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 38</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.envoltini_papa_desc">
+                        Papa peruanita rellena de palta cubierta en una escama de espinaca, vegetales salteados y reducción balsámica.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.saltado_verduras">SALTADO DE VERDURAS</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 35</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.saltado_verduras_desc">
+                        Una selección de frescos vegetales del Valle Sagrado acompañados de arroz y papas fritas.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.fettuccini_zeta">FETTUCCINI CON ZETA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 42</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.fettuccini_zeta_desc">
+                        Tallarines fettuccini en salsa de zetas y un mix de verduras del huerto.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Postres -->
+                <div id="postres" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/tartaleta-sauco-airampo.jpg" 
+                      alt="Postres Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.desserts">
+                        Postres
+                      </h2>
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-1 gap-6">
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.tartaleta_sauco">TARTALETA DE SAUCO Y AIRAMPO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 22</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.tartaleta_sauco_desc">
+                        Bizcotela de canela rellena de frosting de ajíes peruanos, acompañado de frutos rojos del valle caramelizados con toques de sal rosada de Maras.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.bomba_chocolate">BOMBA DE CHOCOLATE</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 25</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.bomba_chocolate_desc">
+                        Un globo de chocolate hecho con cacao quillabambino, relleno de mousse de lúcuma y galletas de coco.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.torta_chocolate">TORTA DE CHOCOLATE</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 24</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.torta_chocolate_desc">
+                        Deliciosa torta húmeda de chocolate con glace de chocolate destellante acompañado de un afrodisíaco helado de copatazú (fruta de la selva) o helado de temporada.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.queso_helado">QUESO HELADO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 20</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.queso_helado_desc">
+                        Cramble de castañas encima de manzanas laminadas y caramelizadas acompañado de un queso helado.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Para Compartir -->
+                <div id="compartir" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/plato4.jpg" 
+                      alt="Para Compartir Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.toShare">
+                        Para Compartir
+                      </h2>
+                    </div>
+                  </div>
+                  <p class="text-sm text-foreground/60 mb-6" data-translate="menu.toShareNote">
+                    Pide tu piqueo con papas nativas o ensalada de la casa
+                  </p>
+                  <div class="grid grid-cols-1 gap-6">
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.hamburguesa_res">HAMBURGUESA DE RES</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 40</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.hamburguesa_res_desc">
+                        Fino lomo de res, lechuga, tocino, tomate, cebolla, queso edan, pickles.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.hamburguesa_alpaca">HAMBURGUESA DE ALPACA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 45</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.hamburguesa_alpaca_desc">
+                        Fino lomo de alpaca, lechuga, tocino, tomate, cebolla, queso edan, pickles.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.hamburguesa_vegetariana">HAMBURGUESA VEGETARIANA</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 35</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.hamburguesa_vegetariana_desc">
+                        Menestras, espinaca, tomate, palta.
+                      </p>
+                    </div>
+
+                    <div class="menu-item-card">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-lg font-bold gradient-text" data-translate="menu.dishes.deditos_pollo">DEDITOS DE POLLO</h3>
+                        <span class="text-lg font-bold text-amber-500">S/. 32</span>
+                      </div>
+                      <p class="text-sm text-foreground/70" data-translate="menu.dishes.deditos_pollo_desc">
+                        Deditos de pollo empanizado en quinua remojado en salsa ponzu.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cócteles -->
+                <div id="cocteles" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/bebida1.jpg" 
+                      alt="Cócteles Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.cocktails">
+                        Cócteles
+                      </h2>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-12">
+                    <h3 class="text-xl font-bold text-foreground/80 mb-6" data-translate="menu.authorCocktails">
+                      Cócteles de Autor
+                    </h3>
+                    <div class="grid grid-cols-1 gap-4">
+                      <div class="menu-item-simple">
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <h4 class="font-semibold gradient-text" data-translate="menu.cocktails_list.choquequilca">CHOQUEQUILCA</h4>
+                            <p class="text-xs text-foreground/60" data-translate="menu.cocktails_list.choquequilca_desc">Jack Daniel's, licor de cacao, jarabe de granadina y cordial de uva</p>
+                          </div>
+                          <span class="font-bold text-amber-500">S/. 28</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-simple">
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <h4 class="font-semibold gradient-text" data-translate="menu.cocktails_list.amanto">AMANTO</h4>
+                            <p class="text-xs text-foreground/60" data-translate="menu.cocktails_list.amanto_desc">Gin, concentrado de contreu, cordial de granadina</p>
+                          </div>
+                          <span class="font-bold text-amber-500">S/. 26</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-simple">
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <h4 class="font-semibold gradient-text" data-translate="menu.cocktails_list.drama">DRAMA</h4>
+                            <p class="text-xs text-foreground/60" data-translate="menu.cocktails_list.drama_desc">Vodka, frangélico, curacao, crema de coco</p>
+                          </div>
+                          <span class="font-bold text-amber-500">S/. 27</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-simple">
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <h4 class="font-semibold gradient-text" data-translate="menu.cocktails_list.romance">ROMANCE</h4>
+                            <p class="text-xs text-foreground/60" data-translate="menu.cocktails_list.romance_desc">Ron oscuro, zumo de naranja y campari</p>
+                          </div>
+                          <span class="font-bold text-amber-500">S/. 25</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-simple">
+                        <div class="flex justify-between items-center">
+                          <div>
+                            <h4 class="font-semibold gradient-text" data-translate="menu.cocktails_list.amor_prohibido">AMOR PROHIBIDO</h4>
+                            <p class="text-xs text-foreground/60" data-translate="menu.cocktails_list.amor_prohibido_desc">Pisco quebranta, maracuyá, bermout rosso, cordial de manzanilla</p>
+                          </div>
+                          <span class="font-bold text-amber-500">S/. 30</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 class="text-xl font-bold text-foreground/80 mb-6" data-translate="menu.mixedDrinks">
+                      Cócteles Clásicos
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div class="menu-item-compact">
+                        <div class="flex justify-between">
+                          <span class="font-medium gradient-text" data-translate="menu.cocktails_list.pisco_sour">PISCO SOUR</span>
+                          <span class="text-amber-500">S/. 22</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-compact">
+                        <div class="flex justify-between">
+                          <span class="font-medium gradient-text" data-translate="menu.cocktails_list.maracuya_sour">MARACUYÁ SOUR</span>
+                          <span class="text-amber-500">S/. 23</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-compact">
+                        <div class="flex justify-between">
+                          <span class="font-medium gradient-text" data-translate="menu.cocktails_list.mojito">MOJITO</span>
+                          <span class="text-amber-500">S/. 20</span>
+                        </div>
+                      </div>
+                      <div class="menu-item-compact">
+                        <div class="flex justify-between">
+                          <span class="font-medium gradient-text" data-translate="menu.cocktails_list.pina_colada">PIÑA COLADA</span>
+                          <span class="text-amber-500">S/. 22</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Vinos -->
+                <div id="vinos" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/bebida2.jpg" 
+                      alt="Vinos Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.wines">
+                        Vinos
+                      </h2>
+                    </div>
+                  </div>
+                  <p class="text-sm text-foreground/60 mb-6" data-translate="menu.winesNote">
+                    Copa - Botella
+                  </p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 class="text-lg font-bold text-foreground/80 mb-4" data-translate="menu.redWines">Tintos</h3>
+                      <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                          <span>Viña Aresti Cabernet Sauvignon</span>
+                          <span class="text-amber-500">S/. 18 - S/. 70</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                          <span>Finca El Origen Malbec</span>
+                          <span class="text-amber-500">S/. 20 - S/. 80</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-foreground/80 mb-4" data-translate="menu.whiteWines">Blancos</h3>
+                      <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                          <span>Viña Aresti Sauvignon Blanc</span>
+                          <span class="text-amber-500">S/. 18 - S/. 70</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                          <span>Finca El Origen Chardonnay</span>
+                          <span class="text-amber-500">S/. 20 - S/. 80</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bebidas Refrescantes -->
+                <div id="bebidas" class="scroll-mt-24">
+                  <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
+                    <img 
+                      src="/images/bebida3.jpg" 
+                      alt="Bebidas Refrescantes Amanto"
+                      class="w-full h-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                      <h2 class="text-3xl md:text-4xl font-bold text-white p-8" data-translate="menu.refreshing">
+                        Refrescantes
+                      </h2>
+                    </div>
+                  </div>
+                  <p class="text-sm text-foreground/60 mb-6" data-translate="menu.refreshingNote">
+                    Bebidas sin Alcohol
+                  </p>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="flex justify-between text-sm">
+                      <span>Limonada</span>
+                      <span class="text-amber-500">S/. 10</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>Chicha Morada</span>
+                      <span class="text-amber-500">S/. 10</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>Infusiones</span>
+                      <span class="text-amber-500">S/. 8</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>Gaseosas</span>
+                      <span class="text-amber-500">S/. 8</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </TracingBeam>
           </div>
-          <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">2792 msnm</h3>
-                <p class="text-sm text-foreground/70">Pisco italia, flor de jamaica, canela, airampo y zumo de naranja</p>
-                <p class="text-lg font-bold gradient-text">S/. 17.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">Km 90</h3>
-                <p class="text-sm text-foreground/70">Pisco acholado, canela, romero, cordial de fresa</p>
-                <p class="text-lg font-bold gradient-text">S/. 17.00</p>
-              </div>
-            </BackgroundGradient>
-
-            <BackgroundGradient className="p-6">
-              <div class="space-y-2">
-                <h3 class="text-lg font-bold gradient-text">08/09</h3>
-                <p class="text-sm text-foreground/70">Ron blanco, canela, clavo, té de zanahoria, cordial de maracuyá</p>
-                <p class="text-lg font-bold gradient-text">S/. 17.00</p>
-              </div>
-            </BackgroundGradient>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vinos / Wines -->
-    <section class="py-20 px-4 bg-black/10">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="menu.wines">
-            Vinos
-          </h2>
-          <p class="text-lg text-foreground/60" data-translate="menu.winesNote">Copa - Botella</p>
-        </div>
-        
-        <div class="max-w-4xl mx-auto space-y-8">
-          <!-- Tintos -->
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <h3 class="text-2xl font-bold gradient-text text-center mb-6" data-translate="menu.redWines">Tintos</h3>
-              <div class="space-y-3">
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Intipalka – Cabernet Sauvignon (Perú)</span>
-                  <span class="font-bold gradient-text">S/. 25.00 / S/. 110.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Intipalka – Syrah (Perú)</span>
-                  <span class="font-bold gradient-text">S/. 23.00 / S/. 95.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Los Arboles – Cabernet Sauvignon (Argentina)</span>
-                  <span class="font-bold gradient-text">S/. 29.00 / S/. 120.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Nieto Senetiner – Malbec (Argentina)</span>
-                  <span class="font-bold gradient-text">- / S/. 150.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Nieto Senetiner – Cabernet Sauvignon (Argentina)</span>
-                  <span class="font-bold gradient-text">- / S/. 150.00</span>
-                </div>
-              </div>
-            </div>
-          </BackgroundGradient>
-
-          <!-- Blancos -->
-          <BackgroundGradient className="p-8">
-            <div class="space-y-4">
-              <h3 class="text-2xl font-bold gradient-text text-center mb-6" data-translate="menu.whiteWines">Blancos</h3>
-              <div class="space-y-3">
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Intipalka – Sauvignon Blanc (Perú)</span>
-                  <span class="font-bold gradient-text">S/. 25.00 / S/. 105.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Tabernero – Vittoria Reserva Chardonnay (Perú)</span>
-                  <span class="font-bold gradient-text">S/. 27.00 / S/. 115.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Navarro Correa Arboles – Chardonnay (Argentina)</span>
-                  <span class="font-bold gradient-text">S/. 29.00 / S/. 120.00</span>
-                </div>
-              </div>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cervezas y Bebidas -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Cervezas -->
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <h3 class="text-2xl font-bold gradient-text text-center mb-6" data-translate="menu.beers">
-                Cervezas
-              </h3>
-              <div class="space-y-3 text-center">
-                <div>
-                  <p class="text-foreground/80">Cusqueña</p>
-                  <p class="text-sm text-foreground/60">(Dorada, negra, trigo o roja)</p>
-                  <p class="font-bold gradient-text">S/. 14.00</p>
-                </div>
-                <div>
-                  <p class="text-foreground/80">Corona</p>
-                  <p class="font-bold gradient-text">S/. 15.00</p>
-                </div>
-                <div>
-                  <p class="text-foreground/80">Cerveza Artesanal</p>
-                  <p class="font-bold gradient-text">S/. 19.00</p>
-                </div>
-              </div>
-            </div>
-          </BackgroundGradient>
-
-          <!-- Bebidas Refrescantes -->
-          <BackgroundGradient className="p-8">
-              <div class="space-y-4">
-              <h3 class="text-2xl font-bold gradient-text text-center mb-6" data-translate="menu.refreshing">
-                Refrescantes
-              </h3>
-              <p class="text-xs text-center text-foreground/60 mb-4" data-translate="menu.refreshingNote">Bebidas sin Alcohol</p>
-              <div class="space-y-3">
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Chicha morada</span>
-                  <span class="font-bold gradient-text">S/. 13.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Limonada</span>
-                  <span class="font-bold gradient-text">S/. 13.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80">Maracuyá de altura</span>
-                  <span class="font-bold gradient-text">S/. 13.00</span>
-                </div>
-                <div class="flex justify-between items-center">
-                  <span class="text-foreground/80 text-sm">Refrescante de manzanilla y hierbas</span>
-                  <span class="font-bold gradient-text">S/. 15.00</span>
-                </div>
-              </div>
-            </div>
-          </BackgroundGradient>
-
-          <!-- Bebidas e Infusiones -->
-          <BackgroundGradient className="p-8">
-            <div class="space-y-6">
-              <!-- Bebidas Frías -->
-              <div>
-                <h3 class="text-xl font-bold gradient-text text-center mb-4" data-translate="menu.coldDrinks">
-                  Bebidas Frías
-                </h3>
-                <div class="space-y-2 text-sm">
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Coca Cola</span>
-                    <span class="font-bold gradient-text">S/. 9.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Coca Cola Zero</span>
-                    <span class="font-bold gradient-text">S/. 9.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Inka Cola</span>
-                    <span class="font-bold gradient-text">S/. 9.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Sprite</span>
-                    <span class="font-bold gradient-text">S/. 9.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Agua con gas</span>
-                    <span class="font-bold gradient-text">S/. 6.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Agua sin gas</span>
-                    <span class="font-bold gradient-text">S/. 6.00</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Infusiones -->
-              <div>
-                <h3 class="text-xl font-bold gradient-text text-center mb-4" data-translate="menu.hotInfusions">
-                  Infusiones Calientes
-                </h3>
-                <div class="space-y-2 text-sm">
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Manzanilla</span>
-                    <span class="font-bold gradient-text">S/. 13.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Hierba Buena</span>
-                    <span class="font-bold gradient-text">S/. 13.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Mate de coca</span>
-                    <span class="font-bold gradient-text">S/. 13.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Mate de muña</span>
-                    <span class="font-bold gradient-text">S/. 13.00</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-foreground/80">Café americano</span>
-                    <span class="font-bold gradient-text">S/. 9.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </BackgroundGradient>
         </div>
       </div>
     </section>
@@ -1058,20 +632,29 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
     <!-- CTA Final -->
     <section class="py-20 px-4">
       <div class="container mx-auto text-center">
-        <BackgroundGradient className="max-w-4xl mx-auto p-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="menu.ctaTitle">
-            ¿Listo para vivir la experiencia Amanto?
-          </h2>
-          <p class="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto" data-translate="menu.ctaDescription">
-            Reserva tu mesa y déjate cautivar por nuestra propuesta culinaria
-          </p>
-          <a 
-            href="mailto:reservas@amantorestaurante.com" 
-            class="inline-block bg-primary text-primary-foreground px-10 py-4 rounded-lg hover:bg-primary/90 transition-colors text-lg font-semibold"
-          >
-            <span data-translate="menu.reserveTable">Reservar Mesa</span>
-          </a>
-        </BackgroundGradient>
+        <GlowingEffect 
+          className="max-w-4xl mx-auto rounded-3xl"
+          blur={10}
+          spread={30}
+          borderWidth={3}
+          variant="default"
+          client:load
+        >
+          <BackgroundGradient className="p-12 rounded-3xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="menu.ctaTitle">
+              ¿Listo para vivir la experiencia Amanto?
+            </h2>
+            <p class="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto" data-translate="menu.ctaDescription">
+              Reserva tu mesa y déjate cautivar por nuestra propuesta culinaria
+            </p>
+            <a 
+              href="mailto:reservas@amantorestaurante.com" 
+              class="inline-block bg-primary text-primary-foreground px-10 py-4 rounded-lg hover:bg-primary/90 transition-colors text-lg font-semibold"
+            >
+              <span data-translate="menu.reserveTable">Reservar Mesa</span>
+            </a>
+          </BackgroundGradient>
+        </GlowingEffect>
       </div>
     </section>
   </AuroraBackground>
@@ -1079,3 +662,137 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
   <Footer />
   <TranslationScript />
 </Layout>
+
+<style>
+  .menu-category-link {
+    @apply px-4 py-3 text-sm transition-all duration-300;
+    @apply text-foreground/50 hover:text-foreground/80;
+    @apply relative;
+  }
+
+  .menu-category-link.active {
+    @apply text-amber-500 font-medium;
+  }
+
+  .menu-category-link::before {
+    content: '';
+    @apply absolute left-0 top-1/2 -translate-y-1/2;
+    @apply w-1 h-0 bg-gradient-to-b from-amber-500 to-amber-600;
+    @apply transition-all duration-300 rounded-r-full;
+  }
+
+  .menu-category-link.active::before {
+    @apply h-full;
+  }
+
+  .menu-item-card {
+    @apply p-6 rounded-xl bg-foreground/[0.02] border border-foreground/10;
+    @apply hover:bg-foreground/[0.04] transition-all duration-200;
+  }
+
+  .menu-item-simple {
+    @apply p-4 rounded-lg bg-foreground/[0.02] border border-foreground/5;
+  }
+
+  .menu-item-compact {
+    @apply p-3 rounded-lg bg-foreground/[0.01];
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Fixed navigation on desktop */
+  @media (min-width: 1024px) {
+    .categories-sidebar {
+      position: fixed;
+      top: 8rem;
+      width: 250px;
+      max-height: calc(100vh - 10rem);
+      overflow-y: auto;
+      z-index: 10;
+    }
+    
+    /* Custom scrollbar */
+    .categories-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .categories-sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .categories-sidebar::-webkit-scrollbar-thumb {
+      background: rgba(251, 191, 36, 0.3);
+      border-radius: 2px;
+    }
+    
+    .categories-sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(251, 191, 36, 0.5);
+    }
+  }
+</style>
+
+<script>
+  // Smooth scroll and active category highlighting
+  document.addEventListener('DOMContentLoaded', () => {
+    const categories = document.querySelectorAll('.menu-category-link');
+    const sections = document.querySelectorAll('[id]');
+    
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '-120px 0px -60%'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          
+          // Remove active class from all categories
+          categories.forEach(cat => {
+            cat.classList.remove('active');
+          });
+          
+          // Add active class to current category
+          categories.forEach(cat => {
+            const categoryId = cat.getAttribute('data-category');
+            if (categoryId === id) {
+              cat.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => {
+      if (section.id && section.id !== 'main-nav') {
+        observer.observe(section);
+      }
+    });
+
+    // Handle click events for smooth scroll
+    categories.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId: string | null = link.getAttribute('data-category');
+        
+        if (targetId) {
+          const targetSection = document.getElementById(targetId);
+          
+          if (targetSection) {
+            const yOffset = -100; // Offset for fixed header
+            const y = targetSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            
+            // Update active state immediately
+            categories.forEach(cat => cat.classList.remove('active'));
+            link.classList.add('active');
+          }
+        }
+      });
+    });
+  });
+</script>

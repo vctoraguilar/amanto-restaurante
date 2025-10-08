@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "../../lib/utils";
 
 interface FlipWordsProps {
   words: string[];
@@ -7,55 +8,78 @@ interface FlipWordsProps {
   className?: string;
 }
 
-export const FlipWords = ({ words, duration = 2000, className = "" }: FlipWordsProps) => {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+export const FlipWords = ({
+  words,
+  duration = 3000,
+  className,
+}: FlipWordsProps) => {
+  const [currentWord, setCurrentWord] = useState(words[0]);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+
+  const startAnimation = useCallback(() => {
+    const word = words[words.indexOf(currentWord) + 1] || words[0];
+    setCurrentWord(word);
+    setIsAnimating(true);
+  }, [currentWord, words]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, duration);
-
-    return () => clearInterval(interval);
-  }, [words.length, duration]);
+    if (!isAnimating) {
+      const timeout = setTimeout(() => {
+        startAnimation();
+      }, duration);
+      return () => clearTimeout(timeout);
+    }
+  }, [isAnimating, duration, startAnimation]);
 
   return (
-    <div className={`relative inline-block ${className}`}>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentWordIndex}
-          initial={{ opacity: 0, y: 20, rotateX: -90 }}
-          animate={{ opacity: 1, y: 0, rotateX: 0 }}
-          exit={{ opacity: 0, y: -20, rotateX: 90 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="inline-block"
-        >
-          {words[currentWordIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </div>
-  );
-};
-
-interface FlipWordsContainerProps {
-  words: string[];
-  duration?: number;
-  className?: string;
-  prefix?: string;
-  suffix?: string;
-}
-
-export const FlipWordsContainer = ({ 
-  words, 
-  duration = 2000, 
-  className = "",
-  prefix = "",
-  suffix = ""
-}: FlipWordsContainerProps) => {
-  return (
-    <div className={`text-center ${className}`}>
-      {prefix && <span>{prefix}</span>}
-      <FlipWords words={words} duration={duration} className="gradient-text font-bold" />
-      {suffix && <span>{suffix}</span>}
-    </div>
+    <AnimatePresence
+      onExitComplete={() => {
+        setIsAnimating(false);
+      }}
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 10,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        }}
+        exit={{
+          opacity: 0,
+          y: -40,
+          x: 40,
+          filter: "blur(8px)",
+          scale: 2,
+          position: "absolute",
+        }}
+        className={cn(
+          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
+          className
+        )}
+        key={currentWord}
+      >
+        {currentWord.split("").map((letter, index) => (
+          <motion.span
+            key={currentWord + index}
+            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              delay: index * 0.08,
+              duration: 0.4,
+            }}
+            className="inline-block"
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </motion.div>
+    </AnimatePresence>
   );
 };

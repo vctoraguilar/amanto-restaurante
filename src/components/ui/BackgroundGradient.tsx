@@ -12,24 +12,14 @@ export const BackgroundGradient = ({
   children,
   className,
   containerClassName,
-  animate = true,
+  animate = false,
 }: BackgroundGradientProps) => {
-  const variants = {
-    initial: {
-      backgroundPosition: "0 50%",
-    },
-    animate: {
-      backgroundPosition: ["0, 50%", "100% 50%", "0 50%"],
-    },
-  };
-  
   return (
     <div className={cn("relative p-[4px] group", containerClassName)}>
       <div
         className={cn(
           "absolute inset-0 rounded-3xl z-[1] opacity-60 group-hover:opacity-100 blur-xl transition duration-500 will-change-transform",
-          "bg-[radial-gradient(circle_farthest-side_at_0_100%,#f59e0b,transparent),radial-gradient(circle_farthest-side_at_100%_0,#d97706,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#b45309,transparent),radial-gradient(circle_farthest-side_at_0_0,#92400e,#141316)]",
-          animate && "animate-pulse"
+          "bg-[radial-gradient(circle_farthest-side_at_0_100%,#f59e0b,transparent),radial-gradient(circle_farthest-side_at_100%_0,#d97706,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#b45309,transparent),radial-gradient(circle_farthest-side_at_0_0,#92400e,#141316)]"
         )}
       />
       <div

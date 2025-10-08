@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import TranslationScript from '../components/TranslationScript.astro';
 import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
 import { Spotlight } from '../components/ui/Spotlight.tsx';
 import { CarouselWrapper } from '../components/CarouselWrapper.tsx';
@@ -37,37 +39,41 @@ import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
             />
           </div>
           
-          <div class="text-2xl md:text-3xl mb-8">
-            <span class="text-foreground/80">Donde la </span>
+          <div class="text-2xl md:text-3xl mb-8 flex flex-wrap justify-center items-center gap-2">
+            <span class="text-foreground/80" data-translate="home.subtitle">Donde se encuentran la</span>
             <FlipWords 
-              words={['gastronomía', ' experiencia ', '  elegancia  ', '  tradición  ']} 
-              className="gradient-text font-bold"
+              words={['gastronomía', 'experiencia', 'elegancia', 'tradición']} 
+              duration={3000}
+              className="text-white font-bold"
               client:visible
             />
-            <span class="text-foreground/80"> se encuentran.</span>
           </div>
           
-          <p class="text-xl text-foreground/70 max-w-2xl mx-auto mb-12">
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto mb-12" data-translate="home.description">
             Descubre una experiencia culinaria única que combina ingredientes frescos, 
             técnicas innovadoras y un ambiente sofisticado para crear momentos inolvidables.
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <HoverBorderGradient
-              containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
-              as="button"
-              className="bg-black text-white px-8 py-4 rounded-full font-semibold"
-            >
-              Ver Carta
-            </HoverBorderGradient>
+            <a href="/carta">
+              <HoverBorderGradient
+                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
+                as="button"
+                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+              >
+                <span data-translate="home.viewMenu">Ver Carta</span>
+              </HoverBorderGradient>
+            </a>
             
-            <HoverBorderGradient
-              containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
-              as="button"
-              className="bg-black text-white px-8 py-4 rounded-full font-semibold"
-            >
-              Reservar Mesa
-            </HoverBorderGradient>
+            <a href="mailto:reservas@amantorestaurante.com">
+              <HoverBorderGradient
+                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
+                as="button"
+                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+              >
+                <span data-translate="home.reserve">Reservar Mesa</span>
+              </HoverBorderGradient>
+            </a>
           </div>
         </div>
       </div>
@@ -77,10 +83,10 @@ import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
     <section class="py-20 px-4">
       <div class="container mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="home.featuredDishes">
             Nuestros Platos Estrella
           </h2>
-          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto" data-translate="home.featuredDescription">
             Cada plato cuenta una historia, cada bocado es una experiencia
           </p>
         </div>
@@ -137,67 +143,38 @@ import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
     <section class="py-20 px-4">
       <div class="container mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
+          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="home.experienceTitle">
             La Experiencia Amanto
           </h2>
-          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
+          <p class="text-xl text-foreground/70 max-w-2xl mx-auto" data-translate="home.experienceDescription">
             Más que un restaurante, un viaje sensorial
           </p>
         </div>
         
         <div class="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
-          <BackgroundGradient className="h-64">
-            <div class="text-center p-8">
-              <div class="text-4xl mb-4">🍽️</div>
-              <h3 class="text-2xl font-bold mb-2 gradient-text">Gastronomía</h3>
-              <p class="text-foreground/70">
-                Cocina de autor con ingredientes frescos y técnicas innovadoras
-              </p>
-            </div>
-          </BackgroundGradient>
+          <div class="text-center p-8">
+            <div class="text-4xl mb-4">🍽️</div>
+            <h3 class="text-2xl font-bold mb-2 gradient-text" data-translate="home.gastronomy">Gastronomía</h3>
+            <p class="text-foreground/70" data-translate="home.gastronomyDesc">
+              Cocina de autor con ingredientes frescos y técnicas innovadoras
+            </p>
+          </div>
           
-          <BackgroundGradient className="h-64">
-            <div class="text-center p-8">
-              <div class="text-4xl mb-4">🍷</div>
-              <h3 class="text-2xl font-bold mb-2 gradient-text">Vinos</h3>
-              <p class="text-foreground/70">
-                Selección cuidadosa de vinos nacionales e internacionales
-              </p>
-            </div>
-          </BackgroundGradient>
+          <div class="text-center p-8">
+            <div class="text-4xl mb-4">🍷</div>
+            <h3 class="text-2xl font-bold mb-2 gradient-text" data-translate="home.wines">Vinos</h3>
+            <p class="text-foreground/70" data-translate="home.winesDesc">
+              Selección cuidadosa de vinos nacionales e internacionales
+            </p>
+          </div>
           
-          <BackgroundGradient className="h-64">
-            <div class="text-center p-8">
-              <div class="text-4xl mb-4">✨</div>
-              <h3 class="text-2xl font-bold mb-2 gradient-text">Ambiente</h3>
-              <p class="text-foreground/70">
-                Diseño elegante que crea una atmósfera única e inolvidable
-              </p>
-            </div>
-          </BackgroundGradient>
-        </div>
-      </div>
-    </section>
-
-    <!-- TripAdvisor Reviews Section -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">
-            Lo que Dicen Nuestros Huéspedes
-          </h2>
-          <p class="text-xl text-foreground/70 max-w-2xl mx-auto">
-            Descubre las experiencias de nuestros comensales en TripAdvisor
-          </p>
-        </div>
-        
-        <div class="max-w-4xl mx-auto">
-          <BackgroundGradient className="p-12">
-            <div class="text-center">
-              <h3 class="text-2xl font-bold mb-6 gradient-text">Calificaciones en TripAdvisor</h3>
-              <div id="TA_tchotel377" class="TA_tchotel"></div>
-            </div>
-          </BackgroundGradient>
+          <div class="text-center p-8">
+            <div class="text-4xl mb-4">✨</div>
+            <h3 class="text-2xl font-bold mb-2 gradient-text" data-translate="home.ambiance">Ambiente</h3>
+            <p class="text-foreground/70" data-translate="home.ambianceDesc">
+              Diseño elegante que crea una atmósfera única e inolvidable
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -206,95 +183,39 @@ import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
     <section class="py-20 px-4">
       <div class="container mx-auto text-center">
         <BackgroundGradient className="max-w-4xl mx-auto p-12">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="home.ctaTitle">
             ¿Listo para una experiencia única?
           </h2>
-          <p class="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
+          <p class="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto" data-translate="home.ctaDescription">
             Reserva tu mesa y déjate sorprender por nuestra propuesta culinaria
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <HoverBorderGradient
-              containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
-              as="button"
-              className="bg-black text-white px-8 py-4 rounded-full font-semibold"
-            >
-              Reservar Ahora
-            </HoverBorderGradient>
+            <a href="mailto:reservas@amantorestaurante.com">
+              <HoverBorderGradient
+                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
+                as="button"
+                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+              >
+                <span data-translate="home.reserveNow">Reservar Ahora</span>
+              </HoverBorderGradient>
+            </a>
             
-            <HoverBorderGradient
-              containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
-              as="button"
-              className="bg-black text-white px-8 py-4 rounded-full font-semibold"
-            >
-              Ver Menú
-            </HoverBorderGradient>
+            <a href="/carta">
+              <HoverBorderGradient
+                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
+                as="button"
+                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+              >
+                <span data-translate="home.viewMenuBtn">Ver Menú</span>
+              </HoverBorderGradient>
+            </a>
           </div>
         </BackgroundGradient>
       </div>
     </section>
   </AuroraBackground>
+  
+  <Footer />
+  <TranslationScript />
 </Layout>
 
-<!-- TripAdvisor Widget Script -->
-<script>
-  // TripAdvisor widget HTML
-  const tripAdvisorHTML = `
-    <ul id="RV8MPTu6NqV" class="TA_links 9q0THA0D1LTK">
-      <li id="fyEoIb" class="pDjz90Li">
-        <a target="_blank" href="https://www.tripadvisor.com/Restaurant_Review-g294319-d23953948-Reviews-Amanto-Ollantaytambo_Sacred_Valley_Cusco_Region.html">
-          <img src="https://static.tacdn.com/img2/travelers_choice/widgets/tchotel_bob_2025_L.png" alt="Tripadvisor" class="false" id="false"/>
-        </a>
-      </li>
-    </ul>
-  `;
-  
-  // Insert the HTML into the TripAdvisor container
-  document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('TA_tchotel377');
-    if (container) {
-      container.innerHTML = tripAdvisorHTML;
-    }
-  });
-</script>
-
-<!-- TripAdvisor External Script -->
-<script async src="https://www.jscache.com/wejs?wtype=tchotel&uniq=377&locationId=23953948&lang=en_US&year=2025&display_version=2" data-loadtrk onload="this.loadtrk=true"></script>
-
-<style>
-  /* TripAdvisor Widget Styles */
-  #TA_tchotel377 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100px;
-  }
-  
-  .TA_tchotel {
-    display: inline-block;
-  }
-  
-  .TA_links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .TA_links li {
-    display: inline-block;
-  }
-  
-  .TA_links a {
-    display: block;
-    transition: transform 0.3s ease;
-  }
-  
-  .TA_links a:hover {
-    transform: scale(1.05);
-  }
-  
-  .TA_links img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-</style>

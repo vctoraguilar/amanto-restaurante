@@ -1,0 +1,43 @@
+<script>
+  import { translations, getCurrentLanguage } from '../lib/translations';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const updateTranslations = () => {
+      const lang = getCurrentLanguage();
+      const t = translations[lang];
+      
+      document.querySelectorAll('[data-translate]').forEach((element) => {
+        const key = element.getAttribute('data-translate');
+        if (key) {
+          const keys = key.split('.');
+          let value: any = t;
+          for (const k of keys) {
+            value = value[k];
+          }
+          if (value && typeof value === 'string') {
+            element.textContent = value;
+          }
+        }
+      });
+
+      // Actualizar FlipWords
+      const flipWordsElements = document.querySelectorAll('[data-translate-array]');
+      flipWordsElements.forEach((element) => {
+        const key = element.getAttribute('data-translate-array');
+        if (key) {
+          const keys = key.split('.');
+          let value: any = t;
+          for (const k of keys) {
+            value = value[k];
+          }
+          if (value && Array.isArray(value)) {
+            element.setAttribute('data-words', JSON.stringify(value));
+          }
+        }
+      });
+    };
+
+    updateTranslations();
+  });
+</script>
+

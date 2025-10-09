@@ -1,6 +1,7 @@
 ---
 import { LanguageSelector } from './LanguageSelector.tsx';
 import { HoverBorderGradient } from './ui/HoverBorderGradient.tsx';
+import { GlowingEffect } from './ui/GlowingEffect.tsx';
 const currentPath = Astro.url.pathname;
 ---
 
@@ -13,7 +14,7 @@ const currentPath = Astro.url.pathname;
       </div>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex items-center gap-8">
         <a href="/" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/' ? 'active' : ''}`}>
           <span data-translate="nav.home">Inicio</span>
         </a>
@@ -26,15 +27,26 @@ const currentPath = Astro.url.pathname;
         <div class="flex justify-center">
           <LanguageSelector client:load />
         </div>
-        <a href="mailto:reservas@amantorestaurante.com">
-          <HoverBorderGradient
-            containerClassName="rounded-full"
-            as="button"
-            className="bg-black text-white px-6 py-2 text-sm font-medium"
-          >
-            <span data-translate="nav.reserve">Reservar</span>
-          </HoverBorderGradient>
-        </a>
+        <div class="ml-4">
+          <GlowingEffect
+          className="rounded-full"
+          blur={8}
+          spread={25}
+          borderWidth={1}
+          variant="default"
+          client:load
+        >
+          <a href="mailto:reservas@amantorestaurante.com">
+            <HoverBorderGradient
+              containerClassName="rounded-full"
+              as="button"
+              className="bg-black text-white px-12 py-2 text-sm font-medium"
+            >
+              <span data-translate="nav.reserve">Reservar</span>
+            </HoverBorderGradient>
+          </a>
+        </GlowingEffect>
+        </div>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -60,15 +72,24 @@ const currentPath = Astro.url.pathname;
         <div class="flex justify-center mt-8">
           <LanguageSelector client:load />
         </div>
-        <a href="mailto:reservas@amantorestaurante.com" class="w-full flex justify-center">
-          <HoverBorderGradient
-            containerClassName="rounded-full w-full"
-            as="button"
-            className="bg-black text-white px-6 py-2 text-sm font-medium w-full"
-          >
-            <span data-translate="nav.reserve">Reservar</span>
-          </HoverBorderGradient>
-        </a>
+        <GlowingEffect
+          className="rounded-full w-full"
+          blur={8}
+          spread={25}
+          borderWidth={1}
+          variant="default"
+          client:load
+        >
+          <a href="mailto:reservas@amantorestaurante.com" class="w-full flex justify-center">
+            <HoverBorderGradient
+              containerClassName="rounded-full w-full"
+              as="button"
+              className="bg-black text-white px-6 py-2 text-sm font-medium w-full"
+            >
+              <span data-translate="nav.reserve">Reservar</span>
+            </HoverBorderGradient>
+          </a>
+        </GlowingEffect>
       </div>
     </div>
   </div>

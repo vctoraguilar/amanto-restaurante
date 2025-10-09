@@ -649,20 +649,20 @@ import { HoverBorderGradient } from '@/components/ui/HoverBorderGradient';
           variant="default"
           client:load
         >
-          <BackgroundGradient className="p-12 rounded-3xl">
-            <h2 class="text-2xl md:text-3xl font-bold mr-10 gradient-text" data-translate="menu.ctaTitle">
+          <BackgroundGradient className="p-6 md:p-12 rounded-3xl">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 gradient-text" data-translate="menu.ctaTitle">
               ¿Listo para vivir la experiencia Amanto?
             </h2>
-            <p class="text-xl text-foreground/70 mr-12 max-w-2xl mx-auto" data-translate="menu.ctaDescription">
+            <p class="text-base md:text-xl text-foreground/70 mb-6 md:mb-8 max-w-2xl mx-auto" data-translate="menu.ctaDescription">
               Reserva tu mesa y déjate cautivar por nuestra propuesta culinaria
             </p>
-            <a href="mailto:reservas@amantorestaurante.com">
+            <a href="mailto:reservas@amantorestaurante.com" class="inline-block w-full sm:w-auto">
               <HoverBorderGradient
-                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
+                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600 w-full sm:w-auto"
                 as="button"
-                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
+                className="bg-black text-white px-8 py-3 md:py-4 rounded-full font-semibold w-full sm:w-auto"
               >
-                <span data-translate="about.reserveNow">Reservar Mesa</span>
+                <span data-translate="menu.reserveTable">Reservar Mesa</span>
               </HoverBorderGradient>
             </a>
           </BackgroundGradient>

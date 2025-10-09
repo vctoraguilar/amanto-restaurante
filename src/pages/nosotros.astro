@@ -11,6 +11,33 @@ import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
 import { HoverBorderGradient } from '../components/ui/HoverBorderGradient.tsx';
 import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
 import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
+import { Target, Star, Gem, Sparkles, UtensilsCrossed, Leaf } from 'lucide-react';
+
+const paragraphs = [
+  "A estas alturas de tu viaje ya has conocido el lado material y palpable de nuestro pueblo de Ollantaytambo; canchas inkas, terrazas y construcciones de piedra esculpidas por nuestros ancestros. Pero, ¿Qué hay del lado inmaterial de nuestros antepasados, el trabajo arduo, las tristezas, las fiestas o los amoríos?",
+  "Amoríos incluso prohibidos, vamos! ¿quién no ha tenido un amor prohibido en sus vidas?, pero del que les queremos hablar fue uno que dividió estas tierras en dos frentes, todo por el amor de Cusi Qoyllor, princesa Inka, hija del último Inka Pachacuteq, y amor prohibido de su general de guerra, Ollantay.",
+  "Esté, era un romance imposible por la diferencia de clases de la época Inka, teniendo que verse cual amantes, a escondidas, hasta que fueron separados, iniciándose una guerra sin treguas, a morir.",
+  "Por ello, cuando recorras nuestras calles, sabrás que ahí se luchó por el amor, amores prohibidos que aun se tejen en nuestro pueblo, amores que fueron casi imposibles, pero fueron triunfantes como el de Juan y Elsa o Raúl y Raquel, nuestros padres, o como el de nosotros, Carmen y Alonso."
+];
+
+const finalParagraph = "Este amor ahora se materializa en nuestra comida sagrada. Bienvenido a Amanto.";
+
+// --- Lógica para calcular los retrasos ---
+const staggerDelay = 0.1; // Retraso entre palabras (según tu componente)
+const durationPerWord = 0.8; // Duración que estás usando
+let cumulativeDelay = 0;
+
+const paragraphData = paragraphs.map(p => {
+  const wordCount = p.split(' ').length;
+  // Calculamos cuánto tarda en animarse este párrafo
+  const animationTime = (wordCount - 1) * staggerDelay + durationPerWord;
+  const initialDelay = cumulativeDelay;
+  // Sumamos el tiempo de este párrafo al total para el siguiente
+  cumulativeDelay += animationTime; 
+  return { text: p, delay: initialDelay };
+});
+
+const finalParagraphDelay = cumulativeDelay;
 ---
 
 <Layout title="Nosotros - Amanto" description="Conoce la historia y filosofía del restaurante Amanto">
@@ -20,8 +47,16 @@ import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative pt-20">
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
-      
-      <div class="text-center max-w-4xl mx-auto px-4">
+
+      <div class="opacity-50 absolute inset-0 z-10 [mask-image:linear-gradient(to_top,black_10%,transparent_90%)]">
+        <img 
+          src="/images/nosotros.jpg" 
+          alt="Nosotros"
+          class="w-full h-full object-cover"
+        />
+      </div>
+
+      <div class="text-center max-w-4xl mx-auto px-4 relative z-20">
         
           <div class="space-y-6">
             <div class="mb-8">
@@ -32,7 +67,7 @@ import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
               />
             </div>
             
-            <div class="text-2xl md:text-3xl mb-8 flex flex-wrap justify-center items-center gap-2">
+            <div class="text-xl md:text-2xl mb-8 flex flex-wrap justify-center items-center gap-2">
               <span class="text-foreground/80" data-translate="about.subtitle">Creamos</span>
               <FlipWords 
                 words={['experiencias', 'sabores', 'alianzas', 'tradición']} 
@@ -42,13 +77,59 @@ import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
               />
             </div>
             
-            <p class="text-xl text-foreground/70 max-w-3xl mx-auto" data-translate="about.description">
+            <p class="text-lg text-foreground/70 max-w-3xl mx-auto" data-translate="about.description">
               En Amanto, cada plato es una interpretación única de la cocina peruana, 
               elaborada con ingredientes locales del Valle Sagrado para crear experiencias 
               culinarias que llegan directamente a tus sentidos.
             </p>
           </div>
         
+      </div>
+    </section>
+
+    <!-- Historia del Nombre / Story Behind Our Name -->
+    <section class="py-20 px-4">
+      <div class="container mx-auto">
+        <div class="max-w-4xl mx-auto">
+          <div class="space-y-8">
+            <h2 class="text-3xl md:text-5xl font-bold gradient-text text-center mb-12" data-translate="menu.storyTitle">
+              ¿Qué hay detrás de nuestro nombre?
+            </h2>
+            
+            <div class="space-y-6">
+              {
+                paragraphData.map(p => (
+                  <TextGenerateEffect 
+                    words={p.text}
+                    className="text-base md:text-lg"
+                    duration={durationPerWord}
+                    initialDelay={p.delay}
+                    client:visible
+                  />
+                ))
+              }
+              
+              <div class="pt-6">
+                <TextGenerateEffect 
+                  words={finalParagraph}
+                  className="text-xl md:text-xl font-semibold gradient-text text-center"
+                  duration={durationPerWord}
+                  initialDelay={finalParagraphDelay}
+                  client:visible
+                />
+              </div>
+            </div>
+
+            <div class="relative h-80 rounded-2xl overflow-hidden mt-12">
+              <img 
+                src="/images/nosotros.jpg" 
+                alt="Historia de Amanto"
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -64,41 +145,67 @@ import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
           </p>
         </div>
         
-        <div class="max-w-4xl mx-auto space-y-12">
-          <!-- Misión -->
-          <div class="text-center p-10">
-            <div class="text-5xl mb-6">🎯</div>
-            <h3 class="text-3xl font-bold mb-4 gradient-text" data-translate="about.mission">Misión</h3>
-            <p class="text-foreground/80 text-lg leading-relaxed" data-translate="about.missionText">
-              Llegar a tus sentidos a través de nuestros servicios.
-            </p>
-          </div>
-
-          <!-- Visión -->
-          <div class="text-center p-10">
-            <div class="text-5xl mb-6">🌟</div>
-            <h3 class="text-3xl font-bold mb-4 gradient-text" data-translate="about.vision">Visión</h3>
-            <p class="text-foreground/80 text-lg leading-relaxed" data-translate="about.visionText">
-              Ser únicos en experiencias culinarias.
-            </p>
-          </div>
-
-          <!-- Valores -->
-          <div class="text-center p-10">
-            <div class="text-5xl mb-6">💎</div>
-            <h3 class="text-3xl font-bold mb-6 gradient-text" data-translate="about.values">Valores</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div>
-                <h4 class="text-xl font-bold mb-3 gradient-text" data-translate="about.valueInnovation">Búsqueda constante de la innovación</h4>
-                <p class="text-foreground/80 leading-relaxed" data-translate="about.valueInnovationDesc">
-                  Para superarnos constantemente y buscar un futuro mejor.
+        <div class="max-w-5xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Misión -->
+            <div class="group">
+              <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
+                <div class="flex justify-center mb-6">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Target className="w-8 h-8 text-amber-500" />
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 gradient-text text-center" data-translate="about.mission">Misión</h3>
+                <p class="text-foreground/70 text-center leading-relaxed" data-translate="about.missionText">
+                  Cautivar tus sentidos a través de una experiencia culinaria memorable.
                 </p>
               </div>
-              <div>
-                <h4 class="text-xl font-bold mb-3 gradient-text" data-translate="about.valueHappiness">Felicidad para atender</h4>
-                <p class="text-foreground/80 leading-relaxed" data-translate="about.valueHappinessDesc">
-                  La única forma de dejar huella en las personas.
+            </div>
+
+            <!-- Visión -->
+            <div class="group">
+              <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
+                <div class="flex justify-center mb-6">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Star className="w-8 h-8 text-amber-500" />
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 gradient-text text-center" data-translate="about.vision">Visión</h3>
+                <p class="text-foreground/70 text-center leading-relaxed" data-translate="about.visionText">
+                  Ser un destino culinario único, reconocido por nuestra excelencia y autenticidad.
                 </p>
+              </div>
+            </div>
+
+            <!-- Valores -->
+            <div class="group">
+              <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
+                <div class="flex justify-center mb-6">
+                  <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Gem className="w-8 h-8 text-amber-500" />
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold mb-4 gradient-text text-center" data-translate="about.values">Valores</h3>
+                <div class="space-y-4 text-sm">
+                  <div>
+                    <h4 class="font-semibold mb-1 text-foreground/90 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-amber-500" />
+                      <span data-translate="about.valueInnovation">Búsqueda constante de la innovación</span>
+                    </h4>
+                    <p class="text-foreground/60 text-xs" data-translate="about.valueInnovationDesc">
+                      Para superarnos constantemente y buscar un futuro mejor.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-1 text-foreground/90 flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-amber-500" />
+                      <span data-translate="about.valueHappiness">Felicidad para atender</span>
+                    </h4>
+                    <p class="text-foreground/60 text-xs" data-translate="about.valueHappinessDesc">
+                      La única forma de dejar huella en las personas.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -118,111 +225,71 @@ import { TextGenerateEffect } from '@/components/ui/TextGenerateEffect.tsx';
           </p>
         </div>
         
-        <div class="max-w-4xl mx-auto space-y-8">
-          <div class="text-center">
-            <div class="text-5xl mb-6">🍽️</div>
-            <p class="text-foreground/80 text-lg leading-relaxed" data-translate="about.philosophyText1">
-              Amanto elabora su propia interpretación de los platos peruanos y su cocina está 
-              basada en especias locales: verduras cultivadas como la quinua, papa andina; 
-              trucha de río y carne de res autóctona.
-            </p>
-          </div>
-          
-          <div class="relative h-64 rounded-2xl overflow-hidden">
-            <img 
-              src="/images/interior1.jpg" 
-              alt="Cocina de Amanto"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <div class="text-center">
-            <p class="text-foreground/80 text-lg leading-relaxed" data-translate="about.philosophyText2">
-              Nuestra cocina ofrece a los comensales una interpretación de los productos en su 
-              estado óptimo, aprovechando al máximo el sabor y respetando la verdadera naturaleza 
-              del ingrediente.
-            </p>
-          </div>
-
-          <div class="relative h-64 rounded-2xl overflow-hidden">
-            <img 
-              src="/images/interior2.jpg" 
-              alt="Platos de Amanto"
-              class="w-full h-full object-cover"
-            />
-          </div>
-
-          <div class="text-center">
-            <div class="text-5xl mb-6">🌿</div>
-            <p class="text-foreground/80 text-lg leading-relaxed" data-translate="about.philosophyText3">
-              La base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, 
-              que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Historia del Nombre / Story Behind Our Name -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="max-w-4xl mx-auto">
-          <div class="space-y-8">
-            <h2 class="text-3xl md:text-5xl font-bold gradient-text text-center mb-12" data-translate="menu.storyTitle">
-              ¿Qué hay detrás de nuestro nombre?
-            </h2>
-            
-            <div class="space-y-6">
-              <TextGenerateEffect 
-                words="A estas alturas de tu viaje ya has conocido el lado material y palpable de nuestro pueblo de Ollantaytambo; canchas inkas, terrazas y construcciones de piedra esculpidas por nuestros ancestros. Pero, ¿Qué hay del lado inmaterial de nuestros antepasados, el trabajo arduo, las tristezas, las fiestas o los amoríos?"
-                className="text-base md:text-lg"
-                duration={0.8}
-                client:visible
-              />
-              
-              <TextGenerateEffect 
-                words="Amoríos incluso prohibidos, vamos! ¿quién no ha tenido un amor prohibido en sus vidas?, pero del que les queremos hablar fue uno que dividió estas tierras en dos frentes, todo por el amor de Cusi Qoyllor, princesa Inka, hija del último Inka Pachacuteq, y amor prohibido de su general de guerra, Ollantay."
-                className="text-base md:text-lg"
-                duration={0.8}
-                client:visible
-              />
-              
-              <TextGenerateEffect 
-                words="Esté, era un romance imposible por la diferencia de clases de la época Inka, teniendo que verse cual amantes, a escondidas, hasta que fueron separados, iniciándose una guerra sin treguas, a morir."
-                className="text-base md:text-lg"
-                duration={0.8}
-                client:visible
-              />
-              
-              <TextGenerateEffect 
-                words="Por ello, cuando recorras nuestras calles, sabrás que ahí se luchó por el amor, amores prohibidos que aun se tejen en nuestro pueblo, amores que fueron casi imposibles, pero fueron triunfantes como el de Juan y Elsa o Raúl y Raquel, nuestros padres, o como el de nosotros, Carmen y Alonso."
-                className="text-base md:text-lg"
-                duration={0.8}
-                client:visible
-              />
-              
-              <div class="pt-6">
-                <TextGenerateEffect 
-                  words="Este amor ahora se materializa en nuestra comida sagrada. Bienvenido a Amanto."
-                  className="text-xl md:text-2xl font-semibold gradient-text text-center"
-                  duration={0.8}
-                  client:visible
-                />
+        <div class="max-w-5xl mx-auto space-y-12">
+          <!-- Texto 1 con imagen -->
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="order-2 md:order-1">
+              <div class="flex items-start gap-4 mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center flex-shrink-0">
+                  <UtensilsCrossed className="w-6 h-6 text-amber-500" />
+                </div>
+                <div>
+                  <p class="text-foreground/80 leading-relaxed" data-translate="about.philosophyText1">
+                    Amanto elabora su propia interpretación de los platos peruanos y su cocina está 
+                    basada en especias locales: verduras cultivadas como la quinua, papa andina; 
+                    trucha de río y carne de res autóctona.
+                  </p>
+                </div>
               </div>
             </div>
+            <div class="order-1 md:order-2">
+              <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden group">
+                <img 
+                  src="/images/interior1.jpg" 
+                  alt="Cocina de Amanto"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              </div>
+            </div>
+          </div>
 
-            <div class="relative h-80 rounded-2xl overflow-hidden mt-12">
-              <img 
-                src="/images/nosotros.jpg" 
-                alt="Historia de Amanto"
-                class="w-full h-full object-cover"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <!-- Texto 2 con imagen -->
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="order-1">
+              <div class="relative h-64 md:h-80 rounded-2xl overflow-hidden group">
+                <img 
+                  src="/images/interior2.jpg" 
+                  alt="Platos de Amanto"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              </div>
+            </div>
+            <div class="order-2">
+              <div class="flex items-start gap-4 mb-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center flex-shrink-0">
+                  <Leaf className="w-6 h-6 text-amber-500" />
+                </div>
+                <div class="space-y-4">
+                  <p class="text-foreground/80 leading-relaxed" data-translate="about.philosophyText2">
+                    Nuestra cocina ofrece a los comensales una interpretación de los productos en su 
+                    estado óptimo, aprovechando al máximo el sabor y respetando la verdadera naturaleza 
+                    del ingrediente.
+                  </p>
+                  <p class="text-foreground/80 leading-relaxed" data-translate="about.philosophyText3">
+                    La base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, 
+                    que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    
 
     <!-- CTA Section -->
     <section class="py-20 px-4">

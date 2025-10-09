@@ -9,16 +9,19 @@ export const TextGenerateEffect = ({
   className,
   duration = 0.5,
   filter = true,
+  initialDelay = 0,
 }: {
   words: string;
   className?: string;
   duration?: number;
   filter?: boolean;
+  initialDelay?: number;
 }) => {
   const [scope, animate] = useAnimate();
   const wordsArray = words.split(' ');
 
   useEffect(() => {
+    const timer = setTimeout(() => {
     animate(
       'span',
       {
@@ -30,7 +33,10 @@ export const TextGenerateEffect = ({
         delay: stagger(0.1),
       }
     );
-  }, [animate, duration, filter]);
+  }, initialDelay*1000);
+  
+  return () => clearTimeout(timer);
+}, [animate, duration, filter, initialDelay]);
 
   const renderWords = () => {
     return (
@@ -47,7 +53,7 @@ export const TextGenerateEffect = ({
                 display: 'inline-block',
               }}
             >
-              {word}{' '}
+              {word}{'\u00A0'}
             </motion.span>
           );
         })}

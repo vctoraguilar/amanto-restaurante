@@ -6,14 +6,15 @@ import TranslationScript from '../components/TranslationScript.astro';
 import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
 import { Spotlight } from '../components/ui/Spotlight.tsx';
 import { AceternityCarousel } from '../components/ui/AceternityCarousel.tsx';
-import { FlipWords } from '../components/ui/FlipWords.tsx';
+import { LayoutTextFlip } from '../components/ui/LayoutTextFlip.tsx';
 import { HoverBorderGradient } from '../components/ui/HoverBorderGradient.tsx';
 import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
 import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
 import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
+import { ChefHat, Wine, Sparkles } from 'lucide-react';
 ---
 
-<Layout title="Amanto - Restaurante de Lujo">
+<Layout title="Amanto - Ollantaytambo">
   <Navigation />
   
   <AuroraBackground>
@@ -44,12 +45,11 @@ import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
             />
           </div> -->
           
-          <div class="text-1xl md:text-2xl mb-8 flex flex-wrap justify-center items-center gap-2">
-            <span class="text-foreground/80" data-translate="home.subtitle">Donde la</span>
-            <FlipWords 
+          <div class="text-2xl md:text-3xl mb-8">
+            <LayoutTextFlip 
+              text="Donde se encuentran la"
               words={['gastronomía', 'experiencia', 'elegancia', 'tradición']} 
-              duration={4000}
-              className="text-white font-bold"
+              duration={3000}
               client:visible
             />
           </div>
@@ -141,29 +141,50 @@ import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
           </p>
         </div>
         
-        <div class="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
-          <div class="text-center p-8">
-            <div class="text-4xl mb-4">🍽️</div>
-            <h3 class="text-2xl font-bold mb-2 gradient-text" data-translate="home.gastronomy">Gastronomía</h3>
-            <p class="text-foreground/70" data-translate="home.gastronomyDesc">
-              Cocina de autor con ingredientes frescos y técnicas innovadoras
-            </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <!-- Gastronomía -->
+          <div class="group">
+            <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
+              <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <ChefHat className="w-8 h-8 text-amber-500" />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-3 gradient-text text-center" data-translate="home.gastronomy">Gastronomía</h3>
+              <p class="text-foreground/70 text-center text-sm leading-relaxed" data-translate="home.gastronomyDesc">
+                Cocina de autor con ingredientes frescos y técnicas innovadoras
+              </p>
+            </div>
           </div>
           
-          <div class="text-center p-8">
-            <div class="text-4xl mb-4">🍷</div>
-            <h3 class="text-2xl font-bold mb-2 gradient-text" data-translate="home.wines">Vinos</h3>
-            <p class="text-foreground/70" data-translate="home.winesDesc">
-              Selección cuidadosa de vinos nacionales e internacionales
-            </p>
+          <!-- Vinos -->
+          <div class="group">
+            <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
+              <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Wine className="w-8 h-8 text-amber-500" />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-3 gradient-text text-center" data-translate="home.wines">Vinos</h3>
+              <p class="text-foreground/70 text-center text-sm leading-relaxed" data-translate="home.winesDesc">
+                Selección cuidadosa de vinos nacionales e internacionales
+              </p>
+            </div>
           </div>
           
-          <div class="text-center p-8">
-            <div class="text-4xl mb-4">✨</div>
-            <h3 class="text-2xl font-bold mb-2 gradient-text" data-translate="home.ambiance">Ambiente</h3>
-            <p class="text-foreground/70" data-translate="home.ambianceDesc">
-              Diseño elegante que crea una atmósfera única e inolvidable
-            </p>
+          <!-- Ambiente -->
+          <div class="group">
+            <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
+              <div class="flex justify-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <Sparkles className="w-8 h-8 text-amber-500" />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-3 gradient-text text-center" data-translate="home.ambiance">Ambiente</h3>
+              <p class="text-foreground/70 text-center text-sm leading-relaxed" data-translate="home.ambianceDesc">
+                Diseño elegante que crea una atmósfera única e inolvidable
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -181,12 +202,10 @@ import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
           client:load
         >
           <BackgroundGradient className="p-12 rounded-3xl">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-translate="home.ctaTitle">
-              ¿Listo para una experiencia única?
+            <h2 class="text-2xl md:text-3xl font-bold mr-12 gradient-text" data-translate="about.ctaTitle">
+              Únete a la experiencia Amanto
             </h2>
-            <p class="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto" data-translate="home.ctaDescription">
-              Reserva tu mesa y déjate sorprender por nuestra propuesta culinaria
-            </p>
+            <p class="text-xl text-foreground/70 mr-8 max-w-2xl mx-auto" data-translate="about.ctaDescription"></p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="mailto:reservas@amantorestaurante.com">
                 <HoverBorderGradient
@@ -194,7 +213,7 @@ import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
                   as="button"
                   className="bg-black text-white px-8 py-4 rounded-full font-semibold"
                 >
-                  <span data-translate="home.reserveNow">Reservar Ahora</span>
+                  <span data-translate="about.reserveNow">Reservar Mesa</span>
                 </HoverBorderGradient>
               </a>
               
@@ -204,7 +223,7 @@ import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
                   as="button"
                   className="bg-black text-white px-8 py-4 rounded-full font-semibold"
                 >
-                  <span data-translate="home.viewMenuBtn">Ver Menú</span>
+                  <span data-translate="about.viewMenu">Ver Carta</span>
                 </HoverBorderGradient>
               </a>
             </div>

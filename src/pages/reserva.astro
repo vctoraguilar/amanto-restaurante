@@ -18,17 +18,41 @@ const contactInfo = {
 };
 ---
 
-<Layout title="Nosotros - Amanto">
+<Layout title="Reserva - Amanto" description="Reserva tu mesa en Amanto y vive una experiencia gastronómica única">
   <div class="bg-white overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo -->
     <img
       class="absolute top-0 left-0 w-full h-full object-cover z-0"
-      alt="Amanto Nosotros"
-          src="/images/nosotros.jpg" 
+      alt="Amanto Restaurante"
+      src="/images/interior1.jpg" 
     />
 
     <!-- Capa oscura semi-transparente -->
-    <div class="absolute top-0 left-0 md:left-[18.9%] w-full md:w-[81.1%] h-full md:h-[86%] bg-black opacity-90 z-10" />
+    <div class="absolute top-0 left-0 md:left-[18.9%] w-full md:w-[81.1%] h-full md:h-[86%] z-10" style="background-color: rgba(0, 0, 0, 0.9);">
+      <!-- Contenido central -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] md:w-[29%] flex flex-col items-center px-4 md:px-0">
+        <!-- Título principal -->
+        <h1 class="font-medium text-white text-sm md:text-base text-center tracking-[0.06em] md:tracking-[0.096em] leading-normal" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;" data-translate="reserve.title">
+          ÚNETE A LA EXPERIENCIA AMANTO
+        </h1>
+
+        <!-- Descripción -->
+        <p class="mt-[40px] md:mt-[63px] w-full font-normal text-white text-sm md:text-base text-center tracking-[0.03em] md:tracking-[0.048em] leading-5 md:leading-6" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;" data-translate="reserve.description">
+          Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía
+        </p>
+
+        <!-- Botón de reserva -->
+        <a
+          href="mailto:reservas@amantorestaurante.com"
+          class="mt-[70px] md:mt-[116px] w-[180px] md:w-[216px] h-[70px] md:h-[92px] rounded-full border-2 border-solid border-[#5f5f5f] font-bold text-white text-sm md:text-base text-center tracking-[0.03em] md:tracking-[0.048em] leading-[70px] md:leading-[92px] hover:bg-white hover:text-black transition-all duration-300 block"
+          style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 700;"
+          aria-label="Reservar mesa en Amanto"
+          data-translate="reserve.button"
+        >
+          RESERVAR
+        </a>
+      </div>
+    </div>
 
     <!-- Logo superior izquierdo -->
     <div
@@ -48,7 +72,7 @@ const contactInfo = {
         <path fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
       </svg>
     </div>
-            
+    
     <!-- Selector de idioma superior derecho -->
     <div
       class="absolute top-[5.5vh] right-[5vw] md:right-[8.5vw] font-bold text-xs md:text-base tracking-[2px] md:tracking-[4.80px] leading-normal whitespace-nowrap z-50"
@@ -71,54 +95,9 @@ const contactInfo = {
       >
         ES
       </button>
-            </div>
-            
-    <!-- Título NOMBRE -->
-    <h1 class="absolute top-[15vh] md:top-[24.5vh] left-1/2 md:left-[57.6%] -translate-x-1/2 md:translate-x-0 font-medium text-white text-sm md:text-base tracking-[6px] md:tracking-[9.60px] leading-normal whitespace-nowrap z-20" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;">
-      NOMBRE
-    </h1>
+    </div>
 
-    <!-- Línea decorativa izquierda -->
-    <div class="hidden md:block absolute left-[35.68%] top-[40.37%] w-[2px] h-[2.65vh] bg-gradient-to-b from-[#f49f13] to-[#8e390b] z-20" />
-
-    <!-- Texto principal sobre Amanto -->
-    <article class="absolute top-[20vh] md:top-[30.37vh] left-[5%] md:left-[46.2%] w-[90%] md:w-[28.8%] z-20 px-4 md:px-0">
-      <p class="font-normal text-white text-sm md:text-base text-center tracking-[3px] md:tracking-[4.80px] leading-5 md:leading-6" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-        Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.
-        Adicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.
-      </p>
-    </article>
-
-    <!-- Línea decorativa derecha -->
-    <div class="hidden md:block absolute left-[84.01%] top-[40.37%] w-[2px] h-[2.65vh] bg-gradient-to-b from-[#f49f13] to-[#8e390b] z-20" />
-
-    <!-- Información de contacto - Dirección -->
-    <address class="hidden md:block absolute bottom-[14vh] left-[24.3%] font-normal text-white text-sm tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      {contactInfo.address.line1}<br />
-      {contactInfo.address.line2}
-    </address>
-
-    <!-- Información de contacto - Horarios -->
-    <p class="hidden md:block absolute bottom-[14vh] left-[57%] font-normal text-white text-sm text-center tracking-[0] leading-[21px] z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      {contactInfo.hours.days}<br />
-      {contactInfo.hours.time}
-    </p>
-
-    <!-- Información de contacto - Teléfono y Email -->
-    <address class="hidden md:block absolute bottom-[14vh] right-[10.2%] font-normal text-white text-sm text-right tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      <a
-        href={`tel:${contactInfo.contact.phone.replace(/\s/g, "")}`}
-        class="block hover:underline transition-all"
-      >
-        {contactInfo.contact.phone}
-      </a>
-      <a
-        href={`mailto:${contactInfo.contact.email}`}
-        class="block hover:underline transition-all"
-      >
-        {contactInfo.contact.email}
-      </a>
-    </address>
+   
 
     <!-- Navegación inferior -->
     <nav
@@ -129,7 +108,7 @@ const contactInfo = {
     >
       <a
         href="/nosotros"
-        class="nav-link active-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
       >
         NOSOTROS
@@ -143,13 +122,13 @@ const contactInfo = {
       </a>
       <a
         href="/reserva"
-        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link active-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
       >
         RESERVA
       </a>
     </nav>
-            </div>
+  </div>
 
   <style>
     /* Barra inferior con degradado para los enlaces de navegación */
@@ -262,3 +241,4 @@ const contactInfo = {
   window.addEventListener('resize', centerActiveLink);
   </script>
 </Layout>
+

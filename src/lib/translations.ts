@@ -61,6 +61,13 @@ export const translations = {
       viewMenu: 'Ver Carta',
     },
     
+    // Reserve Page
+    reserve: {
+      title: 'ÚNETE A LA EXPERIENCIA AMANTO',
+      description: 'Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía',
+      button: 'RESERVAR',
+    },
+    
     // Menu Page
     menu: {
       title: 'Nuestra Carta',
@@ -283,6 +290,13 @@ export const translations = {
       ctaDescription: 'Discover why we are unique and let us surprise you with our passion for gastronomy',
       reserveNow: 'Reserve Table',
       viewMenu: 'View Menu',
+    },
+    
+    // Reserve Page
+    reserve: {
+      title: 'JOIN THE AMANTO EXPERIENCE',
+      description: 'Discover why we are unique and let us surprise you with our passion for gastronomy',
+      button: 'RESERVE',
     },
     
     // Menu Page

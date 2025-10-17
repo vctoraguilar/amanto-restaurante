@@ -1,239 +1,194 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
 import TranslationScript from '../components/TranslationScript.astro';
-import { AuroraBackground } from '../components/ui/AuroraBackground.tsx';
-import { Spotlight } from '../components/ui/Spotlight.tsx';
-import { AceternityCarousel } from '../components/ui/AceternityCarousel.tsx';
-import { LayoutTextFlip } from '../components/ui/LayoutTextFlip.tsx';
-import { HoverBorderGradient } from '../components/ui/HoverBorderGradient.tsx';
-import { BackgroundGradient } from '../components/ui/BackgroundGradient.tsx';
-import { TextHoverEffect } from '@/components/ui/TextHoverEffect.tsx';
-import { GlowingEffect } from '@/components/ui/GlowingEffect.tsx';
-import { ChefHat, Wine, Sparkles } from 'lucide-react';
 ---
 
 <Layout title="Amanto - Ollantaytambo">
-  <Navigation />
-  
-  <AuroraBackground>
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center relative pt-20">
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
-    
-      <div class="opacity-50 absolute inset-0 z-10 [mask-image:linear-gradient(to_top,black_10%,transparent_90%)]">
-        <img 
-          src="/images/interior1.jpg" 
-          alt="Interior del restaurante Amanto"
-          class="w-full h-full object-cover"
-        />
-      </div>
+  <div class="bg-white overflow-hidden w-screen h-screen relative">
+    <!-- Imagen de fondo - capa base -->
+    <img
+      id="background-image-1"
+      class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out z-0"
+      alt="Amanto Restaurant"
+      src="/images/mesa.jpg"
+    />
+    <!-- Imagen de fondo - capa superior para crossfade -->
+    <img
+      id="background-image-2"
+      class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out z-10 opacity-0"
+      alt="Amanto Restaurant"
+      src="/images/mesa.jpg"
+    />
+
+    <!-- Logo superior izquierdo -->
+    <div
+      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50"
+      role="img"
+      aria-label="Amanto logo"
+    >
+      <!-- Logo para desktop -->
+      <img 
+        src="/images/logo.svg" 
+        alt="Amanto" 
+        class="hidden md:block w-full h-full object-contain"
+      />
+      <!-- Favicon para móvil -->
+      <svg class="block md:hidden w-[50%] h-[50%]" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
+      </svg>
+    </div>
       
-      <div class="text-center max-w-4xl mx-auto px-4 relative z-20">
-        <div class="space-y-6">
-          
-          <div class="w-full max-w-4xl h-30 md:h-30 mx-auto mb-8">
-            <img src="/images/logo.svg" alt="Amanto" class="w-full h-full object-contain" />
+    <!-- Selector de idioma superior derecho -->
+    <div
+      class="absolute top-[5.5vh] right-[5vw] md:right-[8.5vw] font-bold text-xs md:text-base tracking-[2px] md:tracking-[4.80px] leading-normal whitespace-nowrap z-50"
+      role="navigation"
+      aria-label="Language selector"
+    >
+      <button
+        class="text-white tracking-[0.77px] hover:text-[#f49f13] transition-colors"
+        data-lang="en"
+        aria-label="Switch to EN"
+      >
+        EN
+      </button>
+      <span class="text-white tracking-[0.77px]"> | </span>
+      <button
+        class="text-[#f49f13] tracking-[0.77px] hover:text-white transition-colors"
+        data-lang="es"
+        aria-label="Switch to ES"
+        aria-current="true"
+      >
+        ES
+      </button>
           </div>
 
-          <!-- <div class="w-full max-w-3xl h-32 md:h-40 mx-auto mb-8">
-            <TextHoverEffect 
-              text="Amanto" 
-              duration={0.8}
-              client:load 
-            />
-          </div> -->
-          
-          <div class="text-2xl md:text-3xl mb-8">
-            <LayoutTextFlip 
-              text="Donde se encuentran la"
-              words={['gastronomía', 'experiencia', 'elegancia', 'tradición']} 
-              duration={3000}
-              client:visible
-            />
+    <!-- Navegación inferior -->
+    <nav
+      id="bottom-nav"
+      class="absolute bottom-[10vh] md:bottom-[6vh] left-0 right-0 flex md:flex-row flex-col md:justify-center items-center md:gap-[8.5vw] gap-[4vh] z-50"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <a
+        href="/nosotros"
+        data-bg="/images/nosotros.jpg"
+        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+      >
+        NOSOTROS
+      </a>
+      <a
+        href="/carta"
+        data-bg="/images/plato4.jpg"
+        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+      >
+        CARTA
+      </a>
+      <a
+        href="/reserva"
+        data-bg="/images/interior1.jpg"
+        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+      >
+        RESERVA
+      </a>
+    </nav>
           </div>
           
-          <p class="text-lg text-foreground/70 max-w-2xl mx-auto mb-12" data-translate="home.description">
-            Descubre una experiencia culinaria única que combina ingredientes frescos, 
-            técnicas innovadoras y un ambiente sofisticado para crear momentos inolvidables.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/carta">
-              <HoverBorderGradient
-                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600"
-                as="button"
-                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
-              >
-                <span data-translate="home.viewMenu">Ver Carta</span>
-              </HoverBorderGradient>
-            </a>
-            
-            <a href="mailto:reservas@amantorestaurante.com">
-              <HoverBorderGradient
-                containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600"
-                as="button"
-                className="bg-black text-white px-8 py-4 rounded-full font-semibold"
-              >
-                <span data-translate="home.reserve">Reservar Mesa</span>
-              </HoverBorderGradient>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <style>
+    /* Barra inferior con degradado para los enlaces de navegación */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+      transition: width 0.5s ease-in-out;
+    }
 
-    <!-- Carousel Section -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="home.featuredDishes">
-            Nuestros Platos Estrella
-          </h2>
-          <p class="text-xl text-foreground/70 max-w-2xl mx-auto" data-translate="home.featuredDescription">
-            Cada plato cuenta una historia, cada bocado es una experiencia
-          </p>
-        </div>
-        
-        <div class="max-w-6xl mx-auto">
-          <AceternityCarousel
-            slides={[
-              {
-                title: "Puré Rústico con Cordero Confitado",
-                description: "Tierno costillar de cordero con vegetales grillados acompañado de pastel rústico de papas andinas, todo sobre un espejo de salsa demi-glace.",
-                image: "/images/plato1.jpg"
-              },
-              {
-                title: "Causa Acevichada al Estilo Amanto",
-                description: "Nuestro abanderado ceviche carretillero sobre dos torres de causa rellena de palta, envuelta en una doble textura (suave y crocante) empanizada con mix de quinua.",
-                image: "/images/plato2.jpg"
-              },
-              {
-                title: "Huatia con Cuy",
-                description: "Cuy al estilo amanto con un acompañamiento de papas al mortero con rocoto, sobre un espejo de glasé de sauco y ensalada criolla.",
-                image: "/images/plato3.jpg"
-              },
-              {
-                title: "Fetuccini con Zeta",
-                description: "Tallarines fettuccini en salsa de zetas y un mix de verduras del huerto.",
-                image: "/images/plato4.jpg"
-              },
-              
-            ]}
-            autoplay={true}
-            autoplayDelay={9000}
-            client:load
-          />
-        </div>
-      </div>
-    </section>
+    .nav-link:hover::after {
+      width: 100px;
+    }
 
-    <!-- Experience Section -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-6xl font-bold mb-4 gradient-text" data-translate="home.experienceTitle">
-            La Experiencia Amanto
-          </h2>
-          <p class="text-xl text-foreground/70 max-w-2xl mx-auto" data-translate="home.experienceDescription">
-            Más que un restaurante, un viaje sensorial
-          </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <!-- Gastronomía -->
-          <div class="group">
-            <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
-              <div class="flex justify-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <ChefHat className="w-8 h-8 text-amber-500" />
-                </div>
-              </div>
-              <h3 class="text-xl font-bold mb-3 gradient-text text-center" data-translate="home.gastronomy">Gastronomía</h3>
-              <p class="text-foreground/70 text-center text-sm leading-relaxed" data-translate="home.gastronomyDesc">
-                Cocina de autor con ingredientes frescos y técnicas innovadoras
-              </p>
-            </div>
-          </div>
-          
-          <!-- Vinos -->
-          <div class="group">
-            <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
-              <div class="flex justify-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Wine className="w-8 h-8 text-amber-500" />
-                </div>
-              </div>
-              <h3 class="text-xl font-bold mb-3 gradient-text text-center" data-translate="home.wines">Vinos</h3>
-              <p class="text-foreground/70 text-center text-sm leading-relaxed" data-translate="home.winesDesc">
-                Selección cuidadosa de vinos nacionales e internacionales
-              </p>
-            </div>
-          </div>
-          
-          <!-- Ambiente -->
-          <div class="group">
-            <div class="p-8 rounded-2xl bg-foreground/[0.02] border border-foreground/10 hover:bg-foreground/[0.04] transition-all duration-300 h-full">
-              <div class="flex justify-center mb-6">
-                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Sparkles className="w-8 h-8 text-amber-500" />
-                </div>
-              </div>
-              <h3 class="text-xl font-bold mb-3 gradient-text text-center" data-translate="home.ambiance">Ambiente</h3>
-              <p class="text-foreground/70 text-center text-sm leading-relaxed" data-translate="home.ambianceDesc">
-                Diseño elegante que crea una atmósfera única e inolvidable
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    /* Asegurar que no hay scroll */
+    body {
+      overflow: hidden;
+    }
+  </style>
 
-    <!-- CTA Section -->
-    <section class="py-20 px-4">
-      <div class="container mx-auto text-center">
-        <GlowingEffect 
-          className="max-w-4xl mx-auto rounded-3xl"
-          blur={10}
-          spread={30}
-          borderWidth={3}
-          variant="default"
-          client:load
-        >
-          <BackgroundGradient className="p-6 md:p-12 rounded-3xl">
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 gradient-text" data-translate="about.ctaTitle">
-              Únete a la experiencia Amanto
-            </h2>
-            <p class="text-base md:text-xl text-foreground/70 mb-6 md:mb-8 max-w-2xl mx-auto" data-translate="about.ctaDescription"></p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="mailto:reservas@amantorestaurante.com" class="w-full sm:w-auto">
-                <HoverBorderGradient
-                  containerClassName="rounded-full p-[1px] bg-gradient-to-r from-yellow-500 to-amber-600 w-full sm:w-auto"
-                  as="button"
-                  className="bg-black text-white px-8 py-3 md:py-4 rounded-full font-semibold w-full sm:w-auto"
-                >
-                  <span data-translate="about.reserveNow">Reservar Mesa</span>
-                </HoverBorderGradient>
-              </a>
-              
-              <a href="/carta" class="w-full sm:w-auto">
-                <HoverBorderGradient
-                  containerClassName="rounded-full p-[1px] bg-gradient-to-r from-amber-500 to-orange-600 w-full sm:w-auto"
-                  as="button"
-                  className="bg-black text-white px-8 py-3 md:py-4 rounded-full font-semibold w-full sm:w-auto"
-                >
-                  <span data-translate="about.viewMenu">Ver Carta</span>
-                </HoverBorderGradient>
-              </a>
-            </div>
-          </BackgroundGradient>
-        </GlowingEffect>
-      </div>
-    </section>
-  </AuroraBackground>
-  
-  <Footer />
   <TranslationScript />
+  
+  <script>
+    // Script para cambio de idioma
+    const langButtons = document.querySelectorAll('[data-lang]');
+    
+    langButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang') as 'es' | 'en';
+        
+        // Actualizar estado visual
+        langButtons.forEach(btn => {
+          if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.remove('text-white');
+            btn.classList.add('text-[#f49f13]');
+            btn.setAttribute('aria-current', 'true');
+          } else {
+            btn.classList.remove('text-[#f49f13]');
+            btn.classList.add('text-white');
+            btn.removeAttribute('aria-current');
+          }
+        });
+        
+        // Guardar idioma
+        localStorage.setItem('language', lang);
+        document.documentElement.setAttribute('data-language', lang);
+        
+        // Recargar para aplicar traducciones
+        window.location.reload();
+      });
+    });
+
+    // Cargar idioma guardado al inicio
+    const savedLang = localStorage.getItem('language') as 'es' | 'en' | null;
+    if (savedLang) {
+      document.documentElement.setAttribute('data-language', savedLang);
+      
+      langButtons.forEach(btn => {
+        if (btn.getAttribute('data-lang') === savedLang) {
+          btn.classList.remove('text-white');
+          btn.classList.add('text-[#f49f13]');
+          btn.setAttribute('aria-current', 'true');
+        } else {
+          btn.classList.remove('text-[#f49f13]');
+          btn.classList.add('text-white');
+          btn.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    // Script para cambio de imagen de fondo al hacer hover con efecto crossfade
+    const navLinks = document.querySelectorAll('.nav-link');
+    const bgImage2 = document.getElementById('background-image-2') as HTMLImageElement;
+
+    navLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const newBg = link.getAttribute('data-bg');
+        if (newBg) {
+          // Cargar nueva imagen en la capa superior y hacer fade in
+          bgImage2.src = newBg;
+          bgImage2.style.opacity = '1';
+        }
+      });
+
+      link.addEventListener('mouseleave', () => {
+        // Hacer fade out de la capa superior para revelar la imagen original de la capa base
+        bgImage2.style.opacity = '0';
+      });
+    });
+  </script>
 </Layout>
 

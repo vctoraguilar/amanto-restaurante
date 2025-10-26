@@ -20,64 +20,63 @@ const contactInfo = {
 ---
 
 <Layout title="Carta - Amanto Restaurante" description="Descubre nuestra exquisita carta con platos de autor y selección de vinos">
-  <div class="bg-white overflow-hidden w-screen h-screen relative">
+  <div class="bg-black overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo -->
     <img
       class="absolute top-0 left-0 w-full h-full object-cover z-0"
       alt="Amanto Carta"
-      src="/images/mesa.jpg" 
+      src="/images/mesa.webp" 
     />
 
     <!-- Capa oscura semi-transparente con scroll -->
     <div class="absolute top-0 left-0 md:left-[18.9%] w-full md:w-[81.1%] h-full md:h-[86%] z-10 overflow-y-auto custom-scrollbar" style="background-color: rgba(0, 0, 0, 0.9);">
-      <!-- Menu Section with TracingBeam -->
-    <section class="py-20 px-4" id="menu-section">
-      <div class="container mx-auto max-w-7xl">
-        <div class="lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
-          
-          <!-- Left Column - Categories Navigation (Fixed) -->
-          <div class="lg:relative">
-            <aside class="categories-sidebar mb-8 lg:mb-0">
-              <h3 class="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">Categorías</h3>
-              <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide">
-                <a href="#aperitivos" class="menu-category-link whitespace-nowrap" data-category="aperitivos">
-                  <span data-translate="menu.appetizers">Aperitivos</span>
-                </a>
-                <a href="#sopas" class="menu-category-link whitespace-nowrap" data-category="sopas">
-                  <span data-translate="menu.soups">Sopas</span>
-                </a>
-                <a href="#fondos" class="menu-category-link whitespace-nowrap" data-category="fondos">
-                  <span data-translate="menu.mainCourses">Fondos</span>
-                </a>
-                <a href="#postres" class="menu-category-link whitespace-nowrap" data-category="postres">
-                  <span data-translate="menu.desserts">Postres</span>
-                </a>
-                <a href="#compartir" class="menu-category-link whitespace-nowrap" data-category="compartir">
-                  <span data-translate="menu.toShare">Para Compartir</span>
-                </a>
-                <a href="#cocteles" class="menu-category-link whitespace-nowrap" data-category="cocteles">
-                  <span data-translate="menu.cocktails">Cócteles</span>
-                </a>
-                <a href="#vinos" class="menu-category-link whitespace-nowrap" data-category="vinos">
-                  <span data-translate="menu.wines">Vinos</span>
-                </a>
-                <a href="#bebidas" class="menu-category-link whitespace-nowrap" data-category="bebidas">
-                  <span data-translate="menu.refreshing">Refrescantes</span>
-                </a>
-              </nav>
-            </aside>
-          </div>
+      <section class="py-20 px-4" id="menu-section">
+        <div class="container mx-auto max-w-7xl">
+          <div class="lg:grid lg:grid-cols-[250px_1fr] lg:gap-12">
+            
+            <!-- Left Column - Categories Navigation (Fixed) -->
+            <div class="lg:relative">
+              <aside class="categories-sidebar mb-8 lg:mb-0">
+                <h3 class="text-sm font-semibold text-white/80 uppercase tracking-wider mb-6">Categorías</h3>
+                <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 scrollbar-hide">
+                  <a href="#aperitivos" class="menu-category-link whitespace-nowrap" data-category="aperitivos">
+                    <span data-translate="menu.appetizers">Aperitivos</span>
+                  </a>
+                  <a href="#sopas" class="menu-category-link whitespace-nowrap" data-category="sopas">
+                    <span data-translate="menu.soups">Sopas</span>
+                  </a>
+                  <a href="#fondos" class="menu-category-link whitespace-nowrap" data-category="fondos">
+                    <span data-translate="menu.mainCourses">Fondos</span>
+                  </a>
+                  <a href="#postres" class="menu-category-link whitespace-nowrap" data-category="postres">
+                    <span data-translate="menu.desserts">Postres</span>
+                  </a>
+                  <a href="#compartir" class="menu-category-link whitespace-nowrap" data-category="compartir">
+                    <span data-translate="menu.toShare">Para Compartir</span>
+                  </a>
+                  <a href="#cocteles" class="menu-category-link whitespace-nowrap" data-category="cocteles">
+                    <span data-translate="menu.cocktails">Cócteles</span>
+                  </a>
+                  <a href="#vinos" class="menu-category-link whitespace-nowrap" data-category="vinos">
+                    <span data-translate="menu.wines">Vinos</span>
+                  </a>
+                  <a href="#bebidas" class="menu-category-link whitespace-nowrap" data-category="bebidas">
+                    <span data-translate="menu.refreshing">Refrescantes</span>
+                  </a>
+                </nav>
+              </aside>
+            </div>
 
-          <!-- Right Column - Menu Content with Tracing Beam -->
-          <div>
-            <TracingBeamContainer client:load>
+            <!-- Right Column - Menu Content with Tracing Beam -->
+            <TracingBeamContainer client:load containerId="custom-scrollbar" className="relative z-0">
+              <div>
               <div class="space-y-20">
 
                 <!-- Aperitivos -->
                 <div id="aperitivos" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/plato1.jpg" 
+                      src="/images/plato1.webp" 
                       alt="Aperitivos Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -154,7 +153,7 @@ const contactInfo = {
                 <div id="sopas" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/plato2.jpg" 
+                      src="/images/plato2.webp" 
                       alt="Sopas Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -201,7 +200,7 @@ const contactInfo = {
                 <div id="fondos" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/plato3.jpg" 
+                      src="/images/plato3.webp" 
                       alt="Fondos Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -318,7 +317,7 @@ const contactInfo = {
                 <div id="postres" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/tartaleta-sauco-airampo.jpg" 
+                      src="/images/tartaleta-sauco-airampo.webp" 
                       alt="Postres Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -375,7 +374,7 @@ const contactInfo = {
                 <div id="compartir" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/plato4.jpg" 
+                      src="/images/plato4.webp" 
                       alt="Para Compartir Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -435,7 +434,7 @@ const contactInfo = {
                 <div id="cocteles" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/bebida1.jpg" 
+                      src="/images/bebida1.webp" 
                       alt="Cócteles Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -536,7 +535,7 @@ const contactInfo = {
                 <div id="vinos" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/bebida2.jpg" 
+                      src="/images/bebida2.webp" 
                       alt="Vinos Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -583,7 +582,7 @@ const contactInfo = {
                 <div id="bebidas" class="scroll-mt-24">
                   <div class="relative h-64 rounded-2xl overflow-hidden mb-8">
                     <img 
-                      src="/images/bebida3.jpg" 
+                      src="/images/bebida3.webp" 
                       alt="Bebidas Refrescantes Amanto"
                       class="w-full h-full object-cover"
                     />
@@ -617,17 +616,17 @@ const contactInfo = {
                 </div>
 
               </div>
+            </div>
             </TracingBeamContainer>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </div>
 
     <!-- Logo superior izquierdo -->
     <div
       onclick="window.location.href = '/'"
-      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer"
+      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
     >
@@ -635,11 +634,12 @@ const contactInfo = {
       <img 
         src="/images/logo.svg" 
         alt="Amanto" 
-        class="hidden md:block w-full h-full object-contain"
+        class="hidden md:block w-full h-full object-contain logo-img"
+        style="transition: filter 0.3s ease;"
       />
       <!-- Favicon para móvil -->
-      <svg class="block md:hidden w-[50%] h-[50%]" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
+      <svg class="block md:hidden w-[50%] h-[50%] transition-colors duration-300" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
+        <path class="logo-icon" fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
       </svg>
     </div>
     
@@ -681,6 +681,7 @@ const contactInfo = {
         href="/nosotros"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.about"
       >
         NOSOTROS
       </a>
@@ -688,6 +689,7 @@ const contactInfo = {
         href="/carta"
         class="nav-link active-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.menu"
       >
         CARTA
       </a>
@@ -695,6 +697,7 @@ const contactInfo = {
         href="/reserva"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.reserve"
       >
         RESERVA
       </a>
@@ -842,42 +845,15 @@ const contactInfo = {
 </style>
 
 <script>
-  // Script para cambio de idioma
+  import { translations, getCurrentLanguage } from '../lib/translations';
+
+  // Script para cambio de idioma sin recargar
   const langButtons = document.querySelectorAll('[data-lang]');
   
-  langButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const lang = button.getAttribute('data-lang') as 'es' | 'en';
-      
-      // Actualizar estado visual
-      langButtons.forEach(btn => {
-        if (btn.getAttribute('data-lang') === lang) {
-          btn.classList.remove('text-white');
-          btn.classList.add('text-[#f49f13]');
-          btn.setAttribute('aria-current', 'true');
-        } else {
-          btn.classList.remove('text-[#f49f13]');
-          btn.classList.add('text-white');
-          btn.removeAttribute('aria-current');
-        }
-      });
-      
-      // Guardar idioma
-      localStorage.setItem('language', lang);
-      document.documentElement.setAttribute('data-language', lang);
-      
-      // Recargar para aplicar traducciones
-      window.location.reload();
-    });
-  });
-
-  // Cargar idioma guardado al inicio
-  const savedLang = localStorage.getItem('language') as 'es' | 'en' | null;
-  if (savedLang) {
-    document.documentElement.setAttribute('data-language', savedLang);
-    
+  function updateLanguage(lang: 'es' | 'en') {
+    // Actualizar estado visual de los botones
     langButtons.forEach(btn => {
-      if (btn.getAttribute('data-lang') === savedLang) {
+      if (btn.getAttribute('data-lang') === lang) {
         btn.classList.remove('text-white');
         btn.classList.add('text-[#f49f13]');
         btn.setAttribute('aria-current', 'true');
@@ -887,7 +863,40 @@ const contactInfo = {
         btn.removeAttribute('aria-current');
       }
     });
+    
+    // Guardar idioma
+    localStorage.setItem('language', lang);
+    document.documentElement.setAttribute('data-language', lang);
+    
+    // Actualizar traducciones sin recargar
+    const t = translations[lang];
+    
+    // Actualizar navegación y todos los elementos con data-translate
+    document.querySelectorAll('[data-translate]').forEach((element) => {
+      const key = element.getAttribute('data-translate');
+      if (key) {
+        const keys = key.split('.');
+        let value: any = t;
+        for (const k of keys) {
+          value = value[k];
+        }
+        if (value && typeof value === 'string') {
+          element.textContent = value;
+        }
+      }
+    });
   }
+  
+  langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const lang = button.getAttribute('data-lang') as 'es' | 'en';
+      updateLanguage(lang);
+    });
+  });
+
+  // Cargar idioma guardado al inicio
+  const savedLang = getCurrentLanguage();
+  updateLanguage(savedLang);
 
   // Smooth scroll and active category highlighting within scrollable container
   document.addEventListener('DOMContentLoaded', () => {

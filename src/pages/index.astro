@@ -4,25 +4,26 @@ import TranslationScript from '../components/TranslationScript.astro';
 ---
 
 <Layout title="Amanto - Ollantaytambo">
-  <div class="bg-white overflow-hidden w-screen h-screen relative">
+  <div class="bg-black overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo - capa base -->
     <img
       id="background-image-1"
       class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out z-0"
       alt="Amanto Restaurant"
-      src="/images/mesa.jpg"
+      src="/images/mesa.webp"
     />
     <!-- Imagen de fondo - capa superior para crossfade -->
     <img
       id="background-image-2"
       class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out z-10 opacity-0"
       alt="Amanto Restaurant"
-      src="/images/mesa.jpg"
+      src="/images/mesa.webp"
     />
 
     <!-- Logo superior izquierdo -->
     <div
-      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50"
+      onclick="window.location.href = '/'"
+      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
     >
@@ -30,11 +31,12 @@ import TranslationScript from '../components/TranslationScript.astro';
       <img 
         src="/images/logo.svg" 
         alt="Amanto" 
-        class="hidden md:block w-full h-full object-contain"
+        class="hidden md:block w-full h-full object-contain logo-img"
+        style="transition: filter 0.3s ease;"
       />
       <!-- Favicon para móvil -->
-      <svg class="block md:hidden w-[50%] h-[50%]" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
+      <svg class="block md:hidden w-[50%] h-[50%] transition-colors duration-300" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
+        <path class="logo-icon" fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
       </svg>
     </div>
       
@@ -71,25 +73,28 @@ import TranslationScript from '../components/TranslationScript.astro';
     >
       <a
         href="/nosotros"
-        data-bg="/images/nosotros.jpg"
+        data-bg="/images/nosotros.webp"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.about"
       >
         NOSOTROS
       </a>
       <a
         href="/carta"
-        data-bg="/images/plato4.jpg"
+        data-bg="/images/plato4.webp"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.menu"
       >
         CARTA
       </a>
       <a
         href="/reserva"
-        data-bg="/images/interior1.jpg"
+        data-bg="/images/interior1.webp"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.reserve"
       >
         RESERVA
       </a>
@@ -123,42 +128,15 @@ import TranslationScript from '../components/TranslationScript.astro';
   <TranslationScript />
   
   <script>
-    // Script para cambio de idioma
+    import { translations, getCurrentLanguage } from '../lib/translations';
+
+    // Script para cambio de idioma sin recargar
     const langButtons = document.querySelectorAll('[data-lang]');
     
-    langButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const lang = button.getAttribute('data-lang') as 'es' | 'en';
-        
-        // Actualizar estado visual
-        langButtons.forEach(btn => {
-          if (btn.getAttribute('data-lang') === lang) {
-            btn.classList.remove('text-white');
-            btn.classList.add('text-[#f49f13]');
-            btn.setAttribute('aria-current', 'true');
-          } else {
-            btn.classList.remove('text-[#f49f13]');
-            btn.classList.add('text-white');
-            btn.removeAttribute('aria-current');
-          }
-        });
-        
-        // Guardar idioma
-        localStorage.setItem('language', lang);
-        document.documentElement.setAttribute('data-language', lang);
-        
-        // Recargar para aplicar traducciones
-        window.location.reload();
-      });
-    });
-
-    // Cargar idioma guardado al inicio
-    const savedLang = localStorage.getItem('language') as 'es' | 'en' | null;
-    if (savedLang) {
-      document.documentElement.setAttribute('data-language', savedLang);
-      
+    function updateLanguage(lang: 'es' | 'en') {
+      // Actualizar estado visual de los botones
       langButtons.forEach(btn => {
-        if (btn.getAttribute('data-lang') === savedLang) {
+        if (btn.getAttribute('data-lang') === lang) {
           btn.classList.remove('text-white');
           btn.classList.add('text-[#f49f13]');
           btn.setAttribute('aria-current', 'true');
@@ -168,7 +146,40 @@ import TranslationScript from '../components/TranslationScript.astro';
           btn.removeAttribute('aria-current');
         }
       });
+      
+      // Guardar idioma
+      localStorage.setItem('language', lang);
+      document.documentElement.setAttribute('data-language', lang);
+      
+      // Actualizar traducciones sin recargar
+      const t = translations[lang];
+      
+      // Actualizar navegación y todos los elementos con data-translate
+      document.querySelectorAll('[data-translate]').forEach((element) => {
+        const key = element.getAttribute('data-translate');
+        if (key) {
+          const keys = key.split('.');
+          let value: any = t;
+          for (const k of keys) {
+            value = value[k];
+          }
+          if (value && typeof value === 'string') {
+            element.textContent = value.toUpperCase();
+          }
+        }
+      });
     }
+    
+    langButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang') as 'es' | 'en';
+        updateLanguage(lang);
+      });
+    });
+
+    // Cargar idioma guardado al inicio
+    const savedLang = getCurrentLanguage();
+    updateLanguage(savedLang);
 
     // Script para cambio de imagen de fondo al hacer hover con efecto crossfade
     const navLinks = document.querySelectorAll('.nav-link');

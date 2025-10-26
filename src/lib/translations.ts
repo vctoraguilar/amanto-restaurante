@@ -3,36 +3,11 @@ export const translations = {
     // Navigation
     nav: {
       home: 'Inicio',
-      about: 'Nosotros',
-      menu: 'Carta',
-      reserve: 'Reservar',
+      about: 'NOSOTROS',
+      menu: 'CARTA',
+      reserve: 'RESERVA',
     },
-    
-    // Home Page
-    home: {
-      title: 'Amanto - Restaurante',
-      subtitle: 'Donde se encuentran la',
-      subtitleWords: ['gastronomía', 'experiencia', 'elegancia', 'tradición'],
-      subtitleEnd: '',
-      description: 'Descubre una experiencia culinaria única que combina ingredientes frescos, técnicas innovadoras y un ambiente sofisticado para crear momentos inolvidables.',
-      viewMenu: 'Ver Carta',
-      reserve: 'Reservar Mesa',
-      featuredDishes: 'Nuestros Platos Estrella',
-      featuredDescription: 'Cada plato cuenta una historia, cada bocado es una experiencia',
-      experienceTitle: 'La Experiencia Amanto',
-      experienceDescription: 'Más que un restaurante, un viaje sensorial',
-      gastronomy: 'Gastronomía',
-      gastronomyDesc: 'Cocina de autor con ingredientes frescos y técnicas innovadoras',
-      wines: 'Vinos',
-      winesDesc: 'Selección cuidadosa de vinos nacionales e internacionales',
-      ambiance: 'Ambiente',
-      ambianceDesc: 'Diseño elegante que crea una atmósfera única e inolvidable',
-      ctaTitle: 'Únete a la experiencia Amanto',
-      ctaDescription: 'Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía',
-      reserveNow: 'Reservar Mesa',
-      viewMenuBtn: 'Ver Menú',
-    },
-    
+         
     // About Page
     about: {
       title: 'Nosotros',
@@ -59,13 +34,20 @@ export const translations = {
       ctaDescription: 'Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía',
       reserveNow: 'Reservar Mesa',
       viewMenu: 'Ver Carta',
+      // Navegación de secciones
+      sectionNombre: 'NOMBRE',
+      sectionNombreText: 'Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.\nAdicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.',
+      sectionCocina: 'COCINA',
+      sectionCocinaText: 'Amanto elabora su propia interpretación de los platos peruanos y su cocina está basada en especias locales: verduras cultivadas como la quinua, papa andina; trucha de río y carne de res autóctona.\n\nLa base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.',
+      sectionProposito: 'PROPÓSITO',
+      sectionPropositoText: 'Nuestra misión es cautivar tus sentidos a través de una experiencia culinaria memorable.\n\nNuestra visión es ser un destino culinario único, reconocido por nuestra excelencia y autenticidad.\n\nNuestros valores son la búsqueda constante de la innovación y la felicidad para atender.',
     },
     
     // Reserve Page
     reserve: {
       title: 'ÚNETE A LA EXPERIENCIA AMANTO',
       description: 'Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía',
-      button: 'RESERVAR',
+      button: 'Reservar',
     },
     
     // Menu Page
@@ -233,37 +215,13 @@ export const translations = {
   en: {
     // Navigation
     nav: {
-      home: 'Home',
-      about: 'About Us',
-      menu: 'Menu',
-      reserve: 'Reserve',
+      home: 'HOME',
+      about: 'ABOUT US',
+      menu: 'MENU',
+      reserve: 'RESERVE',
     },
     
-    // Home Page
-    home: {
-      title: 'Amanto - Restaurant',
-      subtitle: 'Where you will find',
-      subtitleWords: ['gastronomy', 'experience', 'elegance', 'tradition'],
-      subtitleEnd: '',
-      description: 'Discover a unique culinary experience that combines fresh ingredients, innovative techniques, and a sophisticated atmosphere to create unforgettable moments.',
-      viewMenu: 'View Menu',
-      reserve: 'Reserve Table',
-      featuredDishes: 'Our Signature Dishes',
-      featuredDescription: 'Each dish tells a story, every bite is an experience',
-      experienceTitle: 'The Amanto Experience',
-      experienceDescription: 'More than a restaurant, a sensory journey',
-      gastronomy: 'Gastronomy',
-      gastronomyDesc: 'Signature cuisine with fresh ingredients and innovative techniques',
-      wines: 'Wines',
-      winesDesc: 'Carefully selected national and international wines',
-      ambiance: 'Ambiance',
-      ambianceDesc: 'Elegant design that creates a unique and unforgettable atmosphere',
-      ctaTitle: 'Ready for a unique experience?',
-      ctaDescription: 'Reserve your table and let yourself be amazed by our culinary proposal',
-      reserveNow: 'Reserve Now',
-      viewMenuBtn: 'View Menu',
-    },
-    
+        
     // About Page
     about: {
       title: 'About Us',
@@ -290,13 +248,20 @@ export const translations = {
       ctaDescription: 'Discover why we are unique and let us surprise you with our passion for gastronomy',
       reserveNow: 'Reserve Table',
       viewMenu: 'View Menu',
+      // Section Navigation
+      sectionNombre: 'NAME',
+      sectionNombreText: 'Our name "Amanto" honors the most powerful legend of Ollantaytambo. It is born from the fusion of the brave general Ollantay and his role as the lover who defied an empire for love. That is our essence: a spirit of struggle and passion.\nAdditionally, "Amanto" is a gesture: "I shelter", the act of sheltering and protecting. Thus, our name is also a promise: to be a warm refuge in the heart of the Andes.',
+      sectionCocina: 'KITCHEN',
+      sectionCocinaText: 'Amanto creates its own interpretation of Peruvian dishes and its cuisine is based on local spices: cultivated vegetables such as quinoa, Andean potatoes; river trout and native beef.\n\nThe foundation of our menu is an extensive collection of spices from the entire Sacred Valley, which we have carefully selected to create unique and unforgettable experiences.',
+      sectionProposito: 'PURPOSE',
+      sectionPropositoText: 'Our mission is to captivate your senses through a memorable culinary experience.\n\nOur vision is to be a unique culinary destination, recognized for our excellence and authenticity.\n\nOur values are the constant pursuit of innovation and happiness to serve.',
     },
     
     // Reserve Page
     reserve: {
       title: 'JOIN THE AMANTO EXPERIENCE',
       description: 'Discover why we are unique and let us surprise you with our passion for gastronomy',
-      button: 'RESERVE',
+      button: 'Reserve',
     },
     
     // Menu Page

@@ -18,7 +18,7 @@ const { title, description = "Restaurante Amanto - Experiencia culinaria única 
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;900&family=Questrial&display=swap" rel="stylesheet">
   </head>
   <body class="font-body">
     <div id="aurora-background" class="fixed inset-0 z-0">
@@ -30,10 +30,88 @@ const { title, description = "Restaurante Amanto - Experiencia culinaria única 
       <slot />
     </div>
 
-    <style>
-      :global(.font-inter) {
+    <style is:global>
+      .font-inter {
         font-family: 'Inter', sans-serif;
       }
+
+      /* Hover del logo global para todo el sitio */
+      .logo-container {
+        cursor: pointer;
+      }
+
+      .logo-container:hover .logo-img,
+      .logo-container:hover img[alt*="logo"][class*="object-contain"] {
+        filter: invert(100%) sepia(90%) saturate(4858%) hue-rotate(4deg) brightness(102%) contrast(96%);
+        transition: filter 0.3s ease;
+      }
+
+      .logo-container:hover .logo-icon,
+      .logo-container:hover svg path {
+        fill: #f49f13;
+        transition: fill 0.3s ease;
+      }
+
+      /* Prevenir flash blanco durante navegación */
+      :global(html) {
+        background-color: #000;
+      }
+
+      :global(body) {
+        background-color: #000;
+        transition: background-color 0.2s ease;
+      }
+
+      /* Mantener background oscuro durante transición */
+      :global(html.transitioning) {
+        background-color: #000;
+      }
     </style>
+    
+    <script is:inline>
+      // Prevenir flash blanco durante navegación
+      (function() {
+        document.addEventListener('DOMContentLoaded', function() {
+          // Prefetch de todas las páginas principales
+          const pages = ['/nosotros', '/carta', '/reserva', '/'];
+          
+          pages.forEach(function(page) {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = page;
+            document.head.appendChild(link);
+          });
+        });
+
+        // Interceptar clicks en enlaces para transición suave
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+          if (target && target.nodeName === 'A') {
+            var link = target;
+            if (link.hostname === window.location.hostname) {
+              var href = link.getAttribute('href');
+              if (href && !href.startsWith('#')) {
+                // Agregar clase para mantener background
+                document.documentElement.classList.add('transitioning');
+                
+                // Prefetch de la página
+                var prefetchLink = document.createElement('link');
+                prefetchLink.rel = 'prefetch';
+                prefetchLink.href = href;
+                document.head.appendChild(prefetchLink);
+              }
+            }
+          } else if (target && target.parentElement) {
+            var parentLink = target.parentElement.closest('a');
+            if (parentLink && parentLink.hostname === window.location.hostname) {
+              var parentHref = parentLink.getAttribute('href');
+              if (parentHref && !parentHref.startsWith('#')) {
+                document.documentElement.classList.add('transitioning');
+              }
+            }
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

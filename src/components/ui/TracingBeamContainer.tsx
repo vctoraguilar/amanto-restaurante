@@ -20,29 +20,56 @@ export const TracingBeamContainer = ({
 
   useEffect(() => {
     if (contentRef.current) {
-      setSvgHeight(contentRef.current.offsetHeight);
+      const updateHeight = () => {
+        if (contentRef.current) {
+          setSvgHeight(contentRef.current.offsetHeight);
+        }
+      };
+
+      // Initial height calculation
+      updateHeight();
+
+      // Use ResizeObserver to update height when content changes
+      const resizeObserver = new ResizeObserver(() => {
+        updateHeight();
+      });
+
+      resizeObserver.observe(contentRef.current);
+
+      // Find the scrollable container - multiple strategies
+      let container: Element | null = null;
+      
+      if (containerId) {
+        // Remove leading dot if present and add it back for consistency
+        const cleanId = containerId.startsWith('.') ? containerId : `.${containerId}`;
+        container = document.querySelector(cleanId);
+      } else {
+        // Try different methods to find the scrollable container
+        container = ref.current?.closest('.custom-scrollbar') || 
+                    ref.current?.closest('[style*="overflow-y"]') ||
+                    document.querySelector('.custom-scrollbar');
+      }
+
+      if (!container) {
+        console.warn('TracingBeamContainer: No scroll container found');
+        return () => resizeObserver.disconnect();
+      }
+
+      const handleScroll = () => {
+        const scrollTop = (container as Element).scrollTop;
+        const scrollHeight = (container as Element).scrollHeight - (container as Element).clientHeight;
+        const progress = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+        scrollYProgress.set(progress);
+      };
+
+      container.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial call
+
+      return () => {
+        container?.removeEventListener('scroll', handleScroll);
+        resizeObserver.disconnect();
+      };
     }
-
-    // Find the scrollable container
-    const container = containerId 
-      ? document.querySelector(`.${containerId}`)
-      : ref.current?.closest('.custom-scrollbar');
-
-    if (!container) return;
-
-    const handleScroll = () => {
-      const scrollTop = container.scrollTop;
-      const scrollHeight = container.scrollHeight - container.clientHeight;
-      const progress = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
-      scrollYProgress.set(progress);
-    };
-
-    container.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-    };
   }, [containerId, scrollYProgress]);
 
   const y1 = useSpring(
@@ -65,37 +92,13 @@ export const TracingBeamContainer = ({
       ref={ref}
       className={cn('relative w-full', className)}
     >
-      <div className="absolute -left-4 md:-left-20 top-3 z-50">
-        <motion.div
-          transition={{
-            duration: 0.2,
-            delay: 0.5,
-          }}
-          animate={{
-            boxShadow:
-              scrollYProgress.get() > 0
-                ? 'none'
-                : 'rgba(244, 159, 19, 0.5) 0px 3px 8px',
-          }}
-          className="ml-[27px] h-4 w-4 rounded-full border border-amber-500/30 shadow-sm flex items-center justify-center bg-black/50"
-        >
-          <motion.div
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
-            }}
-            animate={{
-              backgroundColor:
-                scrollYProgress.get() > 0 ? '#f59e0b' : '#fbbf24',
-            }}
-            className="h-2 w-2 rounded-full border border-amber-400 bg-amber-500"
-          />
-        </motion.div>
+      <div className="absolute -left-16 md:-left-16 top-0 z-50 pointer-events-none" style={{ width: '20px' }}>
         <svg
-          viewBox={`0 0 20 ${svgHeight}`}
+          viewBox={`0 0 20 ${Math.max(svgHeight, 100)}`}
           width="20"
-          height={svgHeight}
-          className="ml-4 block"
+          height={Math.max(svgHeight, 100)}
+          className="block"
+          style={{ minHeight: '100vh' }}
           aria-hidden="true"
         >
           <motion.path
@@ -134,7 +137,7 @@ export const TracingBeamContainer = ({
           </defs>
         </svg>
       </div>
-      <div ref={contentRef}>{children}</div>
+      <div ref={contentRef} className="pl-0 md:pl-0">{children}</div>
     </motion.div>
   );
 };

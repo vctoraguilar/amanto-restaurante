@@ -1,30 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TranslationScript from '../components/TranslationScript.astro';
-
-const contactInfo = {
-  address: {
-    line1: "Calle Horno S/N (Esquina con la plaza)",
-    line2: "Ollantaytambo, Urubamba, Cusco",
-  },
-  hours: {
-    days: "Lunes a Domingo",
-    time: "12:00 p.m. - 10:00 p.m.",
-  },
-  contact: {
-    phone: "+51 906 919 229",
-    email: "reservas@amantorestaurante.com",
-  },
-};
 ---
 
 <Layout title="Nosotros - Amanto">
-  <div class="bg-white overflow-hidden w-screen h-screen relative">
+  <div class="bg-black overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo -->
     <img
       class="absolute top-0 left-0 w-full h-full object-cover z-0"
       alt="Amanto Nosotros"
-          src="/images/nosotros.jpg" 
+          src="/images/nosotros.webp" 
     />
 
     <!-- Capa oscura semi-transparente -->
@@ -33,7 +18,7 @@ const contactInfo = {
     <!-- Logo superior izquierdo -->
     <div
       onclick="window.location.href = '/'"
-      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer"
+      class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
     >
@@ -41,11 +26,12 @@ const contactInfo = {
       <img 
         src="/images/logo.svg" 
         alt="Amanto" 
-        class="hidden md:block w-full h-full object-contain"
+        class="hidden md:block w-full h-full object-contain logo-img"
+        style="transition: filter 0.3s ease;"
       />
       <!-- Favicon para móvil -->
-      <svg class="block md:hidden w-[50%] h-[50%]" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
+      <svg class="block md:hidden w-[50%] h-[50%] transition-colors duration-300" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
+        <path class="logo-icon" fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
       </svg>
     </div>
             
@@ -73,50 +59,114 @@ const contactInfo = {
       </button>
             </div>
             
-    <!-- Título NOMBRE -->
-    <h1 class="absolute top-[15vh] md:top-[24.5vh] left-1/2 md:left-[57.6%] -translate-x-1/2 md:translate-x-0 font-medium text-white text-sm md:text-base tracking-[6px] md:tracking-[9.60px] leading-normal whitespace-nowrap z-20" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;">
-      NOMBRE
-    </h1>
+    <!-- Contenedor de navegación de secciones -->
+    <div class="relative md:absolute top-[15vh] md:top-[24.5vh] left-0 md:left-[46%] w-full md:w-[28.8%] z-20 flex items-center justify-center md:justify-start">
+      <!-- Flecha izquierda desktop -->
+      <button
+        id="prev-section"
+        class="absolute left-[10vw] md:left-[-140px] md:top-[60%] -translate-y-1/2 hidden md:flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity z-30"
+        aria-label="Sección anterior"
+      >
+        <img 
+          src="/images/arrow.svg" 
+          alt="Anterior" 
+          class="w-full h-full object-contain transform rotate-[-90deg] filter brightness-0 invert"
+        />
+      </button>
 
-    <!-- Línea decorativa izquierda -->
-    <div class="hidden md:block absolute left-[35.68%] top-[40.37%] w-[2px] h-[2.65vh] bg-gradient-to-b from-[#f49f13] to-[#8e390b] z-20" />
+      <!-- Contenedor del título y contenido -->
+      <div class="text-center w-[90%] md:w-auto">
+        <!-- Título dinámico -->
+        <div id="section-title-wrapper">
+          <h1 
+            id="section-title"
+            class="font-medium text-white text-sm md:text-base tracking-[6px] md:tracking-[9.60px] leading-normal whitespace-nowrap z-20" 
+            style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;"
+          >
+            NOMBRE
+          </h1>
+        </div>
 
-    <!-- Texto principal sobre Amanto -->
-    <article class="absolute top-[20vh] md:top-[30.37vh] left-[5%] md:left-[46.2%] w-[90%] md:w-[28.8%] z-20 px-4 md:px-0">
-      <p class="font-normal text-white text-sm md:text-base text-center tracking-[3px] md:tracking-[4.80px] leading-5 md:leading-6" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-        Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.
-        Adicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.
-      </p>
-    </article>
+        <!-- Texto principal dinámico -->
+        <article class="mt-[5vh] md:mt-[6vh] z-20 px-0 md:px-0">
+          <div id="section-content-wrapper">
+            <p 
+              id="section-content"
+              class="font-normal text-white text-sm md:text-base text-center tracking-[3px] md:tracking-[4.80px] leading-5 md:leading-6" 
+              style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif; white-space: pre-line;"
+            >
+              Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.
+              Adicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.
+            </p>
+          </div>
+        </article>
+      </div>
 
-    <!-- Línea decorativa derecha -->
-    <div class="hidden md:block absolute left-[84.01%] top-[40.37%] w-[2px] h-[2.65vh] bg-gradient-to-b from-[#f49f13] to-[#8e390b] z-20" />
+      <!-- Flecha derecha desktop -->
+      <button
+        id="next-section"
+        class="absolute right-[10vw] md:right-[-140px] md:top-[60%] -translate-y-1/2 hidden md:flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity z-30"
+        aria-label="Sección siguiente"
+      >
+        <img 
+          src="/images/arrow.svg" 
+          alt="Siguiente" 
+          class="w-full h-full object-contain transform rotate-[90deg] scale-x-[-1] filter brightness-0 invert"
+        />
+      </button>
+    </div>
+
+    <!-- Botones de navegación para móvil -->
+    <div class="absolute top-[13vh] left-1/2 -translate-x-1/2 md:hidden flex gap-6 z-30">
+      <button
+        id="prev-section-mobile"
+        class="flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity"
+        aria-label="Sección anterior"
+      >
+        <img 
+          src="/images/arrow.svg" 
+          alt="Anterior" 
+          class="w-full h-full object-contain transform rotate-[-90deg] filter brightness-0 invert"
+        />
+      </button>
+      <button
+        id="next-section-mobile"
+        class="flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity"
+        aria-label="Sección siguiente"
+      >
+        <img 
+          src="/images/arrow.svg" 
+          alt="Siguiente" 
+          class="w-full h-full object-contain transform rotate-[90deg] scale-x-[-1] filter brightness-0 invert"
+        />
+      </button>
+    </div>
 
     <!-- Información de contacto - Dirección -->
-    <address class="hidden md:block absolute bottom-[14vh] left-[24.3%] font-normal text-white text-sm tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      {contactInfo.address.line1}<br />
-      {contactInfo.address.line2}
+    <address class="hidden md:block absolute bottom-[18vh] left-[24.3%] font-normal text-white text-sm tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
+      <span data-translate="footer.address">Calle Horno S/N (Esquina con la plaza)</span><br />
+      <span data-translate="footer.city">Ollantaytambo, Urubamba, Cusco</span>
     </address>
 
     <!-- Información de contacto - Horarios -->
-    <p class="hidden md:block absolute bottom-[14vh] left-[57%] font-normal text-white text-sm text-center tracking-[0] leading-[21px] z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      {contactInfo.hours.days}<br />
-      {contactInfo.hours.time}
+    <p class="hidden md:block absolute bottom-[18vh] left-[57%] font-normal text-white text-sm text-center tracking-[0] leading-[21px] z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
+      <span data-translate="footer.scheduleText">Lunes a Domingo</span><br />
+      <span data-translate="footer.scheduleHours">12:00 PM - 10:00 PM</span>
     </p>
 
     <!-- Información de contacto - Teléfono y Email -->
-    <address class="hidden md:block absolute bottom-[14vh] right-[10.2%] font-normal text-white text-sm text-right tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
+    <address class="hidden md:block absolute bottom-[18vh] right-[10.2%] font-normal text-white text-sm text-right tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
       <a
-        href={`tel:${contactInfo.contact.phone.replace(/\s/g, "")}`}
+        href="tel:+51906919229"
         class="block hover:underline transition-all"
       >
-        {contactInfo.contact.phone}
+        +51 906 919 229
       </a>
       <a
-        href={`mailto:${contactInfo.contact.email}`}
+        href="mailto:reservas@amantorestaurante.com"
         class="block hover:underline transition-all"
       >
-        {contactInfo.contact.email}
+        reservas@amantorestaurante.com
       </a>
     </address>
 
@@ -131,6 +181,7 @@ const contactInfo = {
         href="/nosotros"
         class="nav-link active-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.about"
       >
         NOSOTROS
       </a>
@@ -138,6 +189,7 @@ const contactInfo = {
         href="/carta"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.menu"
       >
         CARTA
       </a>
@@ -145,6 +197,7 @@ const contactInfo = {
         href="/reserva"
         class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
+        data-translate="nav.reserve"
       >
         RESERVA
       </a>
@@ -184,51 +237,60 @@ const contactInfo = {
       display: none;
     }
 
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+         .scrollbar-hide {
+       -ms-overflow-style: none;
+       scrollbar-width: none;
+     }
+
+     /* Transición suave y delicada para las secciones */
+      #section-title, #section-content {
+        transition: opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+      }
+      
+      /* Contenedor para el efecto de cross-fade */
+      #section-title-wrapper, #section-content-wrapper {
+        position: relative;
+        min-height: 1.5em;
+      }
   </style>
 
   <TranslationScript />
   
   <script>
-    // Script para cambio de idioma
+    import { translations, getCurrentLanguage } from '../lib/translations';
+
+    // Variable global para almacenar las secciones según el idioma
+    let globalSectionsData: Array<{ title: string; content: string }> = [];
+    let currentSectionIndex = 0;
+
+    // Obtener secciones según el idioma actual
+    function getSections() {
+      const lang = getCurrentLanguage();
+      const t = translations[lang];
+      return [
+        { 
+          title: t.about.sectionNombre, 
+          content: t.about.sectionNombreText
+        },
+        { 
+          title: t.about.sectionCocina, 
+          content: t.about.sectionCocinaText
+        },
+        { 
+          title: t.about.sectionProposito, 
+          content: t.about.sectionPropositoText
+        }
+      ];
+    }
+
+    // Script para cambio de idioma sin recargar
     const langButtons = document.querySelectorAll('[data-lang]');
     
-    langButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const lang = button.getAttribute('data-lang') as 'es' | 'en';
-        
-        // Actualizar estado visual
-        langButtons.forEach(btn => {
-          if (btn.getAttribute('data-lang') === lang) {
-            btn.classList.remove('text-white');
-            btn.classList.add('text-[#f49f13]');
-            btn.setAttribute('aria-current', 'true');
-          } else {
-            btn.classList.remove('text-[#f49f13]');
-            btn.classList.add('text-white');
-            btn.removeAttribute('aria-current');
-          }
-        });
-        
-        // Guardar idioma
-        localStorage.setItem('language', lang);
-        document.documentElement.setAttribute('data-language', lang);
-        
-        // Recargar para aplicar traducciones
-        window.location.reload();
-      });
-    });
-
-    // Cargar idioma guardado al inicio
-    const savedLang = localStorage.getItem('language') as 'es' | 'en' | null;
-    if (savedLang) {
-      document.documentElement.setAttribute('data-language', savedLang);
-      
+    function updateLanguage(lang: 'es' | 'en') {
+      // Actualizar estado visual de los botones
       langButtons.forEach(btn => {
-        if (btn.getAttribute('data-lang') === savedLang) {
+        if (btn.getAttribute('data-lang') === lang) {
           btn.classList.remove('text-white');
           btn.classList.add('text-[#f49f13]');
           btn.setAttribute('aria-current', 'true');
@@ -238,27 +300,159 @@ const contactInfo = {
           btn.removeAttribute('aria-current');
         }
       });
-    }
-
-  // Centrar el enlace activo en móvil
-  function centerActiveLink() {
-    const nav = document.getElementById('bottom-nav');
-    const activeLink = nav?.querySelector('.active-link');
-    
-    if (nav && activeLink && window.innerWidth < 768) {
-      const navRect = nav.getBoundingClientRect();
-      const linkRect = activeLink.getBoundingClientRect();
-      const scrollLeft = linkRect.left - navRect.left - (navRect.width / 2) + (linkRect.width / 2);
       
-      nav.scrollTo({
-        left: nav.scrollLeft + scrollLeft,
-        behavior: 'smooth'
+      // Guardar idioma
+      localStorage.setItem('language', lang);
+      document.documentElement.setAttribute('data-language', lang);
+      
+      // Actualizar traducciones sin recargar
+      const t = translations[lang];
+      
+      // Actualizar navegación
+      document.querySelectorAll('[data-translate]').forEach((element) => {
+        const key = element.getAttribute('data-translate');
+        if (key) {
+          const keys = key.split('.');
+          let value: any = t;
+          for (const k of keys) {
+            value = value[k];
+          }
+          if (value && typeof value === 'string') {
+            element.textContent = value.toUpperCase();
+          }
+        }
       });
+      
+      // Actualizar secciones dinámicamente
+      globalSectionsData = getSections();
+      updateSectionsContent(lang);
     }
-  }
+    
+    function updateSectionsContent(lang: 'es' | 'en') {
+      const sections = getSections();
+      
+      // Actualizar la sección actual sin transición
+      const sectionTitle = document.getElementById('section-title');
+      const sectionContent = document.getElementById('section-content');
+      
+      if (sectionTitle && sectionContent) {
+        // Desactivar transiciones temporalmente
+        const originalTitleTransition = sectionTitle.style.transition;
+        const originalContentTransition = sectionContent.style.transition;
+        
+        sectionTitle.style.transition = 'none';
+        sectionContent.style.transition = 'none';
+        
+        // Cambiar contenido sin animación
+        sectionTitle.textContent = sections[currentSectionIndex].title;
+        sectionContent.textContent = sections[currentSectionIndex].content;
+        
+        // Restaurar transiciones
+        setTimeout(() => {
+          sectionTitle.style.transition = originalTitleTransition;
+          sectionContent.style.transition = originalContentTransition;
+        }, 50);
+      }
+      
+      // Actualizar el array de secciones global
+      globalSectionsData = sections;
+    }
+    
+    langButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const lang = button.getAttribute('data-lang') as 'es' | 'en';
+        updateLanguage(lang);
+      });
+    });
 
-  // Ejecutar al cargar y al redimensionar
-  window.addEventListener('load', centerActiveLink);
-  window.addEventListener('resize', centerActiveLink);
+    // Cargar idioma guardado al inicio
+    const savedLang = getCurrentLanguage();
+    globalSectionsData = getSections();
+    updateLanguage(savedLang);
+
+    // Centrar el enlace activo en móvil
+    function centerActiveLink() {
+      const nav = document.getElementById('bottom-nav');
+      const activeLink = nav?.querySelector('.active-link');
+      
+      if (nav && activeLink && window.innerWidth < 768) {
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+        const scrollLeft = linkRect.left - navRect.left - (navRect.width / 2) + (linkRect.width / 2);
+        
+        nav.scrollTo({
+          left: nav.scrollLeft + scrollLeft,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Ejecutar al cargar y al redimensionar
+    window.addEventListener('load', centerActiveLink);
+    window.addEventListener('resize', centerActiveLink);
+
+    // Navegación entre secciones
+    const sectionTitle = document.getElementById('section-title');
+    const sectionContent = document.getElementById('section-content');
+    const prevBtn = document.getElementById('prev-section');
+    const nextBtn = document.getElementById('next-section');
+    const prevBtnMobile = document.getElementById('prev-section-mobile');
+    const nextBtnMobile = document.getElementById('next-section-mobile');
+
+    function updateSection(index: number) {
+      currentSectionIndex = index;
+      
+      if (sectionTitle && sectionContent) {
+        // Usar un cross-fade suave: fade out primero, luego cambiar contenido y fade in
+        
+        // Paso 1: Fade out del contenido actual
+        sectionTitle.style.transition = 'opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        sectionContent.style.transition = 'opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        sectionTitle.style.opacity = '0';
+        sectionContent.style.opacity = '0';
+        
+        // Paso 2: Después de que termine el fade out, cambiar contenido y fade in
+        setTimeout(() => {
+          // Usar las secciones actualizadas según el idioma
+          let currentSections;
+          if (globalSectionsData.length > 0) {
+            currentSections = globalSectionsData;
+          } else {
+            currentSections = getSections();
+          }
+          
+          sectionTitle.textContent = currentSections[index].title;
+          sectionContent.textContent = currentSections[index].content;
+          
+          // Fade in del nuevo contenido
+          setTimeout(() => {
+            sectionTitle.style.transition = 'opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            sectionContent.style.transition = 'opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            sectionTitle.style.opacity = '1';
+            sectionContent.style.opacity = '1';
+          }, 50);
+        }, 300);
+      }
+    }
+
+    function goToNextSection() {
+      const sections = globalSectionsData.length > 0 ? globalSectionsData : getSections();
+      const nextIndex = (currentSectionIndex + 1) % sections.length;
+      updateSection(nextIndex);
+    }
+
+    function goToPrevSection() {
+      const sections = globalSectionsData.length > 0 ? globalSectionsData : getSections();
+      const prevIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+      updateSection(prevIndex);
+    }
+
+    // Event listeners para desktop
+    if (prevBtn) prevBtn.addEventListener('click', goToPrevSection);
+    if (nextBtn) nextBtn.addEventListener('click', goToNextSection);
+    
+    // Event listeners para móvil
+    if (prevBtnMobile) prevBtnMobile.addEventListener('click', goToPrevSection);
+    if (nextBtnMobile) nextBtnMobile.addEventListener('click', goToNextSection);
   </script>
 </Layout>

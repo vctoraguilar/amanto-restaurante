@@ -595,7 +595,7 @@ const contactInfo = {
                   <p class="text-sm text-foreground/60 mb-6" data-translate="menu.refreshingNote">
                     Bebidas sin Alcohol
                   </p>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="flex justify-between text-sm">
                       <span>Limonada</span>
                       <span class="text-amber-500">S/. 10</span>
@@ -670,6 +670,9 @@ const contactInfo = {
     
     
 
+    <!-- Fondo oscuro para el menú de navegación (solo móvil) -->
+    <div class="nav-background absolute bottom-0 left-0 right-0 h-[25vh] z-40 md:hidden"></div>
+
     <!-- Navegación inferior -->
     <nav
       id="bottom-nav"
@@ -679,7 +682,7 @@ const contactInfo = {
     >
       <a
         href="/nosotros"
-        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
         data-translate="nav.about"
       >
@@ -687,7 +690,7 @@ const contactInfo = {
       </a>
       <a
         href="/carta"
-        class="nav-link active-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link active-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
         data-translate="nav.menu"
       >
@@ -695,7 +698,7 @@ const contactInfo = {
       </a>
       <a
         href="/reserva"
-        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
         data-translate="nav.reserve"
       >
@@ -708,6 +711,12 @@ const contactInfo = {
 </Layout>
 
 <style>
+  /* Fondo oscuro con degradado sutil en la parte superior para el menú */
+  .nav-background {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+    pointer-events: none;
+  }
+
   /* Barra inferior con degradado para los enlaces de navegación */
   .nav-link::after {
     content: '';
@@ -803,6 +812,16 @@ const contactInfo = {
   /* Asegurar que el TracingBeam sea visible */
   .custom-scrollbar svg {
     filter: drop-shadow(0 0 4px rgba(244, 159, 19, 0.3));
+  }
+
+  /* Precios más sutiles en móvil */
+  @media (max-width: 770px) {
+    .menu-item-card span.text-amber-500,
+    .menu-item-simple span.text-amber-500,
+    .menu-item-compact span.text-amber-500 {
+      font-size: 0.865rem;
+      font-weight: 500;
+    }
   }
 
   /* Ajuste para el sidebar dentro del contenedor scrollable */

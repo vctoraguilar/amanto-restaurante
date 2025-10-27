@@ -60,7 +60,7 @@ import TranslationScript from '../components/TranslationScript.astro';
             </div>
             
     <!-- Contenedor de navegación de secciones -->
-    <div class="relative md:absolute top-[15vh] md:top-[24.5vh] left-0 md:left-[46%] w-full md:w-[28.8%] z-20 flex items-center justify-center md:justify-start">
+    <div class="relative md:absolute top-1/2 -translate-y-1/2 md:top-[24.5vh] md:translate-y-0 left-0 md:left-[46%] w-full md:w-[28.8%] z-20 flex flex-col items-center justify-center md:justify-start">
       <!-- Flecha izquierda desktop -->
       <button
         id="prev-section"
@@ -76,23 +76,49 @@ import TranslationScript from '../components/TranslationScript.astro';
 
       <!-- Contenedor del título y contenido -->
       <div class="text-center w-[90%] md:w-auto">
-        <!-- Título dinámico -->
-        <div id="section-title-wrapper">
+        <!-- Título dinámico con flechas móviles -->
+        <div id="section-title-wrapper" class="flex items-center justify-center gap-4 md:gap-0">
+          <!-- Flecha izquierda móvil -->
+          <button
+            id="prev-section-mobile"
+            class="md:hidden flex items-center justify-center w-[20px] h-[20px] opacity-80 hover:opacity-100 transition-opacity z-30"
+            aria-label="Sección anterior"
+          >
+            <img 
+              src="/images/arrow.svg" 
+              alt="Anterior" 
+              class="w-full h-full object-contain transform rotate-[-90deg] filter brightness-0 invert"
+            />
+          </button>
+          
           <h1 
             id="section-title"
-            class="font-medium text-white text-sm md:text-base tracking-[6px] md:tracking-[9.60px] leading-normal whitespace-nowrap z-20" 
+            class="font-medium text-white text-sm md:text-base tracking-[6px] md:tracking-[9.60px] leading-normal md:whitespace-nowrap z-20" 
             style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;"
           >
             NOMBRE
           </h1>
+          
+          <!-- Flecha derecha móvil -->
+          <button
+            id="next-section-mobile"
+            class="md:hidden flex items-center justify-center w-[20px] h-[20px] opacity-80 hover:opacity-100 transition-opacity z-30"
+            aria-label="Sección siguiente"
+          >
+            <img 
+              src="/images/arrow.svg" 
+              alt="Siguiente" 
+              class="w-full h-full object-contain transform rotate-[90deg] scale-x-[-1] filter brightness-0 invert"
+            />
+          </button>
         </div>
 
         <!-- Texto principal dinámico -->
-        <article class="mt-[5vh] md:mt-[6vh] z-20 px-0 md:px-0">
+        <article class="mt-[5vh] md:mt-[6vh] z-20 px-6 md:px-0">
           <div id="section-content-wrapper">
             <p 
               id="section-content"
-              class="font-normal text-white text-sm md:text-base text-center tracking-[3px] md:tracking-[4.80px] leading-5 md:leading-6" 
+              class="font-normal text-white text-sm md:text-base text-center leading-5 md:leading-6" 
               style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif; white-space: pre-line;"
             >
               Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.
@@ -106,32 +132,6 @@ import TranslationScript from '../components/TranslationScript.astro';
       <button
         id="next-section"
         class="absolute right-[10vw] md:right-[-140px] md:top-[60%] -translate-y-1/2 hidden md:flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity z-30"
-        aria-label="Sección siguiente"
-      >
-        <img 
-          src="/images/arrow.svg" 
-          alt="Siguiente" 
-          class="w-full h-full object-contain transform rotate-[90deg] scale-x-[-1] filter brightness-0 invert"
-        />
-      </button>
-    </div>
-
-    <!-- Botones de navegación para móvil -->
-    <div class="absolute top-[13vh] left-1/2 -translate-x-1/2 md:hidden flex gap-6 z-30">
-      <button
-        id="prev-section-mobile"
-        class="flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity"
-        aria-label="Sección anterior"
-      >
-        <img 
-          src="/images/arrow.svg" 
-          alt="Anterior" 
-          class="w-full h-full object-contain transform rotate-[-90deg] filter brightness-0 invert"
-        />
-      </button>
-      <button
-        id="next-section-mobile"
-        class="flex items-center justify-center w-[30px] h-[30px] opacity-80 hover:opacity-100 transition-opacity"
         aria-label="Sección siguiente"
       >
         <img 
@@ -179,7 +179,7 @@ import TranslationScript from '../components/TranslationScript.astro';
     >
       <a
         href="/nosotros"
-        class="nav-link active-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link active-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
         data-translate="nav.about"
       >
@@ -187,7 +187,7 @@ import TranslationScript from '../components/TranslationScript.astro';
       </a>
       <a
         href="/carta"
-        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
         data-translate="nav.menu"
       >
@@ -195,7 +195,7 @@ import TranslationScript from '../components/TranslationScript.astro';
       </a>
       <a
         href="/reserva"
-        class="nav-link text-white md:text-2xl text-base md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
+        class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
         data-translate="nav.reserve"
       >
@@ -252,6 +252,14 @@ import TranslationScript from '../components/TranslationScript.astro';
       #section-title-wrapper, #section-content-wrapper {
         position: relative;
         min-height: 1.5em;
+      }
+      
+      /* En móvil, permitir que el título haga wrap si es necesario */
+      @media (max-width: 767px) {
+        #section-title {
+          white-space: normal;
+          word-break: break-word;
+        }
       }
   </style>
 

@@ -15,15 +15,15 @@ const currentPath = Astro.url.pathname;
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center gap-8">
-        <a href="/" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/' ? 'active' : ''}`}>
+        <link href="/" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/' ? 'active' : ''}`}>
           <span data-translate="nav.home">Inicio</span>
-        </a>
-        <a href="/nosotros" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/nosotros' ? 'active' : ''}`}>
+        </link>
+        <link href="/nosotros" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/nosotros' ? 'active' : ''}`}>
           <span data-translate="nav.about">Nosotros</span>
-        </a>
-        <a href="/carta" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/carta' ? 'active' : ''}`}>
+        </link>
+        <link href="/carta" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/carta' ? 'active' : ''}`}>
           <span data-translate="nav.menu">Carta</span>
-        </a>
+        </link>
         <div class="flex justify-center">
           <LanguageSelector client:load />
         </div>
@@ -42,7 +42,7 @@ const currentPath = Astro.url.pathname;
               as="button"
               className="bg-black text-white px-12 py-2 text-sm font-medium"
             >
-              <span data-translate="nav.reserve">Reservar</span>
+              <link data-translate="nav.reserve">Reservar</link>
             </HoverBorderGradient>
           </a>
         </GlowingEffect>
@@ -60,15 +60,15 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile Navigation -->
     <div class="md:hidden mt-4 hidden" id="mobile-menu">
       <div class="flex flex-col space-y-4 py-4">
-        <a href="/" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/' ? 'active' : ''}`}>
+        <link href="/" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/' ? 'active' : ''}`}>
           <span data-translate="nav.home">Inicio</span>
-        </a>
-        <a href="/nosotros" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/nosotros' ? 'active' : ''}`}>
+        </link>
+        <link href="/nosotros" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/nosotros' ? 'active' : ''}`}>
           <span data-translate="nav.about">Nosotros</span>
-        </a>
-        <a href="/carta" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/carta' ? 'active' : ''}`}>
+        </link>
+        <link href="/carta" class={`nav-link text-white hover:text-white transition-colors ${currentPath === '/carta' ? 'active' : ''}`}>
           <span data-translate="nav.menu">Carta</span>
-        </a>
+        </link>
         <div class="flex justify-center mt-8">
           <LanguageSelector client:load />
         </div>

@@ -21,8 +21,8 @@ import TranslationScript from '../components/TranslationScript.astro';
     />
 
     <!-- Logo superior izquierdo -->
-    <div
-      onclick="window.location.href = '/'"
+    <a
+      href="/"
       class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
@@ -38,7 +38,7 @@ import TranslationScript from '../components/TranslationScript.astro';
       <svg class="block md:hidden w-[50%] h-[50%] transition-colors duration-300" viewBox="0 0 32 31.72" xmlns="http://www.w3.org/2000/svg">
         <path class="logo-icon" fill="#ffffff" d="M16,14.98C8,9.26,0,3.83,0,0v31.72h6.43c1.13-3.05,5.3-6.21,9.57-9.16,4.26,2.95,8.44,6.11,9.57,9.16h6.43V0c0,3.83-8,9.26-16,14.98ZM6.43,22.31v-6.99c.94,1.08,2.46,2.28,4.24,3.56-1.5,1.15-2.94,2.29-4.24,3.43ZM21.33,18.88c1.78-1.27,3.3-2.47,4.24-3.56v6.99c-1.3-1.14-2.73-2.28-4.24-3.43Z"/>
       </svg>
-    </div>
+    </a>
       
     <!-- Selector de idioma superior derecho -->
     <div
@@ -181,24 +181,54 @@ import TranslationScript from '../components/TranslationScript.astro';
     const savedLang = getCurrentLanguage();
     updateLanguage(savedLang);
 
-    // Script para cambio de imagen de fondo al hacer hover con efecto crossfade
-    const navLinks = document.querySelectorAll('.nav-link');
-    const bgImage2 = document.getElementById('background-image-2') as HTMLImageElement;
+    // Función para inicializar el efecto hover del menú
+    function setupNavHover() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const bgImage2 = document.getElementById('background-image-2') as HTMLImageElement;
 
-    navLinks.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        const newBg = link.getAttribute('data-bg');
-        if (newBg) {
-          // Cargar nueva imagen en la capa superior y hacer fade in
-          bgImage2.src = newBg;
-          bgImage2.style.opacity = '1';
+      if (!bgImage2) return;
+
+      navLinks.forEach(link => {
+        // Verificar si ya tiene el atributo data-hover-setup para evitar duplicados
+        if (link.hasAttribute('data-hover-setup')) {
+          return;
         }
-      });
+        
+        // Marcar como inicializado
+        link.setAttribute('data-hover-setup', 'true');
+        
+        link.addEventListener('mouseenter', () => {
+          const newBg = link.getAttribute('data-bg');
+          if (newBg && bgImage2) {
+            // Cargar nueva imagen en la capa superior y hacer fade in
+            bgImage2.src = newBg;
+            bgImage2.style.opacity = '1';
+          }
+        });
 
-      link.addEventListener('mouseleave', () => {
-        // Hacer fade out de la capa superior para revelar la imagen original de la capa base
-        bgImage2.style.opacity = '0';
+        link.addEventListener('mouseleave', () => {
+          if (bgImage2) {
+            // Hacer fade out de la capa superior para revelar la imagen original de la capa base
+            bgImage2.style.opacity = '0';
+          }
+        });
       });
+    }
+
+    // Inicializar al cargar la página
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupNavHover);
+    } else {
+      setupNavHover();
+    }
+
+    // Reinicializar después de cada transición de View Transitions
+    document.addEventListener('astro:page-load', () => {
+      // Remover marca de inicialización para permitir reinicializar
+      document.querySelectorAll('.nav-link[data-hover-setup]').forEach(link => {
+        link.removeAttribute('data-hover-setup');
+      });
+      setupNavHover();
     });
   </script>
 </Layout>

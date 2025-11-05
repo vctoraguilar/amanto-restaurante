@@ -12,8 +12,8 @@
   "dependencies": {
     "@astrojs/react": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.3.0",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "@types/three": "^0.180.0",
     "astro": "^4.0.0",
     "class-variance-authority": "^0.7.1",

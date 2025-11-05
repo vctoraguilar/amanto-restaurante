@@ -1,15 +1,55 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import TranslationScript from '../components/TranslationScript.astro';
+import Layout from '../../layouts/Layout.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import TranslationScript from '../../components/TranslationScript.astro';
+import esTranslations from '../../i18n/es.json';
+import enTranslations from '../../i18n/en.json';
+
+// Función para obtener traducciones según el idioma
+function getTranslations(locale: string) {
+  return locale === 'es' ? esTranslations : enTranslations;
+}
+
+// Función helper para obtener traducciones
+function t(key: string, locale: string): string {
+  const translations = getTranslations(locale);
+  const keys = key.split('.');
+  let value: any = translations;
+  for (const k of keys) {
+    value = value?.[k];
+  }
+  return typeof value === 'string' ? value : key;
+}
+
+// Obtener el locale desde los parámetros de la ruta
+const currentLocale = Astro.params.lang || 'en';
+
+// Obtener traducciones
+const pageTitle = t('about.title', currentLocale);
+const aboutText = t('nav.about', currentLocale);
+const menuText = t('nav.menu', currentLocale);
+const reserveText = t('nav.reserve', currentLocale);
+const addressText = t('footer.address', currentLocale);
+const cityText = t('footer.city', currentLocale);
+const scheduleText = t('footer.scheduleText', currentLocale);
+const scheduleHours = t('footer.scheduleHours', currentLocale);
+
+// Exportar getStaticPaths para generar rutas estáticas
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+  ];
+}
 ---
 
-<Layout title="Nosotros - Amanto">
+<Layout title={`${pageTitle} - Amanto`} lang={currentLocale}>
   <div class="bg-black overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo -->
     <img
       class="absolute top-0 left-0 w-full h-full object-cover z-0"
       alt="Amanto Nosotros"
-          src="/images/nosotros.webp" 
+      src="/images/nosotros.webp" 
     />
 
     <!-- Capa oscura semi-transparente -->
@@ -17,7 +57,7 @@ import TranslationScript from '../components/TranslationScript.astro';
 
     <!-- Logo superior izquierdo -->
     <a
-      href="/"
+      href={`/${currentLocale}`}
       class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
@@ -36,28 +76,7 @@ import TranslationScript from '../components/TranslationScript.astro';
     </a>
             
     <!-- Selector de idioma superior derecho -->
-    <div
-      class="absolute top-[5.5vh] right-[5vw] md:right-[8.5vw] font-bold text-xs md:text-base tracking-[2px] md:tracking-[4.80px] leading-normal whitespace-nowrap z-50"
-      role="navigation"
-      aria-label="Language selector"
-    >
-      <button
-        class="text-white tracking-[0.77px] hover:text-[#f49f13] transition-colors"
-        data-lang="en"
-        aria-label="Switch to EN"
-      >
-        EN
-      </button>
-      <span class="text-white tracking-[0.77px]"> | </span>
-      <button
-        class="text-[#f49f13] tracking-[0.77px] hover:text-white transition-colors"
-        data-lang="es"
-        aria-label="Switch to ES"
-        aria-current="true"
-      >
-        ES
-      </button>
-            </div>
+    <LanguageSwitcher currentLocale={currentLocale} />
             
     <!-- Contenedor de navegación de secciones -->
     <div class="relative md:absolute top-1/2 -translate-y-1/2 md:top-[24.5vh] md:translate-y-0 left-0 md:left-[46%] w-full md:w-[28.8%] z-20 flex flex-col items-center justify-center md:justify-start">
@@ -83,7 +102,7 @@ import TranslationScript from '../components/TranslationScript.astro';
             class="font-medium text-white text-sm md:text-base tracking-[6px] md:tracking-[9.60px] leading-normal md:whitespace-nowrap z-20" 
             style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;"
           >
-            NOMBRE
+            {t('about.sectionNombre', currentLocale)}
           </h1>
         </div>
 
@@ -108,8 +127,7 @@ import TranslationScript from '../components/TranslationScript.astro';
               class="font-normal text-white text-sm md:text-base text-center leading-5 md:leading-6" 
               style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif; white-space: pre-line;"
             >
-              Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.
-              Adicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.
+              {t('about.sectionNombreText', currentLocale)}
             </p>
             
             <!-- Flecha derecha móvil -->
@@ -144,14 +162,14 @@ import TranslationScript from '../components/TranslationScript.astro';
 
     <!-- Información de contacto - Dirección -->
     <address class="hidden md:block absolute bottom-[18vh] left-[24.3%] font-normal text-white text-sm tracking-[0] leading-[21px] not-italic z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      <span data-translate="footer.address">Calle Horno S/N (Esquina con la plaza)</span><br />
-      <span data-translate="footer.city">Ollantaytambo, Urubamba, Cusco</span>
+      {addressText}<br />
+      {cityText}
     </address>
 
     <!-- Información de contacto - Horarios -->
     <p class="hidden md:block absolute bottom-[18vh] left-[57%] font-normal text-white text-sm text-center tracking-[0] leading-[21px] z-20" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
-      <span data-translate="footer.scheduleText">Lunes a Domingo</span><br />
-      <span data-translate="footer.scheduleHours">12:30 PM - 09:00 PM</span>
+      {scheduleText}<br />
+      {scheduleHours}
     </p>
 
     <!-- Información de contacto - Teléfono y Email -->
@@ -178,31 +196,28 @@ import TranslationScript from '../components/TranslationScript.astro';
       aria-label="Main navigation"
     >
       <a
-        href="/nosotros"
+        href={`/${currentLocale}/nosotros`}
         class="nav-link active-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.about"
       >
-        NOSOTROS
+        {aboutText}
       </a>
       <a
-        href="/carta"
+        href={`/${currentLocale}/carta`}
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.menu"
       >
-        CARTA
+        {menuText}
       </a>
       <a
-        href="/reserva"
+        href={`/${currentLocale}/reserva`}
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.reserve"
       >
-        RESERVA
+        {reserveText}
       </a>
     </nav>
-            </div>
+  </div>
 
   <style>
     /* Barra inferior con degradado para los enlaces de navegación */
@@ -237,53 +252,75 @@ import TranslationScript from '../components/TranslationScript.astro';
       display: none;
     }
 
-         .scrollbar-hide {
-       -ms-overflow-style: none;
-       scrollbar-width: none;
-     }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
-     /* Transición suave y delicada para las secciones */
-      #section-title, #section-content {
-        transition: opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        position: relative;
+    /* Transición suave y delicada para las secciones */
+    #section-title, #section-content {
+      transition: opacity 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+    
+    /* Contenedor para el efecto de cross-fade */
+    #section-title-wrapper, #section-content-wrapper {
+      position: relative;
+      min-height: 1.5em;
+    }
+    
+    /* En móvil, permitir que el título haga wrap si es necesario */
+    @media (max-width: 767px) {
+      #section-title {
+        white-space: normal;
+        word-break: break-word;
       }
       
-      /* Contenedor para el efecto de cross-fade */
-      #section-title-wrapper, #section-content-wrapper {
-        position: relative;
-        min-height: 1.5em;
+      /* Ajustar ancho del contenido con flechas en móvil */
+      #section-content-wrapper {
+        width: 100%;
+        max-width: 100%;
       }
       
-      /* En móvil, permitir que el título haga wrap si es necesario */
-      @media (max-width: 767px) {
-        #section-title {
-          white-space: normal;
-          word-break: break-word;
-        }
-        
-        /* Ajustar ancho del contenido con flechas en móvil */
-        #section-content-wrapper {
-          width: 100%;
-          max-width: 100%;
-        }
-        
-        #section-content-wrapper p {
-          flex: 1;
-          min-width: 0;
-        }
-        
-        /* Mayor margen para el contenido en móvil */
-        #section-content {
-          margin-left: 0.5rem;
-          margin-right: 0.5rem;
-        }
+      #section-content-wrapper p {
+        flex: 1;
+        min-width: 0;
       }
+      
+      /* Mayor margen para el contenido en móvil */
+      #section-content {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+    }
   </style>
 
   <TranslationScript />
   
-  <script>
-    import { translations, getCurrentLanguage } from '../lib/translations';
+  <script define:vars={{ currentLocale }}>
+    // Importar traducciones usando import map o fetch
+    const translations = {
+      es: {
+        about: {
+          sectionNombre: 'NOMBRE',
+          sectionNombreText: 'Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.\nAdicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.',
+          sectionCocina: 'COCINA',
+          sectionCocinaText: 'Amanto elabora su propia interpretación de los platos peruanos y su cocina está basada en especias locales: verduras cultivadas como la quinua, papa andina; trucha de río y carne de res autóctona.\n\nLa base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.',
+          sectionProposito: 'PROPÓSITO',
+          sectionPropositoText: 'Nuestra misión es cautivar tus sentidos a través de una experiencia culinaria memorable.\n\nNuestra visión es ser un destino culinario único, reconocido por nuestra excelencia y autenticidad.\n\nNuestros valores son la búsqueda constante de la innovación y la felicidad para atender.',
+        }
+      },
+      en: {
+        about: {
+          sectionNombre: 'NAME',
+          sectionNombreText: 'Our name Amanto, pays tribute to Ollantaytambo\'s most powerful legend. It is born from the fusion of the brave General Ollantay and his role as the lover who defied an empire for love. That is our essence: a spirit of struggle and passion. Furthermore, "Amanto" is a gesture: "I Amanto," the act of embracing and protecting. In this way, our name is also a promise to be a warm refuge in the heart of the Andes.',
+          sectionCocina: 'CUISINE',
+          sectionCocinaText: 'Amanto creates its own interpretation of Peruvian cuisine, rooted in local ingredients such as quinoa, Andean potatoes, river trout, and native beef.\n\nThe foundation of our menu lies in a diverse collection of spices from across the Sacred Valley, carefully selected to create distinctive and unforgettable flavors.',
+          sectionProposito: 'PURPOSE',
+          sectionPropositoText: 'Our mission is to captivate your senses through a memorable culinary experience.\n\nOur vision is to be a unique culinary destination, recognized for our authenticity and excellence.\n\nOur values are the continuous pursuit of innovation and the joy of serving you.',
+        }
+      }
+    };
 
     // Variable global para almacenar las secciones según el idioma
     let globalSectionsData: Array<{ title: string; content: string }> = [];
@@ -291,9 +328,7 @@ import TranslationScript from '../components/TranslationScript.astro';
 
     // Obtener secciones según el idioma actual
     function getSections() {
-      // Leer el idioma del atributo del documento que establece TranslationScript
-      const lang = (document.documentElement.getAttribute('data-language') || localStorage.getItem('language') || 'es') as 'es' | 'en';
-      const t = translations[lang];
+      const t = translations[currentLocale as 'es' | 'en'];
       return [
         { 
           title: t.about.sectionNombre, 
@@ -339,16 +374,10 @@ import TranslationScript from '../components/TranslationScript.astro';
       // Actualizar el array de secciones global
       globalSectionsData = sections;
     }
-    
-      // Escuchar cambios de idioma para actualizar las secciones
-      window.addEventListener('languageChanged', () => {
-        globalSectionsData = getSections();
-        updateSectionsContent();
-      });
 
-      // Inicializar secciones al cargar
-      globalSectionsData = getSections();
-      updateSectionsContent();
+    // Inicializar secciones al cargar
+    globalSectionsData = getSections();
+    updateSectionsContent();
 
     // Centrar el enlace activo en móvil
     function centerActiveLink() {
@@ -436,3 +465,4 @@ import TranslationScript from '../components/TranslationScript.astro';
     if (nextBtnMobile) nextBtnMobile.addEventListener('click', goToNextSection);
   </script>
 </Layout>
+

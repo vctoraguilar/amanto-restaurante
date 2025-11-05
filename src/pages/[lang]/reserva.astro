@@ -1,25 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import TranslationScript from '../components/TranslationScript.astro';
-import { HoverBorderGradient } from '../components/ui/HoverBorderGradient';
+import Layout from '../../layouts/Layout.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import { HoverBorderGradient } from '../../components/ui/HoverBorderGradient';
+import esTranslations from '../../i18n/es.json';
+import enTranslations from '../../i18n/en.json';
 
-const contactInfo = {
-  address: {
-    line1: "Calle Horno S/N (Esquina con la plaza)",
-    line2: "Ollantaytambo, Urubamba, Cusco",
-  },
-  hours: {
-    days: "Lunes a Domingo",
-    time: "12:00 p.m. - 10:00 p.m.",
-  },
-  contact: {
-    phone: "+51 906 919 229",
-    email: "reservas@amantorestaurante.com",
-  },
-};
+// Función para obtener traducciones según el idioma
+function getTranslations(locale: string) {
+  return locale === 'es' ? esTranslations : enTranslations;
+}
+
+// Función helper para obtener traducciones
+function t(key: string, locale: string): string {
+  const translations = getTranslations(locale);
+  const keys = key.split('.');
+  let value: any = translations;
+  for (const k of keys) {
+    value = value?.[k];
+  }
+  return typeof value === 'string' ? value : key;
+}
+
+// Obtener el locale desde los parámetros de la ruta
+const currentLocale = Astro.params.lang || 'en';
+
+// Obtener traducciones
+const pageTitle = t('reserve.title', currentLocale);
+const description = t('reserve.description', currentLocale);
+const buttonText = t('reserve.button', currentLocale);
+const aboutText = t('nav.about', currentLocale);
+const menuText = t('nav.menu', currentLocale);
+const reserveText = t('nav.reserve', currentLocale);
+
+// Exportar getStaticPaths para generar rutas estáticas
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+  ];
+}
 ---
 
-<Layout title="Reserva - Amanto" description="Reserva tu mesa en Amanto y vive una experiencia gastronómica única">
+<Layout title={`Reserva - Amanto`} description={description} lang={currentLocale}>
   <div class="bg-black overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo -->
     <img
@@ -33,13 +55,13 @@ const contactInfo = {
       <!-- Contenido central -->
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] md:w-[29%] flex flex-col items-center px-4 md:px-0">
         <!-- Título principal -->
-        <h1 class="font-medium text-white text-sm md:text-base text-center tracking-[0.06em] md:tracking-[0.096em] leading-normal" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;" data-translate="reserve.title">
-          ÚNETE A LA EXPERIENCIA AMANTO
+        <h1 class="font-medium text-white text-sm md:text-base text-center tracking-[0.06em] md:tracking-[0.096em] leading-normal" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;">
+          {pageTitle}
         </h1>
 
         <!-- Descripción -->
-        <p class="mt-[40px] md:mt-[63px] w-full font-normal text-white text-sm md:text-base text-center tracking-[0.03em] md:tracking-[0.048em] leading-5 md:leading-6" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;" data-translate="reserve.description">
-          Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía.
+        <p class="mt-[40px] md:mt-[63px] w-full font-normal text-white text-sm md:text-base text-center tracking-[0.03em] md:tracking-[0.048em] leading-5 md:leading-6" style="font-family: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;">
+          {description}
         </p>
 
         <!-- Botón de reserva -->
@@ -50,8 +72,8 @@ const contactInfo = {
           duration={1.5}
           client:load
         >
-          <span class="text-sm md:text-base tracking-[0.03em] md:tracking-[0.048em] whitespace-nowrap" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;" data-translate="reserve.button">
-            Reservar
+          <span class="text-sm md:text-base tracking-[0.03em] md:tracking-[0.048em] whitespace-nowrap" style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 500;">
+            {buttonText}
           </span>
         </HoverBorderGradient>
       </div>
@@ -59,7 +81,7 @@ const contactInfo = {
 
     <!-- Logo superior izquierdo -->
     <a
-      href="/"
+      href={`/${currentLocale}`}
       class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
@@ -78,30 +100,7 @@ const contactInfo = {
     </a>
     
     <!-- Selector de idioma superior derecho -->
-    <div
-      class="absolute top-[5.5vh] right-[5vw] md:right-[8.5vw] font-bold text-xs md:text-base tracking-[2px] md:tracking-[4.80px] leading-normal whitespace-nowrap z-50"
-      role="navigation"
-      aria-label="Language selector"
-    >
-      <button
-        class="text-white tracking-[0.77px] hover:text-[#f49f13] transition-colors"
-        data-lang="en"
-        aria-label="Switch to EN"
-      >
-        EN
-      </button>
-      <span class="text-white tracking-[0.77px]"> | </span>
-      <button
-        class="text-[#f49f13] tracking-[0.77px] hover:text-white transition-colors"
-        data-lang="es"
-        aria-label="Switch to ES"
-        aria-current="true"
-      >
-        ES
-      </button>
-    </div>
-
-   
+    <LanguageSwitcher currentLocale={currentLocale} />
 
     <!-- Navegación inferior -->
     <nav
@@ -111,28 +110,25 @@ const contactInfo = {
       aria-label="Main navigation"
     >
       <a
-        href="/nosotros"
+        href={`/${currentLocale}/nosotros`}
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.about"
       >
-        NOSOTROS
+        {aboutText}
       </a>
       <a
-        href="/carta"
+        href={`/${currentLocale}/carta`}
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.menu"
       >
-        CARTA
+        {menuText}
       </a>
       <a
-        href="/reserva"
+        href={`/${currentLocale}/reserva`}
         class="nav-link active-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.reserve"
       >
-        RESERVA
+        {reserveText}
       </a>
     </nav>
   </div>
@@ -175,30 +171,28 @@ const contactInfo = {
       scrollbar-width: none;
     }
   </style>
-
-  <TranslationScript />
   
   <script>
     // Centrar el enlace activo en móvil
-  function centerActiveLink() {
-    const nav = document.getElementById('bottom-nav');
-    const activeLink = nav?.querySelector('.active-link');
-    
-    if (nav && activeLink && window.innerWidth < 768) {
-      const navRect = nav.getBoundingClientRect();
-      const linkRect = activeLink.getBoundingClientRect();
-      const scrollLeft = linkRect.left - navRect.left - (navRect.width / 2) + (linkRect.width / 2);
+    function centerActiveLink() {
+      const nav = document.getElementById('bottom-nav');
+      const activeLink = nav?.querySelector('.active-link');
       
-      nav.scrollTo({
-        left: nav.scrollLeft + scrollLeft,
-        behavior: 'smooth'
-      });
+      if (nav && activeLink && window.innerWidth < 768) {
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = activeLink.getBoundingClientRect();
+        const scrollLeft = linkRect.left - navRect.left - (navRect.width / 2) + (linkRect.width / 2);
+        
+        nav.scrollTo({
+          left: nav.scrollLeft + scrollLeft,
+          behavior: 'smooth'
+        });
+      }
     }
-  }
 
-  // Ejecutar al cargar y al redimensionar
-  window.addEventListener('load', centerActiveLink);
-  window.addEventListener('resize', centerActiveLink);
+    // Ejecutar al cargar y al redimensionar
+    window.addEventListener('load', centerActiveLink);
+    window.addEventListener('resize', centerActiveLink);
   </script>
 </Layout>
 

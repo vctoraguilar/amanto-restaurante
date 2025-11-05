@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "NOSOTROS",
+    "menu": "CARTA",
+    "reserve": "RESERVA"
+  },
+  "about": {
+    "title": "Nosotros",
+    "sectionNombre": "NOMBRE",
+    "sectionNombreText": "Nuestro nombre, \"Amanto\", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.\nAdicionalmente, \"Amanto\" es un gesto: \"yo amanto\", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.",
+    "sectionCocina": "COCINA",
+    "sectionCocinaText": "Amanto elabora su propia interpretación de los platos peruanos y su cocina está basada en especias locales: verduras cultivadas como la quinua, papa andina; trucha de río y carne de res autóctona.\n\nLa base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.",
+    "sectionProposito": "PROPÓSITO",
+    "sectionPropositoText": "Nuestra misión es cautivar tus sentidos a través de una experiencia culinaria memorable.\n\nNuestra visión es ser un destino culinario único, reconocido por nuestra excelencia y autenticidad.\n\nNuestros valores son la búsqueda constante de la innovación y la felicidad para atender."
+  },
+  "reserve": {
+    "title": "ÚNETE A LA EXPERIENCIA AMANTO",
+    "description": "Descubre por qué somos únicos y déjanos sorprenderte con nuestra pasión por la gastronomía",
+    "button": "Reservar"
+  },
+  "menu": {
+    "title": "Nuestra Carta",
+    "description": "Una experiencia culinaria que cuenta historias de amor, tradición y pasión",
+    "storyTitle": "¿Qué hay detrás de nuestro nombre?",
+    "storyText1": "A estas alturas de tu viaje ya has conocido el lado material y palpable de nuestro pueblo de Ollantaytambo; canchas inkas, terrazas y construcciones de piedra esculpidas por nuestros ancestros. Pero, ¿Qué hay del lado inmaterial de nuestros antepasados, el trabajo arduo, las tristezas, las fiestas o los amoríos?",
+    "storyText2": "Amoríos incluso prohibidos, vamos! ¿quién no ha tenido un amor prohibido en sus vidas?, pero del que les queremos hablar fue uno que dividió estas tierras en dos frentes, todo por el amor de Cusi Qoyllor, princesa Inka, hija del último Inka Pachacuteq, y amor prohibido de su general de guerra, Ollantay.",
+    "storyText3": "Esté, era un romance imposible por la diferencia de clases de la época Inka, teniendo que verse cual amantes, a escondidas, hasta que fueron separados, iniciándose una guerra sin treguas, a morir.",
+    "storyText4": "Por ello, cuando recorras nuestras calles, sabrás que ahí se luchó por el amor, amores prohibidos que aun se tejen en nuestro pueblo, amores que fueron casi imposibles, pero fueron triunfantes como el de Juan y Elsa o Raúl y Raquel, nuestros padres, o como el de nosotros, Carmen y Alonso.",
+    "storyConclusion": "Este amor ahora se materializa en nuestra comida sagrada. Bienvenido a Amanto.",
+    "appetizers": "Aperitivos",
+    "soups": "Sopas",
+    "mainCourses": "Fondos",
+    "desserts": "Postres",
+    "toShare": "Para Compartir",
+    "toShareNote": "Pide tu piqueo con papas nativas o ensalada de la casa",
+    "authorCocktails": "Cócteles de Autor",
+    "cocktails": "Cócteles",
+    "mixedDrinks": "Cócteles",
+    "forWinter": "Para el Frío",
+    "wines": "Vinos",
+    "winesNote": "Copa - Botella",
+    "redWines": "Tintos",
+    "whiteWines": "Blancos",
+    "beers": "Cervezas",
+    "refreshing": "Refrescantes",
+    "refreshingNote": "Bebidas sin Alcohol",
+    "coldDrinks": "Bebidas Frías",
+    "hotInfusions": "Infusiones Calientes",
+    "ctaTitle": "¿Listo para vivir la experiencia Amanto?",
+    "ctaDescription": "Reserva tu mesa y déjate cautivar por nuestra propuesta culinaria",
+    "reserveTable": "Reservar Mesa"
+  },
+  "footer": {
+    "description": "Experiencias culinarias únicas en el corazón del Valle Sagrado",
+    "contact": "Contacto",
+    "address": "Calle Horno S/N (Esquina con la plaza)",
+    "city": "Ollantaytambo, Urubamba, Cusco",
+    "followUs": "Síguenos",
+    "schedule": "Horario",
+    "scheduleText": "Lunes a Domingo",
+    "scheduleHours": "12:30 PM - 09:00 PM",
+    "rights": "Todos los derechos reservados"
+  }
+}

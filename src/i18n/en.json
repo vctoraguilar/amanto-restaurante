@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT US",
+    "menu": "MENU",
+    "reserve": "RESERVE"
+  },
+  "about": {
+    "title": "About Us",
+    "sectionNombre": "NAME",
+    "sectionNombreText": "Our name Amanto, pays tribute to Ollantaytambo's most powerful legend. It is born from the fusion of the brave General Ollantay and his role as the lover who defied an empire for love. That is our essence: a spirit of struggle and passion. Furthermore, \"Amanto\" is a gesture: \"I Amanto,\" the act of embracing and protecting. In this way, our name is also a promise to be a warm refuge in the heart of the Andes.",
+    "sectionCocina": "CUISINE",
+    "sectionCocinaText": "Amanto creates its own interpretation of Peruvian cuisine, rooted in local ingredients such as quinoa, Andean potatoes, river trout, and native beef.\n\nThe foundation of our menu lies in a diverse collection of spices from across the Sacred Valley, carefully selected to create distinctive and unforgettable flavors.",
+    "sectionProposito": "PURPOSE",
+    "sectionPropositoText": "Our mission is to captivate your senses through a memorable culinary experience.\n\nOur vision is to be a unique culinary destination, recognized for our authenticity and excellence.\n\nOur values are the continuous pursuit of innovation and the joy of serving you."
+  },
+  "reserve": {
+    "title": "JOIN THE AMANTO EXPERIENCE",
+    "description": "Discover why we are unique and let us surprise you with our passion for gastronomy",
+    "button": "Reserve"
+  },
+  "menu": {
+    "title": "Our Menu",
+    "description": "A culinary experience that tells stories of love, tradition, and passion",
+    "storyTitle": "The meaning behind our name",
+    "storyText1": "At this point on your trip you have likely encountered the visual and material side of Ollantaytambo: the Inca courts, terraces, and stone constructions sculpted by our ancestors. But, what about the immaterial side? The invisible hard work, tears, celebrations, and love affairs? Even forbidden love affairs…",
+    "storyText2": "Now, who hasn't had a forbidden love in their life? In Ollantaytambo, there was a forbidden love that would divide these lands into two, and that has reverberated throughout our community for generations. It was a love between Cusi Qoyllor, an Inka princess and daughter of the last Inka, Pachacuteq, and Pachacuteq's greatest war general, Ollantay.",
+    "storyText3": "Though Ollantay and Cusi Qoyllor were deeply in love, their marriage was impossible. During Incan times only royals (Incas) could marry other royals. But, General Ollantay was a commoner. So, they had to sneak around to see each other. One day, however, they were discovered and separated.",
+    "storyText4": "But, Ollantay refused to be separated from his true love—so he went to war with Inka Pachacuteq. Eventually, and despite all odds, Ollantay was reunited with Cusi Qoyllor. So, when you walk through the streets of Ollantaytambo, know that here, there was a fight for love.",
+    "storyConclusion": "This love is infused in our sacred food. Welcome to Amanto.",
+    "appetizers": "Appetizers",
+    "soups": "Soups",
+    "mainCourses": "Main Courses",
+    "desserts": "Desserts",
+    "toShare": "To Share",
+    "toShareNote": "Each snack comes with your choice of native potatoes or a house salad",
+    "authorCocktails": "Signature Cocktails",
+    "cocktails": "Cocktails",
+    "mixedDrinks": "Mixed Drinks",
+    "forWinter": "For the Winter",
+    "wines": "Wines",
+    "winesNote": "Glass - Bottle",
+    "redWines": "Red Wines",
+    "whiteWines": "White Wines",
+    "beers": "Beers",
+    "refreshing": "Refreshing Drinks",
+    "refreshingNote": "Non-alcoholic",
+    "coldDrinks": "Cold Drinks",
+    "hotInfusions": "Hot Infusions",
+    "ctaTitle": "Ready to live the Amanto experience?",
+    "ctaDescription": "Reserve your table and let yourself be captivated by our culinary proposal",
+    "reserveTable": "Reserve Table"
+  },
+  "footer": {
+    "description": "Unique culinary experiences in the heart of the Sacred Valley",
+    "contact": "Contact",
+    "address": "Calle Horno S/N (Corner with the plaza)",
+    "city": "Ollantaytambo, Urubamba, Cusco",
+    "followUs": "Follow Us",
+    "schedule": "Schedule",
+    "scheduleText": "Monday to Sunday",
+    "scheduleHours": "12:30 PM - 09:00 PM",
+    "rights": "All rights reserved"
+  }
+}

@@ -1,16 +1,60 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import TranslationScript from '../components/TranslationScript.astro';
+/**
+ * Ejemplo de página con i18n nativo de Astro 4.0
+ * 
+ * Esta página demuestra cómo usar:
+ * - Astro.params para obtener el locale de la ruta dinámica
+ * - Importar archivos JSON de traducción
+ * - Generar rutas estáticas con getStaticPaths
+ */
+import Layout from '../../layouts/Layout.astro';
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
+import esTranslations from '../../i18n/es.json';
+import enTranslations from '../../i18n/en.json';
+
+// Función para obtener traducciones según el idioma
+function getTranslations(locale: string) {
+  return locale === 'es' ? esTranslations : enTranslations;
+}
+
+// Función helper para obtener traducciones
+function t(key: string, locale: string): string {
+  const translations = getTranslations(locale);
+  const keys = key.split('.');
+  let value: any = translations;
+  for (const k of keys) {
+    value = value?.[k];
+  }
+  return typeof value === 'string' ? value : key;
+}
+
+// Obtener el locale desde los parámetros de la ruta
+const currentLocale = Astro.params.lang || 'en';
+
+// Obtener traducciones
+const pageTitle = t('nav.home', currentLocale);
+const aboutText = t('nav.about', currentLocale);
+const menuText = t('nav.menu', currentLocale);
+const reserveText = t('nav.reserve', currentLocale);
+const footerDescription = t('footer.description', currentLocale);
+
+// Exportar getStaticPaths para generar rutas estáticas
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'es' } },
+  ];
+}
 ---
 
-<Layout title="Amanto - Ollantaytambo">
+<Layout title={`Amanto - ${pageTitle}`} description={footerDescription} lang={currentLocale}>
   <div class="bg-black overflow-hidden w-screen h-screen relative">
     <!-- Imagen de fondo - capa base -->
     <img
       id="background-image-1"
       class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out z-0"
       alt="Amanto Restaurant"
-      src="/images/mesa.webp"
+      src="/images/mesa.webp" 
     />
     <!-- Imagen de fondo - capa superior para crossfade -->
     <img
@@ -22,7 +66,7 @@ import TranslationScript from '../components/TranslationScript.astro';
 
     <!-- Logo superior izquierdo -->
     <a
-      href="/"
+      href={`/${currentLocale}`}
       class="absolute top-[3.5vh] left-[3.4vw] w-[60px] md:w-[9.8vw] h-auto z-50 cursor-pointer logo-container"
       role="img"
       aria-label="Amanto logo"
@@ -41,28 +85,7 @@ import TranslationScript from '../components/TranslationScript.astro';
     </a>
       
     <!-- Selector de idioma superior derecho -->
-    <div
-      class="absolute top-[5.5vh] right-[5vw] md:right-[8.5vw] font-bold text-xs md:text-base tracking-[2px] md:tracking-[4.80px] leading-normal whitespace-nowrap z-50"
-      role="navigation"
-      aria-label="Language selector"
-    >
-      <button
-        class="text-white tracking-[0.77px] hover:text-[#f49f13] transition-colors"
-        data-lang="en"
-        aria-label="Switch to EN"
-      >
-        EN
-      </button>
-      <span class="text-white tracking-[0.77px]"> | </span>
-      <button
-        class="text-[#f49f13] tracking-[0.77px] hover:text-white transition-colors"
-        data-lang="es"
-        aria-label="Switch to ES"
-        aria-current="true"
-      >
-        ES
-      </button>
-          </div>
+    <LanguageSwitcher currentLocale={currentLocale} />
 
     <!-- Navegación inferior -->
     <nav
@@ -72,34 +95,31 @@ import TranslationScript from '../components/TranslationScript.astro';
       aria-label="Main navigation"
     >
       <a
-        href="/nosotros"
+        href={`/${currentLocale}/nosotros`}
         data-bg="/images/nosotros.webp"
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.about"
       >
-        NOSOTROS
+        {aboutText}
       </a>
       <a
-        href="/carta"
+        href={`/${currentLocale}/carta`}
         data-bg="/images/plato4.webp"
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.menu"
       >
-        CARTA
+        {menuText}
       </a>
       <a
-        href="/reserva"
+        href={`/${currentLocale}/reserva`}
         data-bg="/images/interior1.webp"
         class="nav-link text-white md:text-2xl text-sm md:tracking-[14.40px] tracking-[6px] leading-normal font-light whitespace-nowrap relative inline-block pb-1"
         style="font-family: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 300;"
-        data-translate="nav.reserve"
       >
-        RESERVA
+        {reserveText}
       </a>
     </nav>
-          </div>
+  </div>
           
   <style>
     /* Barra inferior con degradado para los enlaces de navegación */
@@ -125,29 +145,24 @@ import TranslationScript from '../components/TranslationScript.astro';
     }
   </style>
 
-  <TranslationScript />
-  
   <script>
     // Función para inicializar el efecto hover del menú
     function setupNavHover() {
       const navLinks = document.querySelectorAll('.nav-link');
-      const bgImage2 = document.getElementById('background-image-2') as HTMLImageElement;
+      const bgImage2 = document.getElementById('background-image-2') as HTMLImageElement | null;
 
       if (!bgImage2) return;
 
       navLinks.forEach(link => {
-        // Verificar si ya tiene el atributo data-hover-setup para evitar duplicados
         if (link.hasAttribute('data-hover-setup')) {
           return;
         }
         
-        // Marcar como inicializado
         link.setAttribute('data-hover-setup', 'true');
         
         link.addEventListener('mouseenter', () => {
           const newBg = link.getAttribute('data-bg');
           if (newBg && bgImage2) {
-            // Cargar nueva imagen en la capa superior y hacer fade in
             bgImage2.src = newBg;
             bgImage2.style.opacity = '1';
           }
@@ -155,7 +170,6 @@ import TranslationScript from '../components/TranslationScript.astro';
 
         link.addEventListener('mouseleave', () => {
           if (bgImage2) {
-            // Hacer fade out de la capa superior para revelar la imagen original de la capa base
             bgImage2.style.opacity = '0';
           }
         });
@@ -171,7 +185,6 @@ import TranslationScript from '../components/TranslationScript.astro';
 
     // Reinicializar después de cada transición de View Transitions
     document.addEventListener('astro:page-load', () => {
-      // Remover marca de inicialización para permitir reinicializar
       document.querySelectorAll('.nav-link[data-hover-setup]').forEach(link => {
         link.removeAttribute('data-hover-setup');
       });

@@ -4,13 +4,18 @@ import { ViewTransitions } from 'astro:transitions';
 export interface Props {
   title: string;
   description?: string;
+  lang?: string;
 }
 
-const { title, description = "Restaurante Amanto - Experiencia culinaria única en un ambiente elegante" } = Astro.props;
+const { title, description = "Restaurante Amanto - Experiencia culinaria única en un ambiente elegante", lang } = Astro.props;
+
+// Obtener el idioma actual para el atributo lang del HTML
+// Intentar obtener desde props, luego desde params, finalmente usar 'es' por defecto
+const currentLang = lang || Astro.params?.lang || 'es';
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={currentLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />

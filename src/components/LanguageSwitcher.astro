@@ -1,0 +1,56 @@
+---
+/**
+ * Componente LanguageSwitcher
+ * 
+ * Este componente permite cambiar entre idiomas manteniendo la página actual.
+ * 
+ * Características:
+ * - Detecta el idioma actual desde Astro.params o como prop
+ * - Muestra un enlace al otro idioma
+ * - Preserva la ruta actual al cambiar de idioma
+ * - Ejemplo: si estás en /es/carta, el enlace llevará a /en/carta
+ */
+import { getLocalizedPath, removeLocalePrefix } from '../lib/i18n-utils';
+
+interface Props {
+  currentLocale?: string;
+}
+
+const { currentLocale: propLocale } = Astro.props;
+const locales = ['en', 'es'];
+
+// Obtener el locale desde props o desde los parámetros de la ruta
+const currentLocale = propLocale || Astro.params?.lang || 'en';
+
+// Obtener el otro idioma (el que no es el actual)
+const otherLocale = locales.find(locale => locale !== currentLocale) || 'en';
+
+// Obtener la ruta actual sin el prefijo de idioma
+const currentPath = removeLocalePrefix(Astro.url.pathname, locales);
+
+// Construir la URL del otro idioma usando la utilidad helper
+const otherLocaleUrl = getLocalizedPath(otherLocale, currentPath);
+---
+
+<div
+  class="absolute top-[5.5vh] right-[5vw] md:right-[8.5vw] font-bold text-xs md:text-base tracking-[2px] md:tracking-[4.80px] leading-normal whitespace-nowrap z-50"
+  role="navigation"
+  aria-label="Language selector"
+>
+  <a
+    href={otherLocaleUrl}
+    class="text-white tracking-[0.77px] hover:text-[#f49f13] transition-colors"
+    aria-label={`Switch to ${otherLocale.toUpperCase()}`}
+    hreflang={otherLocale}
+  >
+    {otherLocale.toUpperCase()}
+  </a>
+  <span class="text-white tracking-[0.77px]"> | </span>
+  <span
+    class="text-[#f49f13] tracking-[0.77px]"
+    aria-current="true"
+  >
+    {currentLocale.toUpperCase()}
+  </span>
+</div>
+

@@ -392,3 +392,18 @@ export function getCurrentLanguage(): Language {
   const savedLang = localStorage.getItem('language') as Language | null;
   return savedLang || 'es';
 }
+
+export function getSavedLanguage(): Language | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const savedLang = localStorage.getItem('language');
+    // Solo retornar si es exactamente 'es' o 'en' y no es null, undefined o string vacío
+    if (savedLang === 'es' || savedLang === 'en') {
+      return savedLang;
+    }
+  } catch (e) {
+    // Si hay error accediendo a localStorage, retornar null
+    return null;
+  }
+  return null;
+}

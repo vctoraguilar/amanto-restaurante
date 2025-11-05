@@ -1,43 +1,175 @@
 <script>
-  import { translations, getCurrentLanguage } from '../lib/translations';
+  import { translations, getSavedLanguage } from '../lib/translations';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const updateTranslations = () => {
-      const lang = getCurrentLanguage();
-      const t = translations[lang];
+  // Función global para actualizar todo el idioma
+  function updateLanguage(lang: 'es' | 'en', saveToStorage: boolean = true) {
+    // Guardar idioma en localStorage solo si se especifica
+    if (saveToStorage) {
+      localStorage.setItem('language', lang);
+    }
+    document.documentElement.setAttribute('data-language', lang);
+    
+    const t = translations[lang];
+    
+    // Actualizar estado visual de los botones de idioma
+    const langButtons = document.querySelectorAll('[data-lang]');
+    langButtons.forEach(btn => {
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.remove('text-white');
+        btn.classList.add('text-[#f49f13]');
+        btn.setAttribute('aria-current', 'true');
+      } else {
+        btn.classList.remove('text-[#f49f13]');
+        btn.classList.add('text-white');
+        btn.removeAttribute('aria-current');
+      }
+    });
+    
+    // Actualizar todas las traducciones
+    document.querySelectorAll('[data-translate]').forEach((element) => {
+      const key = element.getAttribute('data-translate');
+      if (key) {
+        const keys = key.split('.');
+        let value: any = t;
+        for (const k of keys) {
+          value = value[k];
+        }
+        if (value && typeof value === 'string') {
+          // Detectar si el elemento original estaba en mayúsculas
+          const originalText = element.getAttribute('data-original-text') || '';
+          const shouldBeUpperCase = originalText === originalText.toUpperCase() && originalText.length > 0 && /^[A-ZÁÉÍÓÚÑ\s]+$/.test(originalText);
+          element.textContent = shouldBeUpperCase ? value.toUpperCase() : value;
+        }
+      }
+    });
+
+    // Actualizar FlipWords
+    const flipWordsElements = document.querySelectorAll('[data-translate-array]');
+    flipWordsElements.forEach((element) => {
+      const key = element.getAttribute('data-translate-array');
+      if (key) {
+        const keys = key.split('.');
+        let value: any = t;
+        for (const k of keys) {
+          value = value[k];
+        }
+        if (value && Array.isArray(value)) {
+          element.setAttribute('data-words', JSON.stringify(value));
+        }
+      }
+    });
+
+    // Disparar evento para notificar a otros scripts
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+  }
+
+  // Hacer la función global
+  (window as any).updateLanguage = updateLanguage;
+
+  // Variable para prevenir múltiples ejecuciones
+  let initialized = false;
+
+  // Función para obtener el locale desde la URL
+  function getLocaleFromUrl(): 'es' | 'en' | null {
+    const pathname = window.location.pathname;
+    // Detectar si la URL tiene prefijo /en/ o /es/
+    if (pathname.startsWith('/en/') || pathname === '/en') {
+      return 'en';
+    }
+    if (pathname.startsWith('/es/') || pathname === '/es') {
+      return 'es';
+    }
+    return null;
+  }
+
+  // Función para inicializar las traducciones
+  function initializeTranslations() {
+    // Guardar el texto original de los elementos para detectar mayúsculas
+    document.querySelectorAll('[data-translate]').forEach((element) => {
+      if (!element.getAttribute('data-original-text')) {
+        element.setAttribute('data-original-text', element.textContent || '');
+      }
+    });
+
+    // Obtener el locale desde la URL primero
+    const urlLocale = getLocaleFromUrl();
+    
+    // Si hay un locale en la URL, usarlo y aplicarlo
+    if (urlLocale) {
+      updateLanguage(urlLocale, false);
+    } else {
+      // Si no hay locale en la URL, verificar localStorage como fallback
+      let savedLang: 'es' | 'en' | null = null;
+      try {
+        const stored = localStorage.getItem('language');
+        if (stored === 'es' || stored === 'en') {
+          savedLang = stored;
+        }
+      } catch (e) {
+        // Ignorar errores de localStorage
+      }
       
-      document.querySelectorAll('[data-translate]').forEach((element) => {
-        const key = element.getAttribute('data-translate');
-        if (key) {
-          const keys = key.split('.');
-          let value: any = t;
-          for (const k of keys) {
-            value = value[k];
-          }
-          if (value && typeof value === 'string') {
-            element.textContent = value;
+      if (savedLang) {
+        // Si hay un idioma guardado, usarlo y aplicarlo
+        updateLanguage(savedLang, false);
+      }
+    }
+  }
+
+  // Función para configurar los event listeners de los botones de idioma
+  function setupLanguageButtons() {
+    const langButtons = document.querySelectorAll('[data-lang]');
+    langButtons.forEach(button => {
+      // Verificar si ya tiene un listener
+      const hasListener = (button as any).__hasLanguageListener;
+      if (hasListener) return;
+      (button as any).__hasLanguageListener = true;
+
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const lang = button.getAttribute('data-lang') as 'es' | 'en';
+        if (lang && (lang === 'es' || lang === 'en')) {
+          // Al hacer clic, SIEMPRE guardar en localStorage y aplicar traducciones
+          try {
+            localStorage.setItem('language', lang);
+            updateLanguage(lang, true);
+          } catch (error) {
+            // Si falla guardar, al menos aplicar las traducciones
+            updateLanguage(lang, false);
           }
         }
       });
+    });
+  }
 
-      // Actualizar FlipWords
-      const flipWordsElements = document.querySelectorAll('[data-translate-array]');
-      flipWordsElements.forEach((element) => {
-        const key = element.getAttribute('data-translate-array');
-        if (key) {
-          const keys = key.split('.');
-          let value: any = t;
-          for (const k of keys) {
-            value = value[k];
-          }
-          if (value && Array.isArray(value)) {
-            element.setAttribute('data-words', JSON.stringify(value));
-          }
-        }
-      });
-    };
+  // Función para ejecutar la inicialización completa
+  function runInitialization() {
+    initializeTranslations();
+    setupLanguageButtons();
+  }
 
-    updateTranslations();
+  // Ejecutar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      if (initialized) return;
+      initialized = true;
+      runInitialization();
+    });
+  } else {
+    // DOM ya está listo, ejecutar inmediatamente
+    if (!initialized) {
+      initialized = true;
+      runInitialization();
+    }
+  }
+
+  // Ejecutar también en cada transición de página (View Transitions)
+  document.addEventListener('astro:page-load', () => {
+    // Reinicializar traducciones en cada navegación
+    initializeTranslations();
+    setupLanguageButtons();
   });
 </script>
+
 

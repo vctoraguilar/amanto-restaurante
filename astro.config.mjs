@@ -6,5 +6,12 @@ import react from '@astrojs/react';
 export default defineConfig({
   integrations: [tailwind(), react()],
   site: 'https://amanto-restaurant.com',
-  output: 'static'
+  output: 'static',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: {
+      prefixDefaultLocale: true, // Todos los idiomas tendrán prefijo (/en, /es)
+    },
+  },
 });

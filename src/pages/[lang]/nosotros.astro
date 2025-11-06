@@ -298,171 +298,206 @@ export async function getStaticPaths() {
   <TranslationScript />
   
   <script define:vars={{ currentLocale }}>
-    // Importar traducciones usando import map o fetch
-    const translations = {
-      es: {
-        about: {
-          sectionNombre: 'NOMBRE',
-          sectionNombreText: 'Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.\nAdicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.',
-          sectionCocina: 'COCINA',
-          sectionCocinaText: 'Amanto elabora su propia interpretación de los platos peruanos y su cocina está basada en especias locales: verduras cultivadas como la quinua, papa andina; trucha de río y carne de res autóctona.\n\nLa base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.',
-          sectionProposito: 'PROPÓSITO',
-          sectionPropositoText: 'Nuestra misión es cautivar tus sentidos a través de una experiencia culinaria memorable.\n\nNuestra visión es ser un destino culinario único, reconocido por nuestra excelencia y autenticidad.\n\nNuestros valores son la búsqueda constante de la innovación y la felicidad para atender.',
+    function initNosotrosPage() {
+      // Importar traducciones usando import map o fetch
+      const translations = {
+        es: {
+          about: {
+            sectionNombre: 'NOMBRE',
+            sectionNombreText: 'Nuestro nombre, "Amanto", honra la leyenda más poderosa de Ollantaytambo. Nace de la fusión del valiente general Ollantay y su rol como el amante que desafió un imperio por amor. Esa es nuestra esencia: un espíritu de lucha y pasión.\nAdicionalmente, "Amanto" es un gesto: "yo amanto", el acto de abrigar y proteger. Así, nuestro nombre también es una promesa: ser un refugio cálido en el corazón de los Andes.',
+            sectionCocina: 'COCINA',
+            sectionCocinaText: 'Amanto elabora su propia interpretación de los platos peruanos y su cocina está basada en especias locales: verduras cultivadas como la quinua, papa andina; trucha de río y carne de res autóctona.\n\nLa base de nuestra carta es una amplia colección de especias de todo Valle Sagrado, que hemos seleccionado con sumo cuidado para crear experiencias únicas e inolvidables.',
+            sectionProposito: 'PROPÓSITO',
+            sectionPropositoText: 'Nuestra misión es cautivar tus sentidos a través de una experiencia culinaria memorable.\n\nNuestra visión es ser un destino culinario único, reconocido por nuestra excelencia y autenticidad.\n\nNuestros valores son la búsqueda constante de la innovación y la felicidad para atender.',
+          }
+        },
+        en: {
+          about: {
+            sectionNombre: 'NAME',
+            sectionNombreText: 'Our name Amanto, pays tribute to Ollantaytambo\'s most powerful legend. It is born from the fusion of the brave General Ollantay and his role as the lover who defied an empire for love. That is our essence: a spirit of struggle and passion. Furthermore, "Amanto" is a gesture: "I Amanto," the act of embracing and protecting. In this way, our name is also a promise to be a warm refuge in the heart of the Andes.',
+            sectionCocina: 'CUISINE',
+            sectionCocinaText: 'Amanto creates its own interpretation of Peruvian cuisine, rooted in local ingredients such as quinoa, Andean potatoes, river trout, and native beef.\n\nThe foundation of our menu lies in a diverse collection of spices from across the Sacred Valley, carefully selected to create distinctive and unforgettable flavors.',
+            sectionProposito: 'PURPOSE',
+            sectionPropositoText: 'Our mission is to captivate your senses through a memorable culinary experience.\n\nOur vision is to be a unique culinary destination, recognized for our authenticity and excellence.\n\nOur values are the continuous pursuit of innovation and the joy of serving you.',
+          }
         }
-      },
-      en: {
-        about: {
-          sectionNombre: 'NAME',
-          sectionNombreText: 'Our name Amanto, pays tribute to Ollantaytambo\'s most powerful legend. It is born from the fusion of the brave General Ollantay and his role as the lover who defied an empire for love. That is our essence: a spirit of struggle and passion. Furthermore, "Amanto" is a gesture: "I Amanto," the act of embracing and protecting. In this way, our name is also a promise to be a warm refuge in the heart of the Andes.',
-          sectionCocina: 'CUISINE',
-          sectionCocinaText: 'Amanto creates its own interpretation of Peruvian cuisine, rooted in local ingredients such as quinoa, Andean potatoes, river trout, and native beef.\n\nThe foundation of our menu lies in a diverse collection of spices from across the Sacred Valley, carefully selected to create distinctive and unforgettable flavors.',
-          sectionProposito: 'PURPOSE',
-          sectionPropositoText: 'Our mission is to captivate your senses through a memorable culinary experience.\n\nOur vision is to be a unique culinary destination, recognized for our authenticity and excellence.\n\nOur values are the continuous pursuit of innovation and the joy of serving you.',
+      };
+
+      // Variable global para almacenar las secciones según el idioma
+      let globalSectionsData = [];
+      let currentSectionIndex = 0;
+
+      // Obtener secciones según el idioma actual
+      function getSections() {
+        const t = translations[currentLocale];
+        if (!t) return [];
+        return [
+          { 
+            title: t.about.sectionNombre, 
+            content: t.about.sectionNombreText
+          },
+          { 
+            title: t.about.sectionCocina, 
+            content: t.about.sectionCocinaText
+          },
+          { 
+            title: t.about.sectionProposito, 
+            content: t.about.sectionPropositoText
+          }
+        ];
+      }
+
+      function updateSectionsContent() {
+        const sections = getSections();
+        
+        // Actualizar la sección actual sin transición
+        const sectionTitle = document.getElementById('section-title');
+        const sectionContent = document.getElementById('section-content');
+        
+        if (sectionTitle && sectionContent && sections.length > 0) {
+          // Desactivar transiciones temporalmente
+          const originalTitleTransition = sectionTitle.style.transition;
+          const originalContentTransition = sectionContent.style.transition;
+          
+          sectionTitle.style.transition = 'none';
+          sectionContent.style.transition = 'none';
+          
+          // Cambiar contenido sin animación
+          sectionTitle.textContent = sections[currentSectionIndex].title;
+          sectionContent.textContent = sections[currentSectionIndex].content;
+          
+          // Restaurar transiciones
+          setTimeout(() => {
+            sectionTitle.style.transition = originalTitleTransition;
+            sectionContent.style.transition = originalContentTransition;
+          }, 50);
+        }
+        
+        // Actualizar el array de secciones global
+        globalSectionsData = sections;
+      }
+
+      // Inicializar secciones al cargar
+      globalSectionsData = getSections();
+      updateSectionsContent();
+
+      // Centrar el enlace activo en móvil
+      function centerActiveLink() {
+        const nav = document.getElementById('bottom-nav');
+        const activeLink = nav?.querySelector('.active-link');
+        
+        if (nav && activeLink && window.innerWidth < 768) {
+          const navRect = nav.getBoundingClientRect();
+          const linkRect = activeLink.getBoundingClientRect();
+          const scrollLeft = linkRect.left - navRect.left - (navRect.width / 2) + (linkRect.width / 2);
+          
+          nav.scrollTo({
+            left: nav.scrollLeft + scrollLeft,
+            behavior: 'smooth'
+          });
         }
       }
-    };
 
-    // Variable global para almacenar las secciones según el idioma
-    let globalSectionsData: Array<{ title: string; content: string }> = [];
-    let currentSectionIndex = 0;
+      // Ejecutar al cargar y al redimensionar
+      window.addEventListener('load', centerActiveLink);
+      window.addEventListener('resize', centerActiveLink);
 
-    // Obtener secciones según el idioma actual
-    function getSections() {
-      const t = translations[currentLocale as 'es' | 'en'];
-      return [
-        { 
-          title: t.about.sectionNombre, 
-          content: t.about.sectionNombreText
-        },
-        { 
-          title: t.about.sectionCocina, 
-          content: t.about.sectionCocinaText
-        },
-        { 
-          title: t.about.sectionProposito, 
-          content: t.about.sectionPropositoText
-        }
-      ];
-    }
-
-    function updateSectionsContent() {
-      const sections = getSections();
-      
-      // Actualizar la sección actual sin transición
+      // Navegación entre secciones
       const sectionTitle = document.getElementById('section-title');
       const sectionContent = document.getElementById('section-content');
-      
-      if (sectionTitle && sectionContent) {
-        // Desactivar transiciones temporalmente
-        const originalTitleTransition = sectionTitle.style.transition;
-        const originalContentTransition = sectionContent.style.transition;
+      const prevBtn = document.getElementById('prev-section');
+      const nextBtn = document.getElementById('next-section');
+      const prevBtnMobile = document.getElementById('prev-section-mobile');
+      const nextBtnMobile = document.getElementById('next-section-mobile');
+
+      function updateSection(index) {
+        if (index < 0 || !globalSectionsData || globalSectionsData.length === 0) return;
         
-        sectionTitle.style.transition = 'none';
-        sectionContent.style.transition = 'none';
+        currentSectionIndex = index;
         
-        // Cambiar contenido sin animación
-        sectionTitle.textContent = sections[currentSectionIndex].title;
-        sectionContent.textContent = sections[currentSectionIndex].content;
-        
-        // Restaurar transiciones
-        setTimeout(() => {
-          sectionTitle.style.transition = originalTitleTransition;
-          sectionContent.style.transition = originalContentTransition;
-        }, 50);
+        if (sectionTitle && sectionContent) {
+          // Usar un cross-fade suave: fade out primero, luego cambiar contenido y fade in
+          
+          // Paso 1: Fade out del contenido actual
+          sectionTitle.style.transition = 'opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          sectionContent.style.transition = 'opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          sectionTitle.style.opacity = '0';
+          sectionContent.style.opacity = '0';
+          
+          // Paso 2: Después de que termine el fade out, cambiar contenido y fade in
+          setTimeout(() => {
+            // Usar las secciones actualizadas según el idioma
+            let currentSections;
+            if (globalSectionsData.length > 0) {
+              currentSections = globalSectionsData;
+            } else {
+              currentSections = getSections();
+            }
+            
+            if (currentSections && currentSections[index]) {
+              sectionTitle.textContent = currentSections[index].title;
+              sectionContent.textContent = currentSections[index].content;
+            }
+            
+            // Fade in del nuevo contenido
+            setTimeout(() => {
+              sectionTitle.style.transition = 'opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+              sectionContent.style.transition = 'opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+              sectionTitle.style.opacity = '1';
+              sectionContent.style.opacity = '1';
+            }, 50);
+          }, 300);
+        }
+      }
+
+      function goToNextSection() {
+        const sections = globalSectionsData.length > 0 ? globalSectionsData : getSections();
+        if (sections.length === 0) return;
+        const nextIndex = (currentSectionIndex + 1) % sections.length;
+        updateSection(nextIndex);
+      }
+
+      function goToPrevSection() {
+        const sections = globalSectionsData.length > 0 ? globalSectionsData : getSections();
+        if (sections.length === 0) return;
+        const prevIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+        updateSection(prevIndex);
+      }
+
+      // Event listeners para desktop
+      if (prevBtn) {
+        prevBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          goToPrevSection();
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          goToNextSection();
+        });
       }
       
-      // Actualizar el array de secciones global
-      globalSectionsData = sections;
-    }
-
-    // Inicializar secciones al cargar
-    globalSectionsData = getSections();
-    updateSectionsContent();
-
-    // Centrar el enlace activo en móvil
-    function centerActiveLink() {
-      const nav = document.getElementById('bottom-nav');
-      const activeLink = nav?.querySelector('.active-link');
-      
-      if (nav && activeLink && window.innerWidth < 768) {
-        const navRect = nav.getBoundingClientRect();
-        const linkRect = activeLink.getBoundingClientRect();
-        const scrollLeft = linkRect.left - navRect.left - (navRect.width / 2) + (linkRect.width / 2);
-        
-        nav.scrollTo({
-          left: nav.scrollLeft + scrollLeft,
-          behavior: 'smooth'
+      // Event listeners para móvil
+      if (prevBtnMobile) {
+        prevBtnMobile.addEventListener('click', function(e) {
+          e.preventDefault();
+          goToPrevSection();
+        });
+      }
+      if (nextBtnMobile) {
+        nextBtnMobile.addEventListener('click', function(e) {
+          e.preventDefault();
+          goToNextSection();
         });
       }
     }
 
-    // Ejecutar al cargar y al redimensionar
-    window.addEventListener('load', centerActiveLink);
-    window.addEventListener('resize', centerActiveLink);
-
-    // Navegación entre secciones
-    const sectionTitle = document.getElementById('section-title');
-    const sectionContent = document.getElementById('section-content');
-    const prevBtn = document.getElementById('prev-section');
-    const nextBtn = document.getElementById('next-section');
-    const prevBtnMobile = document.getElementById('prev-section-mobile');
-    const nextBtnMobile = document.getElementById('next-section-mobile');
-
-    function updateSection(index: number) {
-      currentSectionIndex = index;
-      
-      if (sectionTitle && sectionContent) {
-        // Usar un cross-fade suave: fade out primero, luego cambiar contenido y fade in
-        
-        // Paso 1: Fade out del contenido actual
-        sectionTitle.style.transition = 'opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        sectionContent.style.transition = 'opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        sectionTitle.style.opacity = '0';
-        sectionContent.style.opacity = '0';
-        
-        // Paso 2: Después de que termine el fade out, cambiar contenido y fade in
-        setTimeout(() => {
-          // Usar las secciones actualizadas según el idioma
-          let currentSections;
-          if (globalSectionsData.length > 0) {
-            currentSections = globalSectionsData;
-          } else {
-            currentSections = getSections();
-          }
-          
-          sectionTitle.textContent = currentSections[index].title;
-          sectionContent.textContent = currentSections[index].content;
-          
-          // Fade in del nuevo contenido
-          setTimeout(() => {
-            sectionTitle.style.transition = 'opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            sectionContent.style.transition = 'opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            sectionTitle.style.opacity = '1';
-            sectionContent.style.opacity = '1';
-          }, 50);
-        }, 300);
-      }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initNosotrosPage, { once: true });
+    } else {
+      initNosotrosPage();
     }
-
-    function goToNextSection() {
-      const sections = globalSectionsData.length > 0 ? globalSectionsData : getSections();
-      const nextIndex = (currentSectionIndex + 1) % sections.length;
-      updateSection(nextIndex);
-    }
-
-    function goToPrevSection() {
-      const sections = globalSectionsData.length > 0 ? globalSectionsData : getSections();
-      const prevIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
-      updateSection(prevIndex);
-    }
-
-    // Event listeners para desktop
-    if (prevBtn) prevBtn.addEventListener('click', goToPrevSection);
-    if (nextBtn) nextBtn.addEventListener('click', goToNextSection);
-    
-    // Event listeners para móvil
-    if (prevBtnMobile) prevBtnMobile.addEventListener('click', goToPrevSection);
-    if (nextBtnMobile) nextBtnMobile.addEventListener('click', goToNextSection);
   </script>
 </Layout>
 

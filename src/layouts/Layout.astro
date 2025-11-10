@@ -12,6 +12,9 @@ const { title, description = "Restaurante Amanto - Experiencia culinaria única 
 // Obtener el idioma actual para el atributo lang del HTML
 // Intentar obtener desde props, luego desde params, finalmente usar 'es' por defecto
 const currentLang = lang || Astro.params?.lang || 'es';
+
+// Construir la URL absoluta de la imagen de vista previa social
+const imageUrl = `${Astro.url.origin}/social-preview.png`;
 ---
 
 <!DOCTYPE html>
@@ -23,6 +26,19 @@ const currentLang = lang || Astro.params?.lang || 'es';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:image" content={imageUrl} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;900&family=Questrial&display=swap" rel="stylesheet">

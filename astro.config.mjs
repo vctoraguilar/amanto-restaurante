@@ -11,7 +11,7 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'es'],
     routing: {
-      prefixDefaultLocale: true, // Todos los idiomas tendrán prefijo (/en, /es)
+      prefixDefaultLocale: false, // Todos los idiomas tendrán prefijo (/en, /es)
     },
   },
 });

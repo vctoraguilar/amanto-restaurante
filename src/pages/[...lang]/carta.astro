@@ -6,12 +6,28 @@ import { TracingBeamContainer } from '../../components/ui/TracingBeamContainer.t
 import esTranslations from '../../i18n/es.json';
 import enTranslations from '../../i18n/en.json';
 
-// Función para obtener traducciones según el idioma
+// 1. Obtener el parámetro de la URL (puede ser undefined en la raíz)
+const { lang } = Astro.params;
+
+// 2. Definir idiomas permitidos
+const supportedLangs = ['en', 'es'];
+
+// 3. VALIDACIÓN DE SEGURIDAD (Obligatoria para SSR)
+// Si la URL tiene un idioma (ej: /fr) pero NO está en tu lista...
+if (lang && !supportedLangs.includes(lang)) {
+  // ...redirigimos a la raíz (versión en inglés)
+  return Astro.redirect('/');
+}
+
+// 4. Determinar el idioma actual
+// Si lang es undefined (raíz), usamos 'en'. Si es válido, usamos ese.
+const currentLocale = lang || 'en';
+
+// --- Lógica de traducción (igual que antes) ---
 function getTranslations(locale: string) {
   return locale === 'es' ? esTranslations : enTranslations;
 }
 
-// Función helper para obtener traducciones
 function t(key: string, locale: string): string {
   const translations = getTranslations(locale);
   const keys = key.split('.');
@@ -22,23 +38,12 @@ function t(key: string, locale: string): string {
   return typeof value === 'string' ? value : key;
 }
 
-// Obtener el locale desde los parámetros de la ruta
-const currentLocale = Astro.params.lang || 'en';
-
-// Obtener traducciones
+// Obtener textos usando el locale calculado
 const pageTitle = t('menu.title', currentLocale);
 const pageDescription = t('menu.description', currentLocale);
 const aboutText = t('nav.about', currentLocale);
 const menuText = t('nav.menu', currentLocale);
 const reserveText = t('nav.reserve', currentLocale);
-
-// Exportar getStaticPaths para generar rutas estáticas
-export async function getStaticPaths() {
-  return [
-    { params: { lang: 'en' } },
-    { params: { lang: 'es' } },
-  ];
-}
 ---
 
 <Layout title={`${pageTitle} - Amanto Restaurante`} description={pageDescription} lang={currentLocale}>

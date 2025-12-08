@@ -5,6 +5,24 @@ import TranslationScript from '../../components/TranslationScript.astro';
 import esTranslations from '../../i18n/es.json';
 import enTranslations from '../../i18n/en.json';
 
+// 1. Obtener el parámetro de la URL
+// (será undefined si el usuario entra a la ruta base sin prefijo de idioma)
+const { lang } = Astro.params;
+
+// 2. Definir idiomas soportados
+const supportedLangs = ['en', 'es'];
+
+// 3. VALIDACIÓN DE SEGURIDAD (Obligatoria en SSR)
+// Si la URL tiene un idioma (ej: /fr/nosotros) pero no está en la lista...
+if (lang && !supportedLangs.includes(lang)) {
+  // ...redirigimos a la raíz para evitar errores 404/500.
+  return Astro.redirect('/');
+}
+
+// 4. Definir el locale actual
+// Si lang es undefined, usamos 'en'. Si es válido, usamos ese.
+const currentLocale = lang || 'en';
+
 // Función para obtener traducciones según el idioma
 function getTranslations(locale: string) {
   return locale === 'es' ? esTranslations : enTranslations;
@@ -21,10 +39,7 @@ function t(key: string, locale: string): string {
   return typeof value === 'string' ? value : key;
 }
 
-// Obtener el locale desde los parámetros de la ruta
-const currentLocale = Astro.params.lang || 'en';
-
-// Obtener traducciones
+// Obtener traducciones usando el locale calculado
 const pageTitle = t('about.title', currentLocale);
 const aboutText = t('nav.about', currentLocale);
 const menuText = t('nav.menu', currentLocale);
@@ -33,14 +48,6 @@ const addressText = t('footer.address', currentLocale);
 const cityText = t('footer.city', currentLocale);
 const scheduleText = t('footer.scheduleText', currentLocale);
 const scheduleHours = t('footer.scheduleHours', currentLocale);
-
-// Exportar getStaticPaths para generar rutas estáticas
-export async function getStaticPaths() {
-  return [
-    { params: { lang: 'en' } },
-    { params: { lang: 'es' } },
-  ];
-}
 ---
 
 <Layout title={`${pageTitle} - Amanto`} lang={currentLocale}>

@@ -1,38 +1,33 @@
 import type { MiddlewareHandler } from 'astro';
 
-/**
- * Middleware para detectar el idioma del navegador y redirigir desde la raíz (/)
- * 
- * Este middleware intercepta las peticiones a la raíz y:
- * - Detecta el idioma preferido del navegador (cabecera Accept-Language)
- * - Redirige a /es si el idioma es español
- * - Redirige a /en para cualquier otro idioma
- */
 export const onRequest: MiddlewareHandler = async (context, next) => {
   const { url, request } = context;
   
-  // Solo procesar si la URL es exactamente la raíz
+  // 1. Solo interceptamos la raíz exacta
   if (url.pathname === '/') {
-    // Obtener el idioma preferido del navegador
+    
+    // 2. Detectamos el idioma
     const acceptLanguage = request.headers.get('accept-language') || '';
-    
-    // Detectar si el idioma preferido es español
-    // Buscar 'es' en los primeros caracteres de la cabecera Accept-Language
     const isSpanish = /^es\b/i.test(acceptLanguage) || 
-                     /\bes\b/i.test(acceptLanguage.split(',')[0]);
+                      /\bes\b/i.test(acceptLanguage.split(',')[0]);
     
-    // Redirigir según el idioma detectado
-    const locale = isSpanish ? 'es' : 'en';
-    
-    return new Response(null, {
-      status: 307, // Temporary Redirect
-      headers: {
-        'Location': `/${locale}`,
-      },
-    });
+    // 3. Lógica NUEVA:
+    // Si es español, lo mandamos a /es
+    if (isSpanish) {
+       return new Response(null, {
+         status: 307, // Temporary Redirect
+         headers: {
+           'Location': '/es',
+         },
+       });
+    }
+
+    // 4. Si NO es español (es inglés, francés, etc.), NO hacemos nada.
+    // Dejamos que Astro renderice la página de inicio (que será la versión en inglés
+    // gracias a tu config prefixDefaultLocale: false).
+    return next();
   }
   
-  // Continuar con la petición normal para otras rutas
   return next();
 };
 

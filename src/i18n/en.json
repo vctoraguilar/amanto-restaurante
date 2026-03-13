@@ -43,10 +43,37 @@
     "redWines": "Red Wines",
     "whiteWines": "White Wines",
     "beers": "Beers",
-    "refreshing": "Refreshing Drinks",
+    "refreshing": "Refresh Drinks no Alcoholic",
     "refreshingNote": "Non-alcoholic",
     "coldDrinks": "Cold Drinks",
-    "hotInfusions": "Hot Infusions",
+    "hotInfusions": "Hot Infussions",
+    "beers_list": {
+      "cusquena": "Cusqueña (Golden, Dark, Wheat, or Red)",
+      "corona": "Corona",
+      "valle_sagrado": "Sacred Valley Craft Beer (Apu Veronica, Doña Elsa, Intipunku)"
+    },
+    "refreshing_list": {
+      "chicha_morada": "Purple Corn Drink (Chicha Morada)",
+      "limonada": "Lemonade",
+      "maracuya": "High Altitude Passion Fruit Drink",
+      "manzanilla_hierbas": "Chamomile and Valley Herbs Refresher"
+    },
+    "coldDrinks_list": {
+      "coca_cola": "Coca Cola",
+      "coca_cola_zero": "Coca Cola Zero",
+      "inka_cola": "Inka Cola",
+      "sprite": "Sprite",
+      "agua_gas": "Sparkling Water",
+      "agua_sin_gas": "Still Water"
+    },
+    "hotInfusions_list": {
+      "manzanilla": "Chamomile Tea",
+      "hierba_buena": "Spearmint Tea",
+      "mate_coca": "Coca Tea",
+      "mate_muna": "Muña (Andean Mint) Tea",
+      "cafe_americano": "Americano Coffee"
+    },
+
     "ctaTitle": "Ready to live the Amanto experience?",
     "ctaDescription": "Reserve your table and let yourself be captivated by our culinary proposal",
     "reserveTable": "Reserve Table"
